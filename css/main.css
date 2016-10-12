@@ -855,7 +855,7 @@ pre .javascript .function {
   background: #222;
   font-size: 12px;
   opacity: 1;
-  color: #e83015;
+  color: #00bdff;
   cursor: pointer;
   text-align: center;
   -webkit-transform: translateZ(0);
@@ -1585,11 +1585,11 @@ pre .javascript .function {
   margin-left: 10px;
 }
 .sidebar-nav .sidebar-nav-active {
-  color: #e83015;
-  border-bottom-color: #e83015;
+  color: #00bdff;
+  border-bottom-color: #00bdff;
 }
 .sidebar-nav .sidebar-nav-active:hover {
-  color: #e83015;
+  color: #00bdff;
 }
 .sidebar-panel {
   display: none;
@@ -1648,14 +1648,14 @@ pre .javascript .function {
   display: block;
 }
 .post-toc .nav .active > a {
-  color: #e83015;
-  border-bottom-color: #e83015;
+  color: #00bdff;
+  border-bottom-color: #00bdff;
 }
 .post-toc .nav .active-current > a {
-  color: #e83015;
+  color: #00bdff;
 }
 .post-toc .nav .active-current > a:hover {
-  color: #e83015;
+  color: #00bdff;
 }
 .footer {
   font-size: 14px;
@@ -2111,7 +2111,7 @@ a.search-result {
   padding-left: 10px;
 }
 .page-post-detail .sidebar-toggle-line {
-  background: #e83015;
+  background: #00bdff;
 }
 .page-post-detail .comments {
   overflow: hidden;
