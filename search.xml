@@ -4,6 +4,23 @@
   
     
     <entry>
+      <title><![CDATA[JS 高程学习 8：Object 类型]]></title>
+      <url>http://blog.jxdjayden.cn/2016/10/14/JS%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0/JS-learn-8/</url>
+      <content type="html"><![CDATA[<p>终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。</p>
+<h2 id="如何创建-Object-实例"><a href="#如何创建-Object-实例" class="headerlink" title="如何创建 Object 实例"></a>如何创建 Object 实例</h2><p>看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用 new 操作符后跟 Object 构造函数</span></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">"Jayden"</span>;</div><div class="line">person.age = <span class="number">21</span>;</div><div class="line"></div><div class="line"><span class="comment">// 使用对象字面量方法 推荐使用</span></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  name : <span class="string">"Jayden"</span>,</div><div class="line">  age: <span class="number">21</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 这里要注意一下语法，对象的最后一个属性后面不需要添加逗号，</span></div><div class="line"><span class="comment">// 在 IE7 以及更早版本的 Opera 中会引发错误。</span></div><div class="line"></div><div class="line"><span class="comment">// 在使用对象字面量方法的时候，如果留空，则定义只包含默认属性和方法的对象</span></div><div class="line"><span class="keyword">var</span> obj = &#123;&#125;; <span class="comment">// 与 new Object() 相同</span></div></pre></td></tr></table></figure>
+<p>为什么使用对象字面量语法更好呢？一是因为这种语法要求的代码量少，而且能够给人封装数据的感觉。</p>
+<h2 id="访问对象的方法"><a href="#访问对象的方法" class="headerlink" title="访问对象的方法"></a>访问对象的方法</h2><p>一般访问对象属性时使用的是点表示法，不过在 JavaScript 中还可以通过方括号表示法来访问对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">person.name; <span class="comment">// "Jayden"</span></div><div class="line">person.[<span class="string">"name"</span>]; <span class="comment">// "Jayden"</span></div></pre></td></tr></table></figure>
+<p>看起来这两种方法都没什么区别，但是方括号表示法有一个好处是可以通过变量来访问属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameType = <span class="string">"name"</span>;</div><div class="line">person.[nameType]; <span class="comment">// "Jayden"</span></div></pre></td></tr></table></figure>
+<p>哦，如果属性名中包含会导致语法错误的字符，或者属性名使用的是关键字或保留字，也可以使用方括号表示法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person[<span class="string">"first name"</span>] = <span class="string">"Jayden"</span>;</div></pre></td></tr></table></figure>
+<p>通常情况下，除非必须使用变量来访问属性，一般建议使用点表示法。</p>
+]]></content>
+    </entry>
+    
+    <entry>
       <title><![CDATA[数组的优雅降维]]></title>
       <url>http://blog.jxdjayden.cn/2016/10/09/JavaScript/%E6%95%B0%E7%BB%84%E7%9A%84%E4%BC%98%E9%9B%85%E9%99%8D%E7%BB%B4/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -46,7 +63,7 @@
     </entry>
     
     <entry>
-      <title><![CDATA[JS 高程学习 7：关于基本类型和引用类型]]></title>
+      <title><![CDATA[JS 高程学习 7：关于基本类型和引用类型的介绍]]></title>
       <url>http://blog.jxdjayden.cn/2016/10/07/JS%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A0/JS%E9%AB%98%E7%A8%8B%E5%AD%A6%E4%B9%A07_%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</url>
       <content type="html"><![CDATA[<h2 id="基本类型和引用类型的值"><a href="#基本类型和引用类型的值" class="headerlink" title="基本类型和引用类型的值"></a>基本类型和引用类型的值</h2><p>ECMAScript 变量可能包含两种不同数据类型的值：基本类型值和引用类型值。注意引用类型的值是保存在内存中的对象。而JavaScript 是不允许直接访问内存中的位置，因此在操作对象的时候，实际上是操作对象的引用而不是实际的对象。但是在为对象添加属性的时候，操作的是实际的对象。</p>
 <h2 id="动态的属性"><a href="#动态的属性" class="headerlink" title="动态的属性"></a>动态的属性</h2><ol>
