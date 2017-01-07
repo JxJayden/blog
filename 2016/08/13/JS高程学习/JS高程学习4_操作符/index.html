@@ -1,362 +1,369 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        © Material Theme 
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.5
+    -->
+    
+    <!-- Title -->
+    
+    <title>
+        JS 高程学习 4：操作符 | 代码与胡说
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="icon" sizes="192x192" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="apple-touch-icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffebee">
+    <meta name="author" content="JxJayden">
+    <meta name="description" content="我与我周旋久，宁作我。">
+    <meta name="keywords" content="前端 江晓东 博客 blog 咖啡 学习 记录 JavaScript CSS HTML code">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="代码与胡说">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://blog.jxdjayden.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="JS 高程学习 4：操作符 | 代码与胡说">
+    <meta property="og:description" content="我与我周旋久，宁作我。">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
 
 
-
-  
-
-
-<html class="theme-next muse use-motion">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-  <meta name="google-site-verification" content="a3QklT15GaL9_qepYMKW2Z9VbAejwggCbLXFzevrhP0" />
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
-
-
-
-  
-  
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-
-
-
-
-  
-
-<link href="//cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="JavaScript," />
-
-
-
-
-
-
-
-
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
-
-
-
-
-
-
-<meta name="description" content="1. 一元操作符只能操作一个值的操作符叫做一元操作符。
-1. 递增和递减操作符递增和递减操作符有两个版本：前置型和后置型。执行前置递增和递减操作时，变量的值都是在语句被求值之前改变的。而后置递减和递减的操作是在包含它们的语句被求值后才执行的。
-123456789101112131415161718//前置var age = 29；var tage = --age + 2；alert(age); /">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JS 高程学习 4：操作符">
-<meta property="og:url" content="http://blog.jxdjayden.cn/2016/08/13/JS高程学习/JS高程学习4_操作符/index.html">
-<meta property="og:site_name" content="代码与胡说">
-<meta property="og:description" content="1. 一元操作符只能操作一个值的操作符叫做一元操作符。
-1. 递增和递减操作符递增和递减操作符有两个版本：前置型和后置型。执行前置递增和递减操作时，变量的值都是在语句被求值之前改变的。而后置递减和递减的操作是在包含它们的语句被求值后才执行的。
-123456789101112131415161718//前置var age = 29；var tage = --age + 2；alert(age); /">
-<meta property="og:updated_time" content="2016-08-14T14:58:14.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS 高程学习 4：操作符">
-<meta name="twitter:description" content="1. 一元操作符只能操作一个值的操作符叫做一元操作符。
-1. 递增和递减操作符递增和递减操作符有两个版本：前置型和后置型。执行前置递增和递减操作时，变量的值都是在语句被求值之前改变的。而后置递减和递减的操作是在包含它们的语句被求值后才执行的。
-123456789101112131415161718//前置var age = 29；var tage = --age + 2；alert(age); /">
-
-
-
-<script type="text/javascript" id="hexo.configuration">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    scheme: 'Muse',
-    sidebar: {"position":"left","display":"hide"},
-    fancybox: true,
-    motion: true,
-    duoshuo: {
-      userId: '0',
-      author: '博主'
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #42a5f5
     }
-  };
-</script>
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #e57373 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #e57373 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #e57373 !important
+    }
+    
+    .toTop{
+        background: #d32f2f !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #d32f2f;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #d32f2f;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #d32f2f;
+	}
+	
+	.post-toc a:hover{
+		color: #42a5f5;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-image: url(//odgdn5u95.bkt.clouddn.com/sidebarbg.jpg);
+        }
+    </style>
 
 
 
 
-  <link rel="canonical" href="http://blog.jxdjayden.cn/2016/08/13/JS高程学习/JS高程学习4_操作符/"/>
+<!-- Fade Effect -->
 
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
 
-  <title> JS 高程学习 4：操作符 | 代码与胡说 </title>
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/arta.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
 </head>
+	
+	
 
-<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+    <body id="scheme-Paradox">
 
-  
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-一元操作符"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 一元操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-递增和递减操作符"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. 递增和递减操作符</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-一元加和减操作符"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 一元加和减操作符</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-位操作符"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 位操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-按位非（NOT）"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">1. 按位非（NOT）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-按位与（AND）"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">2. 按位与（AND）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-按位或（OR）"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">3. 按位或（OR）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-按位异或（XOR）"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">4. 按位异或（XOR）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-左移"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">5. 左移</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-有符号的右移"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">6. 有符号的右移</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#7-无符号右移"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">7. 无符号右移</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-布尔操作符"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. 布尔操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-逻辑非"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1. 逻辑非</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-逻辑与"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2. 逻辑与</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-逻辑或"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3. 逻辑或</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-乘性操作符"><span class="post-toc-number">4.</span> <span class="post-toc-text">4. 乘性操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-乘法"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1. 乘法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-除法"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2. 除法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-求模"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3. 求模</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-加性操作符"><span class="post-toc-number">5.</span> <span class="post-toc-text">5. 加性操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-加法（-）"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">1. 加法（+）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-减法（-）"><span class="post-toc-number">5.2.</span> <span class="post-toc-text">2. 减法（-）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-关系操作符"><span class="post-toc-number">6.</span> <span class="post-toc-text">6. 关系操作符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-相等操作符"><span class="post-toc-number">7.</span> <span class="post-toc-text">7. 相等操作符</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-相等和不相等（-和-）"><span class="post-toc-number">7.1.</span> <span class="post-toc-text">1. 相等和不相等（== 和 !=）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-全等和不全等（-和-）"><span class="post-toc-number">7.2.</span> <span class="post-toc-text">2. 全等和不全等（=== 和 !== ）</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-条件操作符"><span class="post-toc-number">8.</span> <span class="post-toc-text">8. 条件操作符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-赋值操作符"><span class="post-toc-number">9.</span> <span class="post-toc-text">9. 赋值操作符</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-逗号操作符"><span class="post-toc-number">10.</span> <span class="post-toc-text">10. 逗号操作符</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-76440232-2', 'auto');
-  ga('send', 'pageview');
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
 </script>
 
-
-  <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//hm.baidu.com/hm.js?cebe573cd800de992426ce2658106626";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
-
-
-
-
-
-
-
-
-  
-  
-    
-  
-
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
-
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">代码与胡说</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
-  </div>
-  <p class="site-subtitle">I am quiet inside</p>
-</div>
-
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
-</div>
-
-<nav class="site-nav">
-  
-
-  
-    <ul id="menu" class="menu">
-      
-        
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-            首页
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives" rel="section">
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-demo">
-          <a href="/demo" rel="section">
-            
-            作品
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about" rel="section">
-            
-            关于
-          </a>
-        </li>
-      
-
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-            搜索
-          </a>
-        </li>
-      
-    </ul>
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup">
- <span class="search-icon fa fa-search"></span>
- <input type="text" id="local-search-input">
- <div id="local-search-result"></div>
- <span class="popup-btn-close">close</span>
-</div>
-
-
+		
+	
+        <p class="article-headline-p">
+            JS 高程学习 4：操作符
+        </p>
     </div>
-  
-</nav>
 
- </div>
-    </header>
+	
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          <div id="content" class="content">
-            
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
 
-  <div id="posts" class="posts-expand">
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>JxJayden</strong>
+        <span>8月 13, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
     
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                JS 高程学习 4：操作符
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-13T07:58:30+08:00" content="2016-08-13">
-              2016-08-13
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JS高程学习/" itemprop="url" rel="index">
-                    <span itemprop="name">JS高程学习</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/13/JS高程学习/JS高程学习4_操作符/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/13/JS高程学习/JS高程学习4_操作符/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADjklEQVR42u3ay64aMRAFQP7/p5NtpJvAOd32iEjlFQJmsGsWTT9ev6w/1gsBDhw4cODAgQMHDhxfzPGK18+rPvxMuX5e9a9fTK4tzoIDBw4cOC5wJAd7/35ygH9hvT9w8unmLDhw4MCB4x7H+wCWB7NNoE1wW7IPDwYHDhw4cHwZR12MWwTXNvDjwIEDB47/haNNpWbBuEXBgQMHDhzfxpGHxvdXJUlaG7ZnBcrrtVIcOHDgwLEeaPj+14/Od+DAgQMHjh8cs9JeUtSL0qdFeXF27V/uhgMHDhw4jnK0pbo2bcsTubyMONsDDhw4cOB4hiMvtG3KiO14XNK4mhUWixQOBw4cOHAsONqBg32b6tRh2jZVFGhx4MCBA8eCoy205SGwvUO7n4Qpug8OHDhw4LjAkdy0TcDygmDyK7MHdqBWigMHDhw4Rn2WdsS5HVbYjCDM6N9z48CBAweOZzhONY1ONaVmoT1/BwcOHDhw3OBoU6O8jdSG1fdBvX1Iq7YTDhw4cOBYcCRHKoJWnDjl32kP3w5k4MCBAweOexx5Sa5tI7XHbhtRLRAOHDhw4HiSox4IWBcQ2yJgjhWNVuDAgQMHjgsc+UBDUhbMv9+WI2fJJA4cOHDgeJIjHwVI0qH2/XzELQ/P9W5x4MCBA8dRjlkp8JntzoJ68ikOHDhw4LjHMWvqzNK/TTFxlkBGjxMHDhw4cBzlaLfYNo1m5b+zIf9D8MaBAwcOHEc5TjV1klJj3oia0bR/BXDgwIEDxw2OWTNploBtkq5XvOokEAcOHDhwHOXIIZIWUdvy2dytLWIW/ztw4MCBA8chjtnQwH64bdMG2zeicODAgQPHDY79CFoSnt8/gH0DaRZ6ceDAgQPHPY7Z4MIseWuxWvqilYUDBw4cOC5wtKXAGdmpQLsJ7Thw4MCB40mOTWjct6bahtMwYcOBAwcOHA9y7MuF+djBJoi2Y3Mf0j8cOHDgwHGUo115qMs3uiHLm09RoMWBAwcOHGuO9gBt0rV5vUkaiwE+HDhw4MBxgSMPrm2ytBl3uJfy4cCBAweOZzjatlBeUszD5Oa3DtdKceDAgQPHgxybkbXZUEIejOsRBxw4cODA8fUc+2LfbEgi2T8OHDhw4HiSYzbE0AbRNqC+31V+/yttJxw4cODAsR5oSIYGksRp1ijalB2LQIsDBw4cOBYcFg4cOHDgwIEDBw4cOL5s/QavyjTNFC8TmgAAAABJRU5ErkJggg==">
+            </ul>
     
 
 
-    <div class="post-body" itemprop="articleBody">
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </ul>
+    
 
-      
-      
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
 
-      
-        <h2 id="1-一元操作符"><a href="#1-一元操作符" class="headerlink" title="1. 一元操作符"></a>1. 一元操作符</h2><p>只能操作一个值的操作符叫做一元操作符。</p>
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2016/08/13/JS高程学习/JS高程学习4_操作符/" class="leancloud-views_num" data-flag-title="JS 高程学习 4：操作符">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=JS 高程学习 4：操作符&url=http://blog.jxdjayden.cn//2016/08/13/JS高程学习/JS高程学习4_操作符/index.html&via=JxJayden" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<h2 id="1-一元操作符"><a href="#1-一元操作符" class="headerlink" title="1. 一元操作符"></a>1. 一元操作符</h2><p>只能操作一个值的操作符叫做一元操作符。</p>
 <h3 id="1-递增和递减操作符"><a href="#1-递增和递减操作符" class="headerlink" title="1. 递增和递减操作符"></a>1. 递增和递减操作符</h3><p>递增和递减操作符有两个版本：前置型和后置型。执行前置递增和递减操作时，变量的值都是在语句被求值之前改变的。而后置递减和递减的操作是在包含它们的语句被求值后才执行的。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//前置</span></div><div class="line"><span class="keyword">var</span> age = <span class="number">29</span>；</div><div class="line"><span class="keyword">var</span> tage = --age + <span class="number">2</span>；</div><div class="line"></div><div class="line">alert(age); <span class="comment">//28</span></div><div class="line">alert(tage); <span class="comment">//30</span></div><div class="line"></div><div class="line"><span class="comment">//前置的另一个例子</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> num2 = <span class="number">20</span>;</div><div class="line"><span class="keyword">var</span> num3 = --num1 + num2; <span class="comment">// num3 = 21</span></div><div class="line"><span class="keyword">var</span> num4 = num1 + num2; <span class="comment">// num4 = 21</span></div><div class="line"></div><div class="line"><span class="comment">//后置</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> num2 = <span class="number">20</span>;</div><div class="line"><span class="keyword">var</span> num3 = num1-- + num2; <span class="comment">// num3 = 22</span></div><div class="line"><span class="keyword">var</span> num4 = num1 + num2; <span class="comment">// num4 = 21</span></div></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -463,461 +470,498 @@
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/Comma_Operator" target="_blank" rel="external">逗号操作符</a></li>
 </ol>
 
-      
-    </div>
+	
+	
+	
+	
+</div>
+				
+				
 
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/JavaScript/" rel="tag">#JavaScript</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/08/05/JS高程学习/JS高程学习3_数据类型/" rel="next" title="JS 高程学习 3：数据类型">
-                <i class="fa fa-chevron-left"></i> JS 高程学习 3：数据类型
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/21/JS高程学习/JS高程学习5_语句/" rel="prev" title="JS 高程学习 5 ：语句">
-                JS 高程学习 5 ：语句 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </article>
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #e57373 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #e57373 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #e57373 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+        <div class="ds-thread" 
+            data-thread-key="2016/08/13/JS高程学习/JS高程学习4_操作符/" 
+            data-url="http://blog.jxdjayden.cn/2016/08/13/JS高程学习/JS高程学习4_操作符/"
+            data-title="JS 高程学习 4：操作符"></div>
+    <!-- 多说评论框 end -->
+</div>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
-
-
-          </div>
-          
-
-
-          
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/08/13/JS高程学习/JS高程学习4_操作符/"
-           data-title="JS 高程学习 4：操作符" data-url="http://blog.jxdjayden.cn/2016/08/13/JS高程学习/JS高程学习4_操作符/">
-      </div>
-    
-  </div>
-
-
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
-
-      <section class="site-overview sidebar-panel ">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="//odgdn5u95.bkt.clouddn.com/ac.jpg"
-               alt="江晓东" />
-          <p class="site-author-name" itemprop="name">江晓东</p>
-          <p class="site-description motion-element" itemprop="description">记录个人的前端学习记录以及其他。</p>
-        </div>
-        <nav class="site-state motion-element">
-          <div class="site-state-item site-state-posts">
-            <a href="/archives">
-              <span class="site-state-item-count">20</span>
-              <span class="site-state-item-name">日志</span>
-            </a>
-          </div>
-
-          
-
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">13</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
+                
             </div>
-          
-        </nav>
 
-        
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+        <a href="/2016/08/21/JS高程学习/JS高程学习5_语句/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
-        <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/JxJayden" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://resume.jxdjayden.cn/" target="_blank" title="简历">
-                  
-                    <i class="fa fa-fw fa-paper-plane"></i>
-                  
-                  简历
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="https://www.zhihu.com/people/jxjayden/" target="_blank" title="知乎">
-                  
-                    <i class="fa fa-fw fa-globe"></i>
-                  
-                  知乎
-                </a>
-              </span>
-            
-          
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/08/05/JS高程学习/JS高程学习3_数据类型/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
         </div>
-
-        
-        
-
-        
-        
-
-      </section>
-
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-一元操作符"><span class="nav-number">1.</span> <span class="nav-text">1. 一元操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-递增和递减操作符"><span class="nav-number">1.1.</span> <span class="nav-text">1. 递增和递减操作符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-一元加和减操作符"><span class="nav-number">1.2.</span> <span class="nav-text">2. 一元加和减操作符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-位操作符"><span class="nav-number">2.</span> <span class="nav-text">2. 位操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-按位非（NOT）"><span class="nav-number">2.1.</span> <span class="nav-text">1. 按位非（NOT）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-按位与（AND）"><span class="nav-number">2.2.</span> <span class="nav-text">2. 按位与（AND）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-按位或（OR）"><span class="nav-number">2.3.</span> <span class="nav-text">3. 按位或（OR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-按位异或（XOR）"><span class="nav-number">2.4.</span> <span class="nav-text">4. 按位异或（XOR）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-左移"><span class="nav-number">2.5.</span> <span class="nav-text">5. 左移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-有符号的右移"><span class="nav-number">2.6.</span> <span class="nav-text">6. 有符号的右移</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-无符号右移"><span class="nav-number">2.7.</span> <span class="nav-text">7. 无符号右移</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-布尔操作符"><span class="nav-number">3.</span> <span class="nav-text">3. 布尔操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-逻辑非"><span class="nav-number">3.1.</span> <span class="nav-text">1. 逻辑非</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-逻辑与"><span class="nav-number">3.2.</span> <span class="nav-text">2. 逻辑与</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-逻辑或"><span class="nav-number">3.3.</span> <span class="nav-text">3. 逻辑或</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-乘性操作符"><span class="nav-number">4.</span> <span class="nav-text">4. 乘性操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-乘法"><span class="nav-number">4.1.</span> <span class="nav-text">1. 乘法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-除法"><span class="nav-number">4.2.</span> <span class="nav-text">2. 除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-求模"><span class="nav-number">4.3.</span> <span class="nav-text">3. 求模</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-加性操作符"><span class="nav-number">5.</span> <span class="nav-text">5. 加性操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-加法（-）"><span class="nav-number">5.1.</span> <span class="nav-text">1. 加法（+）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-减法（-）"><span class="nav-number">5.2.</span> <span class="nav-text">2. 减法（-）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-关系操作符"><span class="nav-number">6.</span> <span class="nav-text">6. 关系操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-相等操作符"><span class="nav-number">7.</span> <span class="nav-text">7. 相等操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-相等和不相等（-和-）"><span class="nav-number">7.1.</span> <span class="nav-text">1. 相等和不相等（== 和 !=）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-全等和不全等（-和-）"><span class="nav-number">7.2.</span> <span class="nav-text">2. 全等和不全等（=== 和 !== ）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-条件操作符"><span class="nav-number">8.</span> <span class="nav-text">8. 条件操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-赋值操作符"><span class="nav-number">9.</span> <span class="nav-text">9. 赋值操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-逗号操作符"><span class="nav-number">10.</span> <span class="nav-text">10. 逗号操作符</span></a></li></ol></div>
-            
-          </div>
-        </section>
-      
-
     </div>
-  </aside>
 
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
 
-        
-      </div>
-    </main>
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(//odgdn5u95.bkt.clouddn.com/WechatIMG195.jpeg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright" >
-  
-  &copy; 
-  <span itemprop="copyrightYear">2016</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">江晓东</span>
-</div>
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
 
-<div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
-</div>
-
-<div class="theme-info">
-  主题 -
-  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
-  </a>
-</div>
-
-        
-
-        
-      </div>
-    </footer>
-
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" alt="JxJayden's avatar">
     </div>
-  </div>
 
-  
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        jxdjayden@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="//inbox.google.com/" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">5</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于">
+				关于
+			</a>
+		</li>
+	
+		<li>
+			<a href="/demo" title="作品">
+				作品
+			</a>
+		</li>
+	
+		<li>
+			<a href="/links" title="友链">
+				友链
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签">
+				标签
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">20</span>
+        </a>
+    </li>
+</ul>
+
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    
+
+    <!-- Weibo -->
+    
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    
+
+    <!-- Zhihu -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">👉🏻 代码与胡说 👈🏻</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!--
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :)
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+
+</footer>
+
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
 
 <script type="text/javascript">
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#e53935'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #e53935, 0 0 15px #e53935'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#e53935',
+        'border-left-color': '#e53935'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("GjMb2kND0sz09YBqaDKvwdFh-gzGzoHsz", "evLruCJFjgTNrndqYlnVTN2O");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
 </script>
 
 
 
 
 
-
-
-
-
-  
-
-
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
-
-  
-  <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
-
-  
-  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
-
-
-
-  
-  
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
-
-
-
-  
-
-  
-    
-  
-
-  <script type="text/javascript">
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
     var duoshuoQuery = {short_name:"jxjayden"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
+        (function() {
+            var ds = document.createElement('script');
+            ds.type = 'text/javascript';ds.async = true;
+            ds.src = 'https://static.duoshuo.com/embed.js';
+            ds.charset = 'UTF-8';
+            (document.getElementsByTagName('head')[0] 
+             || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+    </script>
+    <!-- 多说公共 js 代码 end -->
 
 
 
 
+<!-- Swiftye -->
 
 
-  
-  
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length == 0) {
-       search_path = "search.xml";
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
+<!-- Local Search-->
 
-    function proceedsearch() {
-      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
-      $('.popup').toggle();
 
-    }
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-    'use strict';
-    $.ajax({
-        url: path,
-        dataType: "xml",
-        async: true,
-        success: function( xmlResponse ) {
-            // get the contents from search data
-            isfetched = true;
-            $('.popup').detach().appendTo('.header-inner');
-            var datas = $( "entry", xmlResponse ).map(function() {
-                return {
-                    title: $( "title", this ).text(),
-                    content: $("content",this).text(),
-                    url: $( "url" , this).text()
-                };
-            }).get();
-            var $input = document.getElementById(search_id);
-            var $resultContent = document.getElementById(content_id);
-            $input.addEventListener('input', function(){
-                var matchcounts = 0;
-                var str='<ul class=\"search-result-list\">';
-                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-                $resultContent.innerHTML = "";
-                if (this.value.trim().length > 1) {
-                // perform local searching
-                datas.forEach(function(data) {
-                    var isMatch = false;
-                    var content_index = [];
-                    var data_title = data.title.trim().toLowerCase();
-                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
-                    var data_url = data.url;
-                    var index_title = -1;
-                    var index_content = -1;
-                    var first_occur = -1;
-                    // only match artiles with not empty titles and contents
-                    if(data_title != '') {
-                        keywords.forEach(function(keyword, i) {
-                            index_title = data_title.indexOf(keyword);
-                            index_content = data_content.indexOf(keyword);
-                            if( index_title >= 0 || index_content >= 0 ){
-                                isMatch = true;
-								if (i == 0) {
-                                    first_occur = index_content;
-                                }
-                            } 
-							
-                        });
-                    }
-                    // show search results
-                    if (isMatch) {
-                        matchcounts += 1;
-                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
-                        var content = data.content.trim().replace(/<[^>]+>/g,"");
-                        if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
-                            if(start < 0){
-                                start = 0;
-                            }
-                            if(start == 0){
-                                end = 50;
-                            }
-                            if(end > content.length){
-                                end = content.length;
-                            }
-                            var match_content = content.substring(start, end);
-                            // highlight all keywords
-                            keywords.forEach(function(keyword){
-                                var regS = new RegExp(keyword, "gi");
-                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
-                            });
-
-                            str += "<p class=\"search-result\">" + match_content +"...</p>"
-                        }
-                        str += "</li>";
-                    }
-                })};
-                str += "</ul>";
-                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
-                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
-                $resultContent.innerHTML = str;
-            });
-            proceedsearch();
-        }
-    });}
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched == false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
     });
+</script>
 
-    $('.popup-btn-close').click(function(e){
-      $('.popup').hide();
-      $(".popoverlay").remove();
-      $('body').css('overflow', '');
-    });
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-  </script>
+<!-- MathJax Load-->
 
-
-  
-
-  
-
-  
-
-</body>
+            </main>
+        </div>
+		
+    </body>
+		
+	
 </html>
