@@ -10,7 +10,7 @@
     <!-- Title -->
     
     <title>
-        Express 学习记录：运行原理 | 代码与胡说
+        迟到的 2016 年的总结 | 代码与胡说
     </title>
     
     <!-- Favicons -->
@@ -46,7 +46,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.jxdjayden.cn">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Express 学习记录：运行原理 | 代码与胡说">
+    <meta property="og:title" content="迟到的 2016 年的总结 | 代码与胡说">
     <meta property="og:description" content="我与我周旋久，宁作我。">
     
      <!--[if lte IE 9]>
@@ -218,7 +218,7 @@
 	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
 		for="post-toc-trigger-btn">
 			
-			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-底层：http-模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 底层：http 模块</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-中间件"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 中间件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-use-方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. use 方法</span></a></li></ol>
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#毫无建树的上半年"><span class="post-toc-number">1.</span> <span class="post-toc-text">毫无建树的上半年</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初次实习的夏末"><span class="post-toc-number">2.</span> <span class="post-toc-text">初次实习的夏末</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#在-WhatYouNeed-的美妙日子"><span class="post-toc-number">3.</span> <span class="post-toc-text">在 WhatYouNeed 的美妙日子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#和罐罐一起做项目的时光"><span class="post-toc-number">4.</span> <span class="post-toc-text">和罐罐一起做项目的时光</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于咖啡"><span class="post-toc-number">5.</span> <span class="post-toc-text">关于咖啡</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于感情"><span class="post-toc-number">6.</span> <span class="post-toc-text">关于感情</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2016-年的遗憾"><span class="post-toc-number">7.</span> <span class="post-toc-text">2016 年的遗憾</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2017-年想要实现的事情"><span class="post-toc-number">8.</span> <span class="post-toc-text">2017 年想要实现的事情</span></a></li></ol>
 		
 <!--			<li class="mdl-menu__item">Some Action</li>-->
 	</ul>
@@ -252,7 +252,7 @@
 		
 	
         <p class="article-headline-p">
-            Express 学习记录：运行原理
+            迟到的 2016 年的总结
         </p>
     </div>
 
@@ -270,7 +270,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>JxJayden</strong>
-        <span>8月 01, 2016</span>
+        <span>1月 13, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -291,7 +291,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC2ElEQVR42u3aQW7DMAwEwPz/0+21QBFnSSqBI41PRprYGvWwEMnHz5HXAxsbGxsbGxsbG/uW7Ed8Xf9qwbL+POfZ/WjN2NjY2Fuz8wU9++v/lz37JLl/Rp2sGRsbG/sE9jXgGlN9zjXy+jvNd2FjY2NjT8IjWNb1MWOyZmxsbGzsVWGWvLF6FMHGxsbGrgbSnJqXopIt+FAtDRsbG/v27Lxpep/7j/a3sbGxsW/M7g3W5FuzanPng0HY2NjYu7InJZ6clzcPet+PGsbY2NjYm7KTEZlJ+am6xdWn5evExsbGPoGdP7ragu09rdqoePE5NjY29jHsXmzkgEkpalmjFxsbG3sjdm9x17/qlX56xaxkEBMbGxt7b3YeFfkWVFu2k/HNUW5jY2Njb8fOX1CNourSC+3b/J+BjY2NvSn7+mfVcJq3FnpDP+VGLzY2NvZG7LxYkxSAVm3E2ujCxsbGPoedv7hays/bCZN7bGxs7JPZefl+7UhlMnxTPTItGL7ExsbG/kL22iHLZFAyL1pVxy6bjV5sbGzsL2cnpaLe+M48JvPS1YsQxcbGxt6UPQ+qfDvy4ctVMYmNjY19Drt3LKkWehJSNa7ysR5sbGzsXdnzKFpbQuqVnKI1YGNjY2/NroZKtSyVl5nmrd9yewAbGxv7y9n5jyfhVD1m5E9YVkvDxsbG/nL2qoXmRf9JSyAvNmFjY2Ofxp7HzzsOLb0BnXKjFxsbG3sj9qojRD64OdnW0fAlNjY29hbs6pVv07xUVD3SvPgmNjY29qbsR3xNQq5Q+mkdSKK3Y2NjY2/NzkMrD5s8cnqxlzSqsbGxsU9j99qovQZD7yiSB225v42NjY19GDvZgl6hP9ms3pEGGxsbG7saS0mk5UM58wEgbGxs7BPYveZuNdLyI00egdGasbGxsbdmV4s1vYZBPhJUPeS8vb+NjY2NfWP2ORc2NjY2NjY2Njb2ba5fM5YqXIZiXeQAAAAASUVORK5CYII=">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC1UlEQVR42u3aUXLiMBAEUO5/6d0DpGK6R4ZypOcvKoA9T3x0ZqTXvyOvFzY2NjY2NjY2NvYj2a/4+vmt317//HxU1i/3vH5KUTM2Njb21uy8oFkRyWIl91+qGRsbG/sA9qzc6yKSd1tGWzM2NjY2dv6Z9u9JU5QsATY2Njb2LMBmgBn4QbmNjY2N/WD2bHCftBYJtV3Wr87SsLGxsR/PvnfE/53XX93fxsbGxn4we3aw5jqoktHSrEVZqhwbGxt7U3ZbXNJ+3DUeyhc3qhMbGxt7U3YeUSvbrslxnzai6jqxsbGxN2XPhjWzaMnjsG1IrhcUGxsb+zR2ElfJuyufaWuItoexsbGxt2bPDs3ksNmI6npcVTdC2NjY2Juy3/z7vhxU+VPakVP+XGxsbOy92bNQaSOnbXvaALuhFcHGxsb+s+z1MMsj5NPPfXN/bGxs7E3Zs6aijcB6ABS3IkUoYmNjY2/Nbof+7Sg/P2qTNyr5AmFjY2Pvzc43aJPi7toqyBe9aGmwsbGxt2a3AZN/ZrYc+ebu0vYANjY29hbsFcy9QTVrbJIfBhsbG/sEdl5WUsTsCE6yCdEOpLCxsbFPYOewT2wDt6P/vLZ6loaNjY39Z9nrY/eViMoDrG1a6tzGxsbG3oKdH3BMhjttg9Fi8kYIGxsb+0x23gC0d2hbnbx1efNdbGxs7K3Z+UiobVraO+Sh2C4iNjY29gnsfJTfhk0bfus/ADY2Njb2bOQ0O7jTLs1sEbGxsbF3ZbdX22DMjuCsbzC/GSphY2Njb8RebxLahuQTr6PNCWxsbOyt2bPxUDuWSmKsHWMlYGxsbOxz2OttxmwD+BODpOEsDRsbG/swdhsts2icRSY2NjY29myIMzv0sxKKxUJgY2NjH8BObtoOktpN3JUDQx/cHsDGxsZ+PHs2rMmDqt02uA7IvHJsbGzsE9jnXNjY2NjY2NjY2NiPuf4DV7ua3S3u2FEAAAAASUVORK5CYII=">
             </ul>
     
 
@@ -304,7 +304,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Express/">Express</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/node/">node</a>
+        <a class="post_tag-link" href="/tags/学习整理/">学习整理</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/总结/">总结</a>
     </ul>
     
 
@@ -319,7 +319,7 @@
     <!-- Leancloud Views -->
     <a class="post_share-link" href="#">
         <li class="mdl-menu__item">
-            <span id="/2016/08/01/Express/Express运行原理/" class="leancloud-views_num" data-flag-title="Express 学习记录：运行原理">
+            <span id="/2017/01/13/总结/2016 年总结/" class="leancloud-views_num" data-flag-title="迟到的 2016 年的总结">
      &nbsp;浏览量
 </span>
         </li>
@@ -333,7 +333,7 @@
 
     <!-- Share Twitter -->
     
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Express 学习记录：运行原理&url=http://blog.jxdjayden.cn//2016/08/01/Express/Express运行原理/index.html&via=JxJayden" target="_blank">
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=迟到的 2016 年的总结&url=http://blog.jxdjayden.cn//2017/01/13/总结/2016 年总结/index.html&via=JxJayden" target="_blank">
         <li class="mdl-menu__item">
             分享到 Twitter
         </li>
@@ -363,16 +363,24 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<h1 id="1-底层：http-模块"><a href="#1-底层：http-模块" class="headerlink" title="1. 底层：http 模块"></a>1. 底层：http 模块</h1><p>http 模块生成服务器原始代码如下。createServer 方法表示生成一个 HTTP 服务器实例。该方法接受一个回调函数，该回调函数的参数，分别为代表 HTTP 请求和HTTP 回应的 request 对象和 response 对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app=http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'hello'</span>);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">8000</span>,<span class="string">'localhost'</span>);</div></pre></td></tr></table></figure></p>
-<p>Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 http 模块的再包装。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">'Hello world!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
+		<p>其实 2017 年已经开始了快十几天了，我才动手写 2016 年的总结。前段时间一直在复习考试，所以总结一直被搁浅。现在考完试终于可以好好梳理一下自己过去一年了。</p>
+<h2 id="毫无建树的上半年"><a href="#毫无建树的上半年" class="headerlink" title="毫无建树的上半年"></a>毫无建树的上半年</h2><p>这个标题好像很消极，但事实上它很好地概括了我 2016 年上半年的经历。说实话，关于我上半年的经历、收获，我几乎回想不起来了，从过完年回到学校，我基本上是在找实习、投简历和面试中度过的。感觉是浑浑厄厄的半年，其实很遗憾又懊悔，在大学的大多数的时光里，几乎都这样浑浑厄厄的过去了。到现在接近毕业，实在是懊恼无比。</p>
 <a id="more"></a>
-<p>比较两端代码可以发现它们非常接近，两者的回调函数都是相同的。Express 框架等于在 http 模块之上，加了一个中间层。</p>
-<h1 id="2-中间件"><a href="#2-中间件" class="headerlink" title="2. 中间件"></a>2. 中间件</h1><p>中间件(middleware)简单地说就是处理 HTTP 请求的函数，它的特点是一个中间件处理完再传递给下一个中间件。<br>每个中间件可以从 app 实例接收三个参数：request、response、next（下一个中间件）。<br>一个最基础的中间件的代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">middleware</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">    next();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="3-use-方法"><a href="#3-use-方法" class="headerlink" title="3. use 方法"></a>3. use 方法</h1><p>use 是 express 注册中间件的方法，它返回一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(request.url);</div><div class="line">    next();</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.end(<span class="string">'hello world'</span>);</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">http.createServer(app).listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
-<p>这里使用 app.use 方法注册了两个中间件。在收到 HTTP 请求后会先调用第一个中间件，输出请求的地址，因为第一个中间件中调用了 next() 方法，所以接下来会执行第二个中间件，输出 HTTP 回应。由于第二个中间件没有调用 next 方法，所以 request 对象就不再向后传递了。<br>use 方法内部可以对访问路径进行判断，据此就能实现简单的路由，根据不同的请求网址，返回不同的网页内容。除了在回调函数内部判断请求的网址，use 方法也允许将请求网址写在第一个参数。这代表，只有请求路径匹配这个参数，后面的中间件才会生效。无疑，这样写更加清晰和方便。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">"express"</span>);</div><div class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">"http"</span>);</div><div class="line"><span class="keyword">var</span> app=express();</div><div class="line"></div><div class="line">app.use(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'this is start'</span>);</div><div class="line">    &#125;);</div><div class="line">app.use(<span class="string">'/hello'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'hello world'</span>);</div><div class="line">    &#125;);</div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'404 Not found'</span>);</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">http.createServer(app).listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>参考：<a href="http://javascript.ruanyifeng.com/nodejs/express.html#toc5" target="_blank" rel="external">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p>
-</blockquote>
+<h2 id="初次实习的夏末"><a href="#初次实习的夏末" class="headerlink" title="初次实习的夏末"></a>初次实习的夏末</h2><p>2016 年的 7 月至 9 月底，是我第一次实习，之前只做过一次外包的项目。那个时候的感觉，就像一头初出茅庐的小牛犊，啥也不懂的撞进了新世界。在这段时间里，我学习到了很多知识，也把自己的码力往上提了提。这段时间的实习总结，可以看这篇文章：<a href="http://blog.jxdjayden.cn/2016/09/30/%E6%80%BB%E7%BB%93/20160930%E5%AE%9E%E4%B9%A0%E6%80%BB%E7%BB%93/">《基础知识真的很重要！！！记三个月的实习》</a>。这段时间里，我还投身找工作的大军中，得到了一份还过去的 offer ，希望毕业后可以在金蝶学习到更多的知识。</p>
+<h2 id="在-WhatYouNeed-的美妙日子"><a href="#在-WhatYouNeed-的美妙日子" class="headerlink" title="在 WhatYouNeed 的美妙日子"></a>在 WhatYouNeed 的美妙日子</h2><p>9 月底，因为学业的原因，我从实习的公司辞职了。然后在师兄师姐们创业的公司里实习，跟着有代码洁癖的年兽工作。其实我是很抱歉的，因为自己在这两个月里写了一堆 bug 出来，幸而年兽给了我足够多的时间来 debug，并且很耐心地 code review 。曾经我以为自己已经算得上一个强迫症了，然而 😪 ，是我太天真了。年兽的强迫症才算是强迫症……这两个月里，我对 html 和 CSS 的熟悉程度有了很大的提升。当初入坑前端的时候，因为没有人带、加上自己的懒惰，导致我对 html 和 CSS 都是囫囵吞枣，一知半解。年兽不止一次的说：“你写的页面结构是什么鬼，简直是一坨翔”。而且不好的页面结构也给我自己带来了许多麻烦，每次都是后知后觉，遇到 bug 才知道哪里写的不好，哪里有更好的写法。</p>
+<p>除此之外，在移动端页面开发方面也收获了很多经验，因为我在实习期间做的项目基本上就是在移动端上使用的。整个过程踩了数不尽的坑。为了适配不同的设备耗费了很多时间。使用 vue2.0 也让自己对 mvvm 框架有了一些了解。</p>
+<p>其实这段实习让我收获最多的不是具体什么方法或者什么框架的使用，而是年兽对于编程的态度影响我很多，知道了自己最大的问题是我的态度以及懒散，这是很致命的缺点。2017 年希望可以克服这个问题。</p>
+<h2 id="和罐罐一起做项目的时光"><a href="#和罐罐一起做项目的时光" class="headerlink" title="和罐罐一起做项目的时光"></a>和罐罐一起做项目的时光</h2><p>在 2017 年的下半年里，我还和<a href="http://garychang.cn/" target="_blank" rel="external">罐罐</a>接了一个外包的项目，当然要非常感谢金主 vivi 的信任。唔，顺带提一下 vivi，vivi 是我大学认识的第一个学姐，她算得上是我的人生导师之一，（虽然我经常黑她，但是我是很感激她的。）vivi 对我大学这几年的帮助和影响是巨大的。真的非常谢谢她。好了， 回正题，这个项目，有面向用户的网站，以及客户使用地后台。前端后端都是用 js 。后端是罐罐用 koa 写的。后台我们用了 vue2.0 加 element UI，网站用 artTemplate 做后端渲染，同时使用了 gulp 和 scss 来简化工作。目前网站还在测试中。具体的项目代码可以点击<a href="https://github.com/JxJayden/node-CMS" target="_blank" rel="external">这个链接</a>查看，开源的版本会比项目代码落后几个版本。接下来会继续做优化。罐罐也是一个很有趣的人，和他一起工作非常有趣。算是 2016 年认识的少有的可以交心的朋友。</p>
+<h2 id="关于咖啡"><a href="#关于咖啡" class="headerlink" title="关于咖啡"></a>关于咖啡</h2><p>今年接近年末的时候，终于开始入坑手冲咖啡，自己买了器具，学习着手冲一杯好喝的咖啡。很爽，真的。</p>
+<h2 id="关于感情"><a href="#关于感情" class="headerlink" title="关于感情"></a>关于感情</h2><p>谢谢我的女朋友，一年来都没怎么和我吵过架，她忍受了我很多的毛病和问题，虽然她没说，我也常常忽略了。但是我自己回顾过来，心里是很清楚她给予了我很多的包容。唔，2017 年继续走下去。</p>
+<h2 id="2016-年的遗憾"><a href="#2016-年的遗憾" class="headerlink" title="2016 年的遗憾"></a>2016 年的遗憾</h2><p><strong>书读的太少，空想的太多</strong></p>
+<h2 id="2017-年想要实现的事情"><a href="#2017-年想要实现的事情" class="headerlink" title="2017 年想要实现的事情"></a>2017 年想要实现的事情</h2><ol>
+<li>在前端方面更进一步，读更多的书，写更多的代码，思考的更多。</li>
+<li>不能止步于前端，要加强自己在算法，数据结构，编译原理，计算机原理方面的知识。（面试的时候因为这方面的缺失，错过了很多好机会。）</li>
+<li>努力学习手冲，最起码，可以自己泡出一杯好喝的咖啡。</li>
+<li>阅读更多非技术类的书籍。</li>
+<li><strong>把英语学好！！！</strong></li>
+</ol>
 
 	
 	
@@ -401,9 +409,9 @@
 <div id="comments">
     <!-- 多说评论框 start -->
         <div class="ds-thread" 
-            data-thread-key="2016/08/01/Express/Express运行原理/" 
-            data-url="http://blog.jxdjayden.cn/2016/08/01/Express/Express运行原理/"
-            data-title="Express 学习记录：运行原理"></div>
+            data-thread-key="2017/01/13/总结/2016 年总结/" 
+            data-url="http://blog.jxdjayden.cn/2017/01/13/总结/2016 年总结/"
+            data-title="迟到的 2016 年的总结"></div>
     <!-- 多说评论框 end -->
 </div>
 
@@ -417,21 +425,13 @@
     
     <!-- Prev Nav -->
     
-        <a href="/2016/08/03/Express/Express的方法/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/" id="post_nav-older" class="next-content">
+        <a href="/2016/10/14/JS高程学习/JS-learn-8/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

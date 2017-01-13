@@ -10,7 +10,7 @@
     <!-- Title -->
     
     <title>
-        Express 学习记录：运行原理 | 代码与胡说
+        代码与胡说
     </title>
     
     <!-- Favicons -->
@@ -46,7 +46,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.jxdjayden.cn">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Express 学习记录：运行原理 | 代码与胡说">
+    <meta property="og:title" content="代码与胡说">
     <meta property="og:description" content="我与我周旋久，宁作我。">
     
      <!--[if lte IE 9]>
@@ -195,253 +195,112 @@
                 </button>
 				
 				
-                <!-- Post TOC -->
-
+                <!-- Index Module -->
+<div class="material-index mdl-grid">
+	
+    <div class="locate-thumbnail-symbol"></div>
     
-	<!-- Back Button -->
-<!--
-	<div class="material-back" id="backhome-div" tabindex="0">
-		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
-			<i class="material-icons" role="presentation">arrow_back</i>
-			<span class="mdl-button__ripple-container">
-				<span class="mdl-ripple"></span>
-			</span>
-		</a>
-	</div>			
--->
-	<!-- Left aligned menu below button -->
-	<button id="post-toc-trigger-btn"
-			class="mdl-button mdl-js-button mdl-button--icon">
-	  <i class="material-icons">format_list_numbered</i>
-	</button>
-
-	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
-		for="post-toc-trigger-btn">
-			
-			<ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#1-底层：http-模块"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 底层：http 模块</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2-中间件"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 中间件</span></a></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#3-use-方法"><span class="post-toc-number">3.</span> <span class="post-toc-text">3. use 方法</span></a></li></ol>
+    
 		
-<!--			<li class="mdl-menu__item">Some Action</li>-->
-	</ul>
-
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-		
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-	<!-- Paradox Post Header -->
+			<!-- Paradox Thumbnail -->
+        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+    
+    <!-- Post Thumbnail -->
 	
 		
 			<!-- Random Thumbnail -->
 			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-				<script>
+		
+	
+				
+		<!-- Post Title -->
+		<p class="article-headline-p"><a href="/2016/07/29/git/git学习之git基本使用/">git 学习：git 基本使用</a></p>
+	</div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            前段时间根据廖雪峰的 git 教程自学了一遍 git 的使用，同时写了三篇文章记录自己的学习心得，最近新开了 blog，于是把这三篇文章转到这里。
+1. windows 下 git 的安装
+可以通过 https://git-scm.com/download/win安装 git，然后打开 Git Bash 即可进行 git 操作。
+安装完成后需要输入以下命令来完成安装：
+12$ git config --global user.name "Your Name"$ git config --global user.email "email@example.com"
+
+注意：注意 git config 命令的–lobal 参数，用了这个参数，表示你这台机器上所有的 Git 仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和 Email 地址。
+
+
+
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2016/07/29/git/git学习之git基本使用/" target="_self">继续阅读</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="JxJayden's avatar">
+            </div>
+            <div>
+                <strong>JxJayden</strong>
+                <span>7月 29, 2016</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                <a class="post_category-link" href="/categories/git/">git</a>
+            </span>
+            
+            
+                <!-- Comment Number -->
+                &nbsp;|&nbsp;
+                <span class="post_entry-comment" >
+                        <span class="ds-thread-count" data-thread-key="2016/07/29/git/git学习之git基本使用/" data-count-type="comments"></span>
+                </span>
+            
+            
+            <!-- Post Views -->
+            <span class="post_entry-views">
+                
+            </span>
+        </div>
+    </div>
+            
+</div>
+
+		
+		
+    
+		<!-- Index nav -->
+        <nav class="material-nav mdl-cell mdl-cell--12-col">
+            <a class="extend prev" rel="prev" href="/page/2/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+        </nav>
+    
+    
+	
+		<script>
     
     var randomNum;
-    randomNum = Math.floor(Math.random() * 19 + 1);
     
-    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    var locatePost = $(".locate-thumbnail-symbol").next();
+    for(var i=0; i < 10; i++){
+        
+        randomNum = Math.floor(Math.random() * 19 + 1);
+        
+        locatePost.children(".post_thumbnail-random").attr('id', 'random_thumbnail-'+randomNum);
+        locatePost.children(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
+        
+        locatePost = locatePost.next();
+    }
     
 </script>
 
-		
 	
-        <p class="article-headline-p">
-            Express 学习记录：运行原理
-        </p>
-    </div>
-
-	
-
-				
-				
-					<!-- Paradox Post Info -->
-					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-
-    <!-- Author Avatar -->
-    <div id="author-avatar">
-        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="Author Avatar"/>
-    </div>
-    <!-- Author Name & Date -->
-    <div>
-        <strong>JxJayden</strong>
-        <span>8月 01, 2016</span>
-    </div>
-
-    <div class="section-spacer"></div>
-
-    <!-- Favorite -->
-<!--
-    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
-        <i class="material-icons" role="presentation">favorite</i>
-        <span class="visuallyhidden">favorites</span>
-    </button>
--->
-
-    <!-- Qrcode -->
-    
-        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-            <i class="material-icons" role="presentation">devices other</i>
-            <span class="visuallyhidden">devices other</span>
-        </button>
-        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
-            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC2ElEQVR42u3aQW7DMAwEwPz/0+21QBFnSSqBI41PRprYGvWwEMnHz5HXAxsbGxsbGxsbG/uW7Ed8Xf9qwbL+POfZ/WjN2NjY2Fuz8wU9++v/lz37JLl/Rp2sGRsbG/sE9jXgGlN9zjXy+jvNd2FjY2NjT8IjWNb1MWOyZmxsbGzsVWGWvLF6FMHGxsbGrgbSnJqXopIt+FAtDRsbG/v27Lxpep/7j/a3sbGxsW/M7g3W5FuzanPng0HY2NjYu7InJZ6clzcPet+PGsbY2NjYm7KTEZlJ+am6xdWn5evExsbGPoGdP7ragu09rdqoePE5NjY29jHsXmzkgEkpalmjFxsbG3sjdm9x17/qlX56xaxkEBMbGxt7b3YeFfkWVFu2k/HNUW5jY2Njb8fOX1CNourSC+3b/J+BjY2NvSn7+mfVcJq3FnpDP+VGLzY2NvZG7LxYkxSAVm3E2ujCxsbGPoedv7hays/bCZN7bGxs7JPZefl+7UhlMnxTPTItGL7ExsbG/kL22iHLZFAyL1pVxy6bjV5sbGzsL2cnpaLe+M48JvPS1YsQxcbGxt6UPQ+qfDvy4ctVMYmNjY19Drt3LKkWehJSNa7ysR5sbGzsXdnzKFpbQuqVnKI1YGNjY2/NroZKtSyVl5nmrd9yewAbGxv7y9n5jyfhVD1m5E9YVkvDxsbG/nL2qoXmRf9JSyAvNmFjY2Ofxp7HzzsOLb0BnXKjFxsbG3sj9qojRD64OdnW0fAlNjY29hbs6pVv07xUVD3SvPgmNjY29qbsR3xNQq5Q+mkdSKK3Y2NjY2/NzkMrD5s8cnqxlzSqsbGxsU9j99qovQZD7yiSB225v42NjY19GDvZgl6hP9ms3pEGGxsbG7saS0mk5UM58wEgbGxs7BPYveZuNdLyI00egdGasbGxsbdmV4s1vYZBPhJUPeS8vb+NjY2NfWP2ORc2NjY2NjY2Njb2ba5fM5YqXIZiXeQAAAAASUVORK5CYII=">
-            </ul>
-    
-
-
-    <!-- Tags (bookmark) -->
-    
-    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-        <i class="material-icons" role="presentation">bookmark</i>
-        <span class="visuallyhidden">bookmark</span>
-    </button>
-    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
-        <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Express/">Express</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/node/">node</a>
-    </ul>
-    
-
-    <!-- Share -->
-    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-    <i class="material-icons" role="presentation">share</i>
-    <span class="visuallyhidden">share</span>
-</button>
-<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
-
-    
-    <!-- Leancloud Views -->
-    <a class="post_share-link" href="#">
-        <li class="mdl-menu__item">
-            <span id="/2016/08/01/Express/Express运行原理/" class="leancloud-views_num" data-flag-title="Express 学习记录：运行原理">
-     &nbsp;浏览量
-</span>
-        </li>
-    </a>
-    
-
-    
-
-    <!-- Share Weibo -->
-    
-
-    <!-- Share Twitter -->
-    
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Express 学习记录：运行原理&url=http://blog.jxdjayden.cn//2016/08/01/Express/Express运行原理/index.html&via=JxJayden" target="_blank">
-        <li class="mdl-menu__item">
-            分享到 Twitter
-        </li>
-    </a>
-    
-
-    <!-- Share Facebook -->
-    
-
-    <!-- Share Google+ -->
-    
-
-    <!-- Share LinkedIn -->
-    
-
-    <!-- Share QQ -->
-    
-
-    <!-- Share Telegram -->
-    
-</ul>
 
 </div>
-
-				
-
-                <!-- Post Content -->
-                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-	
-		<h1 id="1-底层：http-模块"><a href="#1-底层：http-模块" class="headerlink" title="1. 底层：http 模块"></a>1. 底层：http 模块</h1><p>http 模块生成服务器原始代码如下。createServer 方法表示生成一个 HTTP 服务器实例。该方法接受一个回调函数，该回调函数的参数，分别为代表 HTTP 请求和HTTP 回应的 request 对象和 response 对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> app=http.createServer(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'hello'</span>);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">8000</span>,<span class="string">'localhost'</span>);</div></pre></td></tr></table></figure></p>
-<p>Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 http 模块的再包装。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.get(<span class="string">'/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">  res.send(<span class="string">'Hello world!'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>比较两端代码可以发现它们非常接近，两者的回调函数都是相同的。Express 框架等于在 http 模块之上，加了一个中间层。</p>
-<h1 id="2-中间件"><a href="#2-中间件" class="headerlink" title="2. 中间件"></a>2. 中间件</h1><p>中间件(middleware)简单地说就是处理 HTTP 请求的函数，它的特点是一个中间件处理完再传递给下一个中间件。<br>每个中间件可以从 app 实例接收三个参数：request、response、next（下一个中间件）。<br>一个最基础的中间件的代码如下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">middleware</span>(<span class="params">req,res,next</span>)</span>&#123;</div><div class="line">    next();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h1 id="3-use-方法"><a href="#3-use-方法" class="headerlink" title="3. use 方法"></a>3. use 方法</h1><p>use 是 express 注册中间件的方法，它返回一个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">"express"</span>);</div><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">"http"</span>);</div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(request.url);</div><div class="line">    next();</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.end(<span class="string">'hello world'</span>);</div><div class="line">    &#125;)</div><div class="line"></div><div class="line">http.createServer(app).listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
-<p>这里使用 app.use 方法注册了两个中间件。在收到 HTTP 请求后会先调用第一个中间件，输出请求的地址，因为第一个中间件中调用了 next() 方法，所以接下来会执行第二个中间件，输出 HTTP 回应。由于第二个中间件没有调用 next 方法，所以 request 对象就不再向后传递了。<br>use 方法内部可以对访问路径进行判断，据此就能实现简单的路由，根据不同的请求网址，返回不同的网页内容。除了在回调函数内部判断请求的网址，use 方法也允许将请求网址写在第一个参数。这代表，只有请求路径匹配这个参数，后面的中间件才会生效。无疑，这样写更加清晰和方便。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> express=<span class="built_in">require</span>(<span class="string">"express"</span>);</div><div class="line"><span class="keyword">var</span> http=<span class="built_in">require</span>(<span class="string">"http"</span>);</div><div class="line"><span class="keyword">var</span> app=express();</div><div class="line"></div><div class="line">app.use(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'this is start'</span>);</div><div class="line">    &#125;);</div><div class="line">app.use(<span class="string">'/hello'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">request,response,next</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'hello world'</span>);</div><div class="line">    &#125;);</div><div class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">request,response</span>)</span>&#123;</div><div class="line">    response.writeHead(<span class="number">200</span>,&#123;<span class="string">'Content-Type'</span>:<span class="string">'text/plain'</span>&#125;);</div><div class="line">    response.send(<span class="string">'404 Not found'</span>);</div><div class="line">    &#125;);</div><div class="line">    </div><div class="line">http.createServer(app).listen(<span class="number">8000</span>);</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>参考：<a href="http://javascript.ruanyifeng.com/nodejs/express.html#toc5" target="_blank" rel="external">《JavaScript 标准参考教程（alpha）》</a>，by 阮一峰</p>
-</blockquote>
-
-	
-	
-	
-	
-</div>
-				
-				
-
-                <!-- Post Comments -->
-                
-                    
-    <!-- 使用多说评论 -->
-    <link rel="stylesheet" href="/css/duoshuo.min.css">
-<style>
-    #ds-thread #ds-reset .ds-post-button{
-        background-color: #e57373 !important;
-    }
-    #ds-wrapper #ds-reset .ds-icons-32{
-        background-color: #e57373 !important;
-    }
-    #ds-reset .ds-highlight {
-        color: #e57373 !important;
-    }
-</style>
-<div id="comments">
-    <!-- 多说评论框 start -->
-        <div class="ds-thread" 
-            data-thread-key="2016/08/01/Express/Express运行原理/" 
-            data-url="http://blog.jxdjayden.cn/2016/08/01/Express/Express运行原理/"
-            data-title="Express 学习记录：运行原理"></div>
-    <!-- 多说评论框 end -->
-</div>
-
-
-
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    
-    <!-- Prev Nav -->
-    
-        <a href="/2016/08/03/Express/Express的方法/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-        </div>
-    </div>
 
 				
 				
