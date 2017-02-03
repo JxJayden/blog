@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        © Material Theme 
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.5
+    -->
+    
+    <!-- Title -->
+    
+    <title>
+        使用 pm2 部署 node 服务 | 代码与胡说
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="icon" sizes="192x192" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="apple-touch-icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffebee">
+    <meta name="author" content="JxJayden">
+    <meta name="description" content="我与我周旋久，宁作我。">
+    <meta name="keywords" content="前端 江晓东 博客 blog 咖啡 学习 记录 JavaScript CSS HTML code">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="代码与胡说">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://blog.jxdjayden.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="使用 pm2 部署 node 服务 | 代码与胡说">
+    <meta property="og:description" content="我与我周旋久，宁作我。">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #42a5f5
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #e57373 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #e57373 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #e57373 !important
+    }
+    
+    .toTop{
+        background: #d32f2f !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #d32f2f;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #d32f2f;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #d32f2f;
+	}
+	
+	.post-toc a:hover{
+		color: #42a5f5;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-image: url(//odgdn5u95.bkt.clouddn.com/sidebarbg.jpg);
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/arta.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#背景介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">背景介绍</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前期准备"><span class="post-toc-number">2.</span> <span class="post-toc-text">前期准备</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境介绍"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">环境介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#必备软件"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">必备软件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#登录系统"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">登录系统</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#更新软件"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">更新软件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装-node-js"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">安装 node.js</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装-nginx-和-mongodb"><span class="post-toc-number">2.2.4.</span> <span class="post-toc-text">安装 nginx 和 mongodb</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装-yarn"><span class="post-toc-number">2.2.5.</span> <span class="post-toc-text">安装 yarn</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用-yarn-安装-pm2"><span class="post-toc-number">2.2.6.</span> <span class="post-toc-text">使用 yarn 安装 pm2</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#新建账户并添加账户的-sudo-权限"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">新建账户并添加账户的 sudo 权限</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#拷贝本地的公匙到服务器"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">拷贝本地的公匙到服务器</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#本地安装-pm2"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">本地安装 pm2</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Github-仓库设置"><span class="post-toc-number">3.</span> <span class="post-toc-text">Github 仓库设置</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#本地-pm2-的-ecosystem-配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">本地 pm2 的 ecosystem 配置</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#默认配置"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">默认配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#deploy-的配置介绍："><span class="post-toc-number">4.2.</span> <span class="post-toc-text">deploy 的配置介绍：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我的配置"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">我的配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#在本地目录下执行部署设置命令"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">在本地目录下执行部署设置命令</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#部署应用"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">部署应用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">5.</span> <span class="post-toc-text">参考</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
+</script>
+
+		
+	
+        <p class="article-headline-p">
+            使用 pm2 部署 node 服务
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>JxJayden</strong>
+        <span>2月 03, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQ4AAAEOCAAAAABd2qZ5AAADjUlEQVR42u3aO5LjMAwFwLn/pWfTSWy/B5BeBc3I5bIlshVA+Pz8Wn/WDwIcOHDgwIEDBw4cOB7M8ROvv79/dYXkm801PxysPAsOHDhw4LjHkdzm1UbzY7wHSo6U/Dc/Cw4cOHDguM2R3KYNYzlZ8s1mnzhw4MCB45kcSUhrA2R+l7NkOHDgwIHjaYF2llDNftMWEHHgwIEDxxM48oJae4X3x0jKjnno/WqtFAcOHDhwHB1oeObn/zbfgQMHDhw4FisJlqfG3WZJYHEWHDhw4MBxlCM/0j712o/lJZ/zQiEOHDhw4PgmR9vI2aC0jaUkDOcBGAcOHDhw3OBISmz5v2YBeEPcBmwcOHDgwHGboy265YPU+VBC+2DytO3DnnHgwIEDxwWO/DbtUW+0o/KdR48QBw4cOHBc5ths6Ea7KH8JyEuZOHDgwIHjHscsTO6bPbM0b/9ygAMHDhw4nsDRNnXy8Nkme21Dq2474cCBAweONccs7dk3mVqCTfj/cB0cOHDgwHGUY1b4m22oSKvioYfNWXDgwIEDxw2On7craf+cCpOzket8//VAAw4cOHDgOMSRt6DaINe2tdrgPRwox4EDBw4cRzny8NminG0sJdCzgQwcOHDgwHGWI0l7ktu3ZcS2IDijHHbhcODAgQPHgiMpsbUp1r3GVZ40HhtowIEDBw4cC45Nua3dVp4WtserRyVw4MCBA8fXOfJmUjsMkR+pLVBeDLQ4cODAgaMsDm6aRrOBubyYuB+MGE4O4sCBAweOkmMzcJCE2zb4tYXL96Dv74sDBw4cOM5ytOEqL97lKV9dziv39uHVAQcOHDhwHOWYBdG8wdNuuk3/8uLgy7vjwIEDB44LHHkIbAuCbVGvLR3mQX3YdsKBAwcOHAuO9mZJ8a4da5g9hrbUiAMHDhw4vsPRhsN2HCEPq22KuCHDgQMHDhzf4ZglSG2QbjnaMB89Zhw4cODAcZSjXbPg2qZ/sxLh8AUCBw4cOHAc5WhDVB4s84DXDknkWNGeceDAgQPHBY42uNZpUlzam/0mH5LAgQMHDhzf5GiLg3kbKblym3q1j+flPnHgwIEDxwM42s214xGzQYo8qcOBAwcOHM/haNOkPGS2x0tOEV0fBw4cOHBc48i32NJsxuBmTEXSiAMHDhw4LnC0JbZZSnbsAPEQw2+wcODAgQPHWQ4LBw4cOHDgwIEDBw4cD1v/AOj3d5iU5LMFAAAAAElFTkSuQmCC">
+            </ul>
+    
+
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/02/03/JavaScript/使用github和pm2部署node服务/" class="leancloud-views_num" data-flag-title="使用 pm2 部署 node 服务">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+      
+      <!-- Busuanzi Views -->
+      <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="busuanzi_container_page_pv">
+                <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+            </span>
+        </li>
+      </a>
+      
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用 pm2 部署 node 服务&url=http://blog.jxdjayden.cn//2017/02/03/JavaScript/使用github和pm2部署node服务/index.html&via=JxJayden" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>前段时间接的项目现在进入了后续维护阶段，正式环境已经正常运行了。现在需要部署到测试的服务器上，以便后续的修改和维护，所以就想用 pm2 来完成部署。</p>
+<a id="more"></a>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><h3 id="环境介绍"><a href="#环境介绍" class="headerlink" title="环境介绍"></a>环境介绍</h3><p>本地：macOS serria version 10.12.3<br>远程服务器：centOS</p>
+<h3 id="必备软件"><a href="#必备软件" class="headerlink" title="必备软件"></a>必备软件</h3><p>Node、npm、yarn、pm2、nginx、mongodb</p>
+<h4 id="登录系统"><a href="#登录系统" class="headerlink" title="登录系统"></a>登录系统</h4><p>ip 地址是虚拟的。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh root@123.206.204.185</div></pre></td></tr></table></figure></p>
+<h4 id="更新软件"><a href="#更新软件" class="headerlink" title="更新软件"></a>更新软件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum update -y</div></pre></td></tr></table></figure>
+<h4 id="安装-node-js"><a href="#安装-node-js" class="headerlink" title="安装 node.js"></a>安装 node.js</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">curl --silent --location https://rpm.nodesource.com/setup_6.x | bash -</div><div class="line">yum install nodejs -y</div></pre></td></tr></table></figure>
+<p>这里安装的 node.js 是 6.9.4 版本。需要安装其他版本的 node.js 请参考 <a href="https://nodejs.org/en/download/package-manager/" target="_blank" rel="external">Installing Node.js via package manager</a></p>
+<h4 id="安装-nginx-和-mongodb"><a href="#安装-nginx-和-mongodb" class="headerlink" title="安装 nginx 和 mongodb"></a>安装 nginx 和 mongodb</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y mongodb nginx</div></pre></td></tr></table></figure>
+<h4 id="安装-yarn"><a href="#安装-yarn" class="headerlink" title="安装 yarn"></a>安装 yarn</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g yarn</div><div class="line">yarn config <span class="built_in">set</span> registry <span class="string">'https://registry.npm.taobao.org'</span></div></pre></td></tr></table></figure>
+<p>用 yarn 来代替 npm，国内记得换源。</p>
+<h4 id="使用-yarn-安装-pm2"><a href="#使用-yarn-安装-pm2" class="headerlink" title="使用 yarn 安装 pm2"></a>使用 yarn 安装 pm2</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn global add pm2</div></pre></td></tr></table></figure>
+<h3 id="新建账户并添加账户的-sudo-权限"><a href="#新建账户并添加账户的-sudo-权限" class="headerlink" title="新建账户并添加账户的 sudo 权限"></a>新建账户并添加账户的 sudo 权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">useradd <span class="built_in">test</span></div><div class="line">passwd <span class="built_in">test</span></div><div class="line">usermod -G wheel <span class="built_in">test</span></div></pre></td></tr></table></figure>
+<p>添加账户的 sudo 权限的时候还需要使用 root 账户修改 /etc/sudoers 文件，把 #%wheel ALL=(ALL) ALL 取消注释。</p>
+<h3 id="拷贝本地的公匙到服务器"><a href="#拷贝本地的公匙到服务器" class="headerlink" title="拷贝本地的公匙到服务器"></a>拷贝本地的公匙到服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp ~/.ssh/id_rsa.pub <span class="built_in">test</span>@123.206.204.185:/home/<span class="built_in">test</span>/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p><strong>test 需替换为上面你自己新建的账户名</strong></p>
+<h3 id="本地安装-pm2"><a href="#本地安装-pm2" class="headerlink" title="本地安装 pm2"></a>本地安装 pm2</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g pm2</div></pre></td></tr></table></figure>
+<h2 id="Github-仓库设置"><a href="#Github-仓库设置" class="headerlink" title="Github 仓库设置"></a>Github 仓库设置</h2><ol>
+<li>设置仓库的 Deploy keys，Settings &gt; Deploy keys &gt; Add deploy key。</li>
+<li>在服务器端上通过 ssh-keygen 生成 key <code>cat ~/.ssh/id_rsa.pub</code> 。</li>
+<li>在服务器上执行 <code>ssh-keyscan -t rsa github.com &gt;&gt; ~/.ssh/known_hosts</code> 将 <a href="http://github.com" target="_blank" rel="external">http://github.com</a> 加入 known_hosts。</li>
+</ol>
+<p>本地代码仓库和 Github 仓库的连接不再多说。</p>
+<h2 id="本地-pm2-的-ecosystem-配置"><a href="#本地-pm2-的-ecosystem-配置" class="headerlink" title="本地 pm2 的 ecosystem 配置"></a>本地 pm2 的 ecosystem 配置</h2><p>此部份参考 pm2 的官方文档。<br>在应用的根目录下使用 <code>pm2 ecosystem</code> 命令新建文件为 ecosystem.json。</p>
+<h3 id="默认配置"><a href="#默认配置" class="headerlink" title="默认配置"></a>默认配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  // Applications part</div><div class="line">  "apps" : [&#123;</div><div class="line">    "name"      : "API",</div><div class="line">    "script"    : "app.js",</div><div class="line">    "env": &#123;</div><div class="line">      "COMMON_VARIABLE": "true"</div><div class="line">    &#125;,</div><div class="line">    "env_production" : &#123;</div><div class="line">      "NODE_ENV": "production"</div><div class="line">    &#125;</div><div class="line">  &#125;,&#123;</div><div class="line">    "name"      : "WEB",</div><div class="line">    "script"    : "web.js"</div><div class="line">  &#125;],</div><div class="line">  // Deployment part</div><div class="line">  // Here you describe each environment</div><div class="line">  "deploy" : &#123;</div><div class="line">    "production" : &#123;</div><div class="line">      "user" : "node",</div><div class="line">      // Multi host is possible, just by passing IPs/hostname as an array</div><div class="line">      "host" : ["212.83.163.1", "212.83.163.2", "212.83.163.3"],</div><div class="line">      // Branch</div><div class="line">      "ref"  : "origin/master",</div><div class="line">      // Git repository to clone</div><div class="line">      "repo" : "git@github.com:repo.git",</div><div class="line">      // Path of the application on target servers</div><div class="line">      "path" : "/var/www/production",</div><div class="line">      // Can be used to give options in the format used in the configura-</div><div class="line">      // tion file.  This is useful for specifying options for which there</div><div class="line">      // is no separate command-line flag, see 'man ssh'</div><div class="line">      // can be either a single string or an array of strings</div><div class="line">      "ssh_options": "StrictHostKeyChecking=no",</div><div class="line">      // To prepare the host by installing required software (eg: git)</div><div class="line">      // even before the setup process starts</div><div class="line">      // can be multiple commands separated by the character ";"</div><div class="line">      // or path to a script on your local machine</div><div class="line">      "pre-setup" : "apt-get install git",</div><div class="line">      // Commands / path to a script on the host machine</div><div class="line">      // This will be executed on the host after cloning the repository</div><div class="line">      // eg: placing configurations in the shared dir etc</div><div class="line">      "post-setup": "ls -la",</div><div class="line">      // Commands to execute locally (on the same machine you deploy things)</div><div class="line">      // Can be multiple commands separated by the character ";"</div><div class="line">      "pre-deploy-local" : "echo 'This is a local executed command'"</div><div class="line">      // Commands to be executed on the server after the repo has been cloned</div><div class="line">      "post-deploy" : "npm install &amp;&amp; pm2 startOrRestart ecosystem.json --env production"</div><div class="line">      // Environment variables that must be injected in all applications on this env</div><div class="line">      "env"  : &#123;</div><div class="line">        "NODE_ENV": "production"</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    "staging" : &#123;</div><div class="line">      "user" : "node",</div><div class="line">      "host" : "212.83.163.1",</div><div class="line">      "ref"  : "origin/master",</div><div class="line">      "repo" : "git@github.com:repo.git",</div><div class="line">      "path" : "/var/www/development",</div><div class="line">      "ssh_options": ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],</div><div class="line">      "post-deploy" : "pm2 startOrRestart ecosystem.json --env dev",</div><div class="line">      "env"  : &#123;</div><div class="line">        "NODE_ENV": "staging"</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="deploy-的配置介绍："><a href="#deploy-的配置介绍：" class="headerlink" title="deploy 的配置介绍："></a>deploy 的配置介绍：</h3><p>以 production 为例：</p>
+<blockquote>
+   <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">production : &#123;</div><div class="line">    user : "登录远程服务器的用户名，此处填写我们创建的yishi",</div><div class="line">    host : "远程服务器的IP或hostname，此处可以是数组同步部署多个服务器，不过鉴于我们只有一个服务器，因此我们填写123.57.205.23",</div><div class="line">    ref  : "远端名称及分支名，此处填写origin/master",</div><div class="line">    repo : "git仓库地址，此处填写git@github.com:e10101/pm2app.git",</div><div class="line">    path : "远程服务器部署目录，需要填写user具备写入权限的目录，此处填写/home/yishi/www/production",</div><div class="line">   "post-deploy" : "部署后需要执行的命令，此处填写npm install &amp;&amp; pm2 startOrRestart ecosystem.json --env production"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="我的配置"><a href="#我的配置" class="headerlink" title="我的配置"></a>我的配置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    /**</div><div class="line">     * Application configuration section</div><div class="line">     * http://pm2.keymetrics.io/docs/usage/application-declaration/</div><div class="line">     */</div><div class="line">    apps: [&#123;</div><div class="line">            name: "app",</div><div class="line">            script: "./app.js",</div><div class="line">            watch: true,</div><div class="line">            ignore_watch: ["./log", "./node_modules", "./npm-debug.log"],</div><div class="line">            env: &#123;</div><div class="line">                "NODE_ENV": "development",</div><div class="line">            &#125;,</div><div class="line">            env_production: &#123;</div><div class="line">                "NODE_ENV": "production"</div><div class="line">            &#125;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            name: "render",</div><div class="line">            script: "./render.js",</div><div class="line">            watch: true,</div><div class="line">            ignore_watch: ["./log", "./node_modules", "./npm-debug.log"],</div><div class="line">            env: &#123;</div><div class="line">                "NODE_ENV": "development",</div><div class="line">            &#125;,</div><div class="line">            env_production: &#123;</div><div class="line">                "NODE_ENV": "production"</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line"></div><div class="line">    /**</div><div class="line">     * Deployment section</div><div class="line">     * http://pm2.keymetrics.io/docs/usage/deployment/</div><div class="line">     */</div><div class="line"></div><div class="line">    deploy: &#123;</div><div class="line">        production: &#123;</div><div class="line">            user: "test",</div><div class="line">            host: "123.206.204.185",</div><div class="line">            ref: "origin/master",</div><div class="line">            repo: "git@github.com:JxJayden/node-CMS.git",</div><div class="line">            path: "/home/test/node-CMS",</div><div class="line">            "post-deploy": "sudo yarn install &amp;&amp; sudo pm2 startOrRestart ecosystem.json --env production"</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="在本地目录下执行部署设置命令"><a href="#在本地目录下执行部署设置命令" class="headerlink" title="在本地目录下执行部署设置命令"></a>在本地目录下执行部署设置命令</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pm2 deploy ecosystem.json production setup</div><div class="line"></div><div class="line">如无意外，将显示以下信息</div><div class="line"></div><div class="line">  ○ setup complete</div><div class="line">--&gt; Success</div></pre></td></tr></table></figure>
+<h3 id="部署应用"><a href="#部署应用" class="headerlink" title="部署应用"></a>部署应用</h3><p><em>在部署前需要提交本地代码到 github 仓库</em><br>提交代码后在本地目录下执行以下命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 deploy ecosystem.json production</div></pre></td></tr></table></figure></p>
+<p>如果成功的话，可以看到如下截图所示的信息。<br><img src="http://odgdn5u95.bkt.clouddn.com/pm2success.jpeg" alt="pm2 success image"></p>
+<p>至此，使用 pm2 部署 node 应用成功。撒花～<br><strong>注意：nginx 及 mongodb 的配置这里没有涉及。大家可以自己查阅资料</strong></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ol>
+<li><a href="http://pm2.keymetrics.io/docs/usage/deployment/" target="_blank" rel="external">PM2 - Deployment</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/20940096" target="_blank" rel="external">通过 Github 与 PM2 部署 Node 应用</a></li>
+<li><a href="https://sfantasy.gitbooks.io/node-in-action/content/zh/express/deploy.html" target="_blank" rel="external">服务器部署</a></li>
+</ol>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+	<div id="disqus-comment">
+		<div id="disqus_thread"></div>
+<script>
+	$("html").ready(function(){
+		setTimeout(function(){
+			var disqus_config = function () {
+				this.page.url = "http://blog.jxdjayden.cn/2017/02/03/JavaScript/使用github和pm2部署node服务/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+
+			(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+				s.src = '//blog-jxdjayden-cn.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		},1500);
+	});
+</script>
+	</div>
+	<style>
+		#disqus-comment{
+			background-color:#eee;
+			padding:2pc;
+		}
+	</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/01/19/转载/【转载】转载我宇的一篇文章/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(//odgdn5u95.bkt.clouddn.com/WechatIMG195.jpeg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" alt="JxJayden's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        jxdjayden@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:jxdjayden@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">5</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+             分类
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/categories/ES6/">ES6<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/Express/">Express<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS高程学习/">JS高程学习<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/">JavaScript<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/browser/">browser<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/lifestyle/">lifestyle<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/software/">software<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/转载/">转载<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于">
+				关于
+			</a>
+		</li>
+	
+		<li>
+			<a href="/demo" title="作品">
+				作品
+			</a>
+		</li>
+	
+		<li>
+			<a href="/links" title="友链">
+				友链
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签">
+				标签
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://resume.jxdjayden.cn/" title="简历">
+				简历
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">23</span>
+        </a>
+    </li>
+</ul>
+
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    
+
+    <!-- Weibo -->
+    
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    
+
+    <!-- Zhihu -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">👉🏻 代码与胡说 👈🏻</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!--
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :)
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+
+</footer>
+
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#e53935'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #e53935, 0 0 15px #e53935'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#e53935',
+        'border-left-color': '#e53935'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("GjMb2kND0sz09YBqaDKvwdFh-gzGzoHsz", "evLruCJFjgTNrndqYlnVTN2O");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+	<script id="dsq-count-scr" src="//blog-jxdjayden-cn.disqus.com/count.js" async></script>
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
