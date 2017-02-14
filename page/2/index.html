@@ -207,6 +207,122 @@
     
     <!-- Post Thumbnail -->
 	
+		<!-- Custom Thumbnail -->
+		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(//odgdn5u95.bkt.clouddn.com/31.jpg)">
+	
+				
+		<!-- Post Title -->
+		<p class="article-headline-p"><a href="/2016/09/27/lifestyle/quietinside/">I am quiet inside</a></p>
+	</div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            分享一个自己很喜欢的独立品牌 TACITURNLI 2016 秋冬型录。嗯，纯粹是作为一个粉丝的自我分享，相信你也不会觉得一个服装品牌会找流量几近零的 blog（而且还是码农）来打广告。TACITURNLI 最让我喜欢的是每一件衣物都会经过熏香，那个味道让我醉心不已。少说废话，来看图片。
+
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2016/09/27/lifestyle/quietinside/" target="_self">继续阅读</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="JxJayden's avatar">
+            </div>
+            <div>
+                <strong>JxJayden</strong>
+                <span>9月 27, 2016</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                <a class="post_category-link" href="/categories/lifestyle/">lifestyle</a>
+            </span>
+            
+            
+            
+            <!-- Post Views -->
+            <span class="post_entry-views">
+                
+            </span>
+        </div>
+    </div>
+            
+</div>
+
+		
+		
+    
+		
+			<!-- Paradox Thumbnail -->
+        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+    
+    <!-- Post Thumbnail -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+		
+	
+				
+		<!-- Post Title -->
+		<p class="article-headline-p"><a href="/2016/09/23/browser/浏览器对后退行为的处理/">浏览器对后退行为的处理</a></p>
+	</div>
+
+    <!-- Post Excerpt -->
+    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
+        
+            今天在公司的项目中遇到 Firefox 一个很有趣的特性：在页面上点击了本页打开的链接，如果马上点一下 Firefox 的后退按钮，就会退回到之前的页面，并且原来页面的状态会被还原，包括 JavaScript 改变的 DOM 结构也会保持。举个栗子：
+1234567891011&lt;a href="http://blog.jxdjayden.cn"&gt;Click Me!&lt;/a&gt;&lt;span id="test"&gt;&lt;/span&gt;&lt;script&gt;  window.onload = function()&#123;    alert("the back button on Firefox");    var i = 1;    setInterval(function()&#123;      document.getElementById("test").innerHTML = i++;    &#125;,1000);  &#125;;&lt;/script&gt;
+        
+        &nbsp;&nbsp;&nbsp;
+        <span>
+            <a href="/2016/09/23/browser/浏览器对后退行为的处理/" target="_self">继续阅读</a>
+        </span>
+    </div>
+    <!-- Post_entry Info-->
+    <div id="post_entry-info">
+        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
+            <!-- Author Avatar -->
+            <div id="author-avatar">
+                <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="JxJayden's avatar">
+            </div>
+            <div>
+                <strong>JxJayden</strong>
+                <span>9月 23, 2016</span>
+            </div>
+        </div>
+        <div id="post_entry-right-info">
+            <!-- Category -->
+            <span class="post_entry-category">
+                <a class="post_category-link" href="/categories/browser/">browser</a>
+            </span>
+            
+            
+            
+            <!-- Post Views -->
+            <span class="post_entry-views">
+                
+            </span>
+        </div>
+    </div>
+            
+</div>
+
+		
+		
+    
+		
+			<!-- Paradox Thumbnail -->
+        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
+    
+    <!-- Post Thumbnail -->
+	
 		
 			<!-- Random Thumbnail -->
 			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
@@ -696,124 +812,6 @@ ECMAScript 标识符一般采用驼峰大小写格式：firstSecond。第一个�
 		
 		
     
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/08/01/Express/Express运行原理/">Express 学习记录：运行原理</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            1. 底层：http 模块http 模块生成服务器原始代码如下。createServer 方法表示生成一个 HTTP 服务器实例。该方法接受一个回调函数，该回调函数的参数，分别为代表 HTTP 请求和HTTP 回应的 request 对象和 response 对象。12345678var http=require('http');var app=http.createServer(function(request,response)&#123;    response.writeHead(200,&#123;'Content-Type':'text/plain'&#125;);    response.send('hello');    &#125;);app.listen(8000,'localhost');
-Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 http 模块的再包装。12345678var express = require('express');var app = express();app.get('/', function (req, res) &#123;  res.send('Hello world!');&#125;);app.listen(8000);
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/08/01/Express/Express运行原理/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="JxJayden's avatar">
-            </div>
-            <div>
-                <strong>JxJayden</strong>
-                <span>8月 01, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/Express/">Express</a>
-            </span>
-            
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
-		
-			<!-- Paradox Thumbnail -->
-        	<div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    
-    <!-- Post Thumbnail -->
-	
-		
-			<!-- Random Thumbnail -->
-			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-		
-	
-				
-		<!-- Post Title -->
-		<p class="article-headline-p"><a href="/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/">JS 高程学习 1：JavaScript 简介</a></p>
-	</div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            1. JavaScript 简史JavaScript 诞生于 1995 年，当时它的主要目的是处理以前由服务器端语言（如 Perl）负责的一些输入验证操作。1997 年，以 JavaScript1.1 为蓝本的建议被提交给了 ECMA，经过数月的努力，完成了 ECMA-262 的新脚本语言的标准。自此以后，浏览器开发商就开始致力于将 ECMAScript 作为各自 JavaScript 实现的基础。如今，JavaScript 已经成为一门功能全面的编程语言，能够处理复杂的计算和交互，拥有了闭包，匿名函数等特性。
-2. JavaScript 的实现完整的 JavaScript 由三个部分组成：核心（ECMAScript），文档对象模型（DOM），浏览器对象模型（BOM）。
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="JxJayden's avatar">
-            </div>
-            <div>
-                <strong>JxJayden</strong>
-                <span>7月 31, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                <a class="post_category-link" href="/categories/JS高程学习/">JS高程学习</a>
-            </span>
-            
-            
-            
-            <!-- Post Views -->
-            <span class="post_entry-views">
-                
-            </span>
-        </div>
-    </div>
-            
-</div>
-
-		
-		
-    
 		<!-- Index nav -->
         <nav class="material-nav mdl-cell mdl-cell--12-col">
             <a class="extend prev" rel="prev" href="/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_back</i></button></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"><i class="material-icons" role="presentation">arrow_forward</i></button></a>
@@ -916,7 +914,7 @@ Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 ht
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">5</span></a>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">5</span></a>
         </ul>
     </li>
 
@@ -930,7 +928,7 @@ Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 ht
         </a>
         <ul class="dropdown-menu">
             <li>
-            <a class="sidebar_archives-link" href="/categories/ES6/">ES6<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/Express/">Express<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS高程学习/">JS高程学习<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/">JavaScript<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/browser/">browser<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/lifestyle/">lifestyle<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/software/">software<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/转载/">转载<span class="sidebar_archives-count">1</span></a>
+            <a class="sidebar_archives-link" href="/categories/ES6/">ES6<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Express/">Express<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS高程学习/">JS高程学习<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/">JavaScript<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/browser/">browser<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/lifestyle/">lifestyle<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node/">node<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/software/">software<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/转载/">转载<span class="sidebar_archives-count">1</span></a>
         </ul>
     </li>
     
@@ -976,7 +974,7 @@ Eepress 框架建立在 node.js 内置的 http 模块上。它的核心是对 ht
     <li>
         <a href="/archives">
              文章总数
-             <span class="sidebar-badge">24</span>
+             <span class="sidebar-badge">26</span>
         </a>
     </li>
 </ul>

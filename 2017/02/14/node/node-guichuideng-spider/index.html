@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <!--
+        © Material Theme 
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.2.5
+    -->
+    
+    <!-- Title -->
+    
+    <title>
+        使用 koa + crawler + cheerio 爬取《鬼吹灯》小说 | 代码与胡说
+    </title>
+    
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="icon" sizes="192x192" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    <link rel="apple-touch-icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+    
+    <!-- Meta & INfo -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#ffebee">
+    <meta name="author" content="JxJayden">
+    <meta name="description" content="我与我周旋久，宁作我。">
+    <meta name="keywords" content="前端 江晓东 博客 blog 咖啡 学习 记录 JavaScript CSS HTML code">
+    
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+    
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="代码与胡说">
+    
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="http://blog.jxdjayden.cn">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="使用 koa + crawler + cheerio 爬取《鬼吹灯》小说 | 代码与胡说">
+    <meta property="og:description" content="我与我周旋久，宁作我。">
+    
+     <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+        
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+    
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+	body, html{
+		font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+	}
+	
+    a{
+        color: #42a5f5
+    }
+    
+    .mdl-card__media,
+    #search-label,
+    #search-form-label:after,
+    #scheme-Paradox .hot_tags-count,
+    #scheme-Paradox .sidebar_archives-count,
+    #scheme-Paradox .sidebar-colored .sidebar-header,
+    #scheme-Paradox .sidebar-colored .sidebar-badge{
+        background-color: #e57373 !important
+    }
+    
+	/* Sidebar User Drop Down Menu Text Color */
+	#scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+    #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus{
+        color: #e57373 !important
+    }
+    
+    #post_entry-right-info,
+    .sidebar-colored .sidebar-nav li:hover > a,
+    .sidebar-colored .sidebar-nav li:hover > a i,
+    .sidebar-colored .sidebar-nav li > a:hover,
+    .sidebar-colored .sidebar-nav li > a:hover i,
+    .sidebar-colored .sidebar-nav li > a:focus i,
+    .sidebar-colored .sidebar-nav > .open > a,
+    .sidebar-colored .sidebar-nav > .open > a:hover,
+    .sidebar-colored .sidebar-nav > .open > a:focus,
+    #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a{
+        color: #e57373 !important
+    }
+    
+    .toTop{
+        background: #d32f2f !important
+    }
+		
+	.material-layout .material-post>.material-nav,
+	.material-layout .material-index>.material-nav,
+	.material-nav a{
+		color: #d32f2f;
+	}
+		
+	#scheme-Paradox .MD-burger-layer {
+		background-color: #d32f2f;
+	}
+
+	#scheme-Paradox #post-toc-trigger-btn{
+		color: #d32f2f;
+	}
+	
+	.post-toc a:hover{
+		color: #42a5f5;
+		text-decoration: underline;
+	}
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+        body{
+            background-image: url(//odgdn5u95.bkt.clouddn.com/sidebarbg.jpg);
+        }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+        .fade {
+            transition: all 800ms linear;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        .fade.out{
+            opacity: 0;
+        }
+    </style>
+
+	<script src="/js/jquery.min.js"></script>
+	
+	<link rel="stylesheet" href="/css/highlight/arta.css">
+	
+	<!-- UC Browser Compatible-->
+	<script>
+		var agent = navigator.userAgent.toLowerCase();
+		if(agent.indexOf('ucbrowser')>0) {
+			document.write('<link rel="stylesheet" href="/css/uc.css">');
+		   alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+		}
+	</script>
+    
+    <!-- Custom Head -->
+    
+</head>
+	
+	
+
+    <body id="scheme-Paradox">
+
+		
+        <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+				
+			
+			
+            <!-- Main Container -->
+            <main class="material-layout__content" id="main">
+				
+                <!-- Top Anchor -->
+                <div id="top"></div>
+				
+				
+                <!-- Hamburger Button -->
+                <button class="MD-burger-icon sidebar-toggle">
+                    <span class="MD-burger-layer"></span>
+                </button>
+				
+				
+                <!-- Post TOC -->
+
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#初衷"><span class="post-toc-number">1.</span> <span class="post-toc-text">初衷</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用-crawler-cheerio-完成爬虫"><span class="post-toc-number">2.</span> <span class="post-toc-text">使用 crawler + cheerio 完成爬虫</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#hello-crawler"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">hello crawler</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#爬取章节信息"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">爬取章节信息</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分析章节信息"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">分析章节信息</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#缓存数据"><span class="post-toc-number">3.</span> <span class="post-toc-text">缓存数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建目录-使用-mkdirp-来新建目录。"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">创建目录 使用 mkdirp 来新建目录。</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把文章写为-html-文件"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">把文章写为 html 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把文章目录写为-json-文件"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">把文章目录写为 json 文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#把方法抽出来，放到-utils-js-中"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">把方法抽出来，放到 utils.js 中</span></a></li></ol></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+		
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+	<!-- Paradox Post Header -->
+	
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
+</script>
+
+		
+	
+        <p class="article-headline-p">
+            使用 koa + crawler + cheerio 爬取《鬼吹灯》小说
+        </p>
+    </div>
+
+	
+
+				
+				
+					<!-- Paradox Post Info -->
+					<div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>JxJayden</strong>
+        <span>2月 14, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+<!--
+    <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+        <i class="material-icons" role="presentation">favorite</i>
+        <span class="visuallyhidden">favorites</span>
+    </button>
+-->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAAC30lEQVR42u3aQVLDMAwF0N7/0rBlBpp+SS4E+2WVyXScPLMQ+vLj48jrgY2NjY2NjY2NjX1L9iO+vv7++wpPX3a5WrJCvuaLt2BjY2NvzU5ec32fPPl+f72t+XuvvxkbGxv7HHb+KQkvL2yTzS0UWmxsbGzsoCxdP3m2ctL8TAohNjY2NvbarclDq/weGxsbG7sa0JQDnXib8lbnV7M0bGxs7Nuze4Pev73/s/k2NjY29s3Yk6v64t44uVdEf1gfGxsbe1N20hL0eEn7kfy+2qI0D19iY2Njb8ROjuZUI56kXCVfUh0SY2NjY5/Arr6gGuXPnySbUh4PYGNjY2/ETpB5+XnHAcr5OtjY2Nh7s6vNQB4Pze97+ELdxsbGxt6C3Tvm2GskksIziZwWDHqxsbGx/yG7GjD1YqC8XFVbncWHL7GxsbH/Ibv3L351U/LDN5Pg6cWXY2NjY2/KTgpM71hP7zfV4UTeRGFjY2Pvys6P3awNj943YChkadjY2NgbsfNGolAwWi1Kr6Q1Cxg2Njb2AexV49hJI1GNk7CxsbFPY+dL94719EKlatvTPLKDjY2NvRH7fXFS3mBU46dkm7CxsbHPYVeLTbLCZFPy5iePtLCxsbF3ZSeHIPOwqTo27jUzeeuCjY2NfQJ7EsH3tiMvS9XB81uyNGxsbOzbswsFoFjYegPg6gCgOR7AxsbG3o69Nqbvrd8bORT+ANjY2Nhbs3NA/qQXLfVWiP482NjY2Eey1wZD1Vak9w3Y2NjYp7EnH9crP5MS1Sur2NjY2HuzJ4cmk1ZkVTuRx1JPtwMbGxt7a3ZStCZBUh7rJ0OC6vdjY2Njn8POA6Mk0MmR+ZZV4y1sbGxs7OowOGkw8gOa1SDpRSnFxsbGxg5e0zsANDpSmW8NNjY29gHsSduQb9Cqt+TNCTY2NvYJ7Mmgt9e05MPj6hj4l+bb2NjY2Ldhn3NhY2NjY2NjY2Nj3+b6BKGMkQMcebx9AAAAAElFTkSuQmCC">
+            </ul>
+    
+
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/cheerio/">cheerio</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/crawler/">crawler</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/node/">node</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/爬虫/">爬虫</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+
+    
+    <!-- Leancloud Views -->
+    <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="/2017/02/14/node/node-guichuideng-spider/" class="leancloud-views_num" data-flag-title="使用 koa + crawler + cheerio 爬取《鬼吹灯》小说">
+     &nbsp;浏览量
+</span>
+        </li>
+    </a>
+    
+
+    
+      
+      <!-- Busuanzi Views -->
+      <a class="post_share-link" href="#">
+        <li class="mdl-menu__item">
+            <span id="busuanzi_container_page_pv">
+                <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+            </span>
+        </li>
+      </a>
+      
+    
+
+    <!-- Share Weibo -->
+    
+
+    <!-- Share Twitter -->
+    
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=使用 koa + crawler + cheerio 爬取《鬼吹灯》小说&url=http://blog.jxdjayden.cn//2017/02/14/node/node-guichuideng-spider/index.html&via=JxJayden" target="_blank">
+        <li class="mdl-menu__item">
+            分享到 Twitter
+        </li>
+    </a>
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+				
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+	
+		<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>之前看到狼叔写的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">node-simplereader</a> ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。</p>
+<a id="more"></a>
+<h2 id="使用-crawler-cheerio-完成爬虫"><a href="#使用-crawler-cheerio-完成爬虫" class="headerlink" title="使用 crawler + cheerio 完成爬虫"></a>使用 crawler + cheerio 完成爬虫</h2><h3 id="hello-crawler"><a href="#hello-crawler" class="headerlink" title="hello crawler"></a>hello crawler</h3><p>使用 crawler 爬 <code>http://www.guichuideng.org/</code> 的目录，并获取大标题然后 console.log 出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> Crawler(&#123;</div><div class="line">    maxConnections: <span class="number">100</span>,</div><div class="line">    callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (error) &#123;</div><div class="line">            <span class="built_in">console</span>.error(error);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">let</span> $ = res.$;</div><div class="line">            <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">            </div><div class="line">            .each((index, value) =&gt; &#123;</div><div class="line">                <span class="built_in">console</span>.log($(value).text());</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">c.queue(<span class="string">'http://www.guichuideng.org/'</span>);</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-1.jpg" alt="hello crawler"></p>
+<h3 id="爬取章节信息"><a href="#爬取章节信息" class="headerlink" title="爬取章节信息"></a>爬取章节信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> books = &#123;&#125;,</div><div class="line">    crawler = <span class="keyword">new</span> Crawler();</div><div class="line"></div><div class="line"><span class="comment">// 分析章节</span></div><div class="line"><span class="keyword">let</span> handleChapters = <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">console</span>.error(error);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> $ = res.$;</div><div class="line">        <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">        books.title = $(<span class="string">'.page-title span'</span>).text();</div><div class="line">        books.author = $(<span class="string">'article h3'</span>).text().replace(<span class="string">'鬼吹灯作者：'</span>, <span class="string">''</span>);</div><div class="line"></div><div class="line">        books.list = [];</div><div class="line"></div><div class="line">        titles.each((index, value) =&gt; &#123;</div><div class="line">            <span class="keyword">let</span> tmpObj = &#123;</div><div class="line">                chapters_name: $(value).text(),</div><div class="line">                chapters_num: index + <span class="number">1</span>,</div><div class="line">                post: []</div><div class="line">            &#125;</div><div class="line">            $(value).next().find(<span class="string">'a'</span>).each((i, v) =&gt; &#123;</div><div class="line">                <span class="keyword">let</span> url = $(v).attr(<span class="string">'href'</span>);</div><div class="line">                <span class="keyword">let</span> title = $(v).text();</div><div class="line">                tmpObj.chapters.push(&#123;</div><div class="line">                    url: url,</div><div class="line">                    title: title,</div><div class="line">                    post_num: <span class="string">`<span class="subst">$&#123;index+1&#125;</span><span class="subst">$&#123;i+1&#125;</span>`</span></div><div class="line">                &#125;)</div><div class="line">            &#125;)</div><div class="line">            books.chapters.push(tmpObj);</div><div class="line">        &#125;);</div><div class="line">        <span class="built_in">console</span>.log(books);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">crawler.queue(&#123;</div><div class="line">    uri: <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">    maxConnections: <span class="number">100</span>,</div><div class="line">    callback: handleChapters</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>打印出来的 <code>books</code> 是这样的：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-2.jpg" alt="books"></p>
+<p>而 <code>books.list</code> 里面的 <code>chapters</code> 打印出来是这样的：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-3.jpg" alt="simgle chapters"></p>
+<h3 id="分析章节信息"><a href="#分析章节信息" class="headerlink" title="分析章节信息"></a>分析章节信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> post1 = &#123;</div><div class="line">        url: <span class="string">'http://www.guichuideng.org/hou-ji-nuo-shen.html'</span>,</div><div class="line">        title: <span class="string">'后记—傩神'</span>,</div><div class="line">        num: <span class="string">'111'</span></div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"><span class="keyword">let</span> handlePost = <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">console</span>.error(error);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> $ = res.$;</div><div class="line"></div><div class="line">        $(<span class="string">'article center'</span>).remove();</div><div class="line">        $(<span class="string">'article script'</span>).remove();</div><div class="line">        $(<span class="string">'.entry-content div'</span>).remove();</div><div class="line">        <span class="built_in">console</span>.log($(<span class="string">'.entry-content'</span>).html());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> postCrawler = <span class="function"><span class="keyword">function</span>(<span class="params">chapter</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(chapter);</div><div class="line"></div><div class="line">    crawler.queue(&#123;</div><div class="line">        uri: chapter.url,</div><div class="line">        maxConnections: <span class="number">100</span>,</div><div class="line">        callback: handlePost</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">postCrawler(post1);</div></pre></td></tr></table></figure>
+<p>打印出来的是文章的内容，（在 handleOnePage 里对文章多余的内容做了一些处理）。</p>
+<h2 id="缓存数据"><a href="#缓存数据" class="headerlink" title="缓存数据"></a>缓存数据</h2><ol>
+<li>文章内容写到文件里，主要部分都是文字，爬取下来是 html，直接静态化。</li>
+<li>书的信息和章节生成 book.json</li>
+</ol>
+<h3 id="创建目录-使用-mkdirp-来新建目录。"><a href="#创建目录-使用-mkdirp-来新建目录。" class="headerlink" title="创建目录 使用 mkdirp 来新建目录。"></a>创建目录 使用 <a href="https://github.com/substack/node-mkdirp" target="_blank" rel="external">mkdirp</a> 来新建目录。</h3><p>目录结构： dist/chapter_name/num.html (chapter_name, num 都是根据 book.json 来生成）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">'dist/'</span> + folder, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">'done!'</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">mkdir(<span class="string">'js'</span>);</div><div class="line"></div><div class="line"><span class="comment">// done!</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">✔︎ node-reader (master) ✗ ls dist</div><div class="line">js</div></pre></td></tr></table></figure>
+<h3 id="把文章写为-html-文件"><a href="#把文章写为-html-文件" class="headerlink" title="把文章写为 html 文件"></a>把文章写为 html 文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFile(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err(<span class="string">`write <span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html is error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html is saved!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">writerPost(<span class="string">'1'</span>, <span class="string">'111'</span>, <span class="string">'test content'</span>);</div><div class="line"></div><div class="line"><span class="comment">// dist/1/111.html is saved!</span></div></pre></td></tr></table></figure>
+<h3 id="把文章目录写为-json-文件"><a href="#把文章目录写为-json-文件" class="headerlink" title="把文章目录写为 json 文件"></a>把文章目录写为 json 文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> writeJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="把方法抽出来，放到-utils-js-中"><a href="#把方法抽出来，放到-utils-js-中" class="headerlink" title="把方法抽出来，放到 utils.js 中"></a>把方法抽出来，放到 utils.js 中</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">    mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</div><div class="line"></div><div class="line">exports.mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">downloadPath, folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">`<span class="subst">$&#123;downloadPath&#125;</span>/<span class="subst">$&#123;folder&#125;</span>`</span>, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span>  <span class="built_in">console</span>.log(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFileSync(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writeConfigJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>基本上就是这样了。<br>最终修改为<br><code>index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ProgressBar = <span class="built_in">require</span>(<span class="string">'progress'</span>),</div><div class="line">    Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>),</div><div class="line">    utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>),</div><div class="line">    fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> books = &#123;&#125;,</div><div class="line">    defaultUrl = <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">    bar;</div><div class="line"></div><div class="line"><span class="keyword">let</span> crawler = <span class="keyword">new</span> Crawler();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAllChapters</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    books.chapters.forEach((value, index) =&gt; &#123;</div><div class="line">        value.post.forEach((v, i) =&gt; &#123;</div><div class="line">            getOnePost(v, index + <span class="number">1</span>);</div><div class="line">        &#125;)</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOnePost</span>(<span class="params">postInfo, chapterNum</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(postInfo);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (fs.existsSync(<span class="string">`dist/<span class="subst">$&#123;chapterNum&#125;</span>/<span class="subst">$&#123;postInfo.postNum&#125;</span>.html`</span>)) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;postInfo.postNum&#125;</span>.html is exit`</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        crawler.queue(&#123;</div><div class="line">            uri: postInfo.url,</div><div class="line">            maxConnections: <span class="number">100</span>,</div><div class="line">            callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (error) &#123;</div><div class="line">                    <span class="built_in">console</span>.error(error);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">let</span> $ = res.$;</div><div class="line"></div><div class="line">                    $(<span class="string">'article center'</span>).remove();</div><div class="line">                    $(<span class="string">'article script'</span>).remove();</div><div class="line">                    $(<span class="string">'.entry-content div'</span>).remove();</div><div class="line"></div><div class="line">                    utils.writerPost(chapterNum, postInfo.postNum, $(<span class="string">'.entry-content'</span>).html());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">chapterNum, postNum, downloadPath = 'dist'</span>) </span>&#123;</div><div class="line">    crawler.queue(&#123;</div><div class="line">        uri: <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">        maxConnections: <span class="number">100</span>,</div><div class="line">        callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (error) &#123;</div><div class="line">                <span class="built_in">console</span>.error(error);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">                <span class="keyword">let</span> $ = res.$;</div><div class="line">                <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">                <span class="keyword">let</span> totalLength = <span class="number">0</span>;</div><div class="line">                books.title = $(<span class="string">'.page-title span'</span>).text();</div><div class="line">                books.author = $(<span class="string">'article h3'</span>).text().replace(<span class="string">'鬼吹灯作者：'</span>, <span class="string">''</span>);</div><div class="line"></div><div class="line">                books.chapters = [];</div><div class="line"></div><div class="line">                titles.each((index, value) =&gt; &#123;</div><div class="line">                    <span class="keyword">let</span> tmpObj = &#123;</div><div class="line">                        chapters_name: $(value).text(),</div><div class="line">                        chapters_num: index + <span class="number">1</span>,</div><div class="line">                        post: []</div><div class="line">                    &#125;</div><div class="line">                    $(value).next().find(<span class="string">'a'</span>).each((i, v) =&gt; &#123;</div><div class="line">                        <span class="keyword">let</span> url = $(v).attr(<span class="string">'href'</span>);</div><div class="line">                        <span class="keyword">let</span> title = $(v).text();</div><div class="line">                        tmpObj.post.push(&#123;</div><div class="line">                            url: url,</div><div class="line">                            title: title,</div><div class="line">                            postNum: <span class="string">`<span class="subst">$&#123;index+1&#125;</span><span class="subst">$&#123;i+1&#125;</span>`</span></div><div class="line">                        &#125;)</div><div class="line">                        totalLength += tmpObj.post.length;</div><div class="line">                    &#125;)</div><div class="line">                    books.chapters.push(tmpObj);</div><div class="line">                    utils.mkdir(<span class="string">'dist'</span>, index + <span class="number">1</span>);</div><div class="line">                &#125;);</div><div class="line">                utils.writeConfigJson(books);</div><div class="line">                getAllChapters();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>utils.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">    mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</div><div class="line"></div><div class="line">exports.mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">downloadPath, folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">`<span class="subst">$&#123;downloadPath&#125;</span>/<span class="subst">$&#123;folder&#125;</span>`</span>, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span>  <span class="built_in">console</span>.log(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFileSync(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writeConfigJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>参考：</p>
+<ol>
+<li><a href="https://github.com/i5ting/hd-crawler" target="_blank" rel="external">i5ting/hd-crawler</a></li>
+<li><a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">i5ting/simplereader</a></li>
+<li><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="external">通读 cheerio API</a></li>
+<li><a href="https://nqdeng.github.io/7-days-nodejs/#3" target="_blank" rel="external">七天学会 NodeJS | 文件操作</a></li>
+</ol>
+
+	
+	
+	
+	
+</div>
+				
+				
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+	<div id="disqus-comment">
+		<div id="disqus_thread"></div>
+<script>
+	$("html").ready(function(){
+		setTimeout(function(){
+			var disqus_config = function () {
+				this.page.url = "http://blog.jxdjayden.cn/2017/02/14/node/node-guichuideng-spider/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+
+			(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+				s.src = '//blog-jxdjayden-cn.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		},1500);
+	});
+</script>
+	</div>
+	<style>
+		#disqus-comment{
+			background-color:#eee;
+			padding:2pc;
+		}
+	</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/02/08/ES6/reflect-and-proxy-note/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+        </div>
+    </div>
+
+				
+				
+					<!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay "></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored  sidebar-fixed-left" role="navigation">
+	<div id="sidebar-main">
+	    <!-- Sidebar Header -->
+		<div class="sidebar-header header-cover" style="background-image: url(//odgdn5u95.bkt.clouddn.com/WechatIMG195.jpeg);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+    <i class="material-icons">clear_all</i>
+    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="//odgdn5u95.bkt.clouddn.com/facvion.jpeg" alt="JxJayden's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        jxdjayden@gmail.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+		<!-- Sidebar Navigation  -->
+		<ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+			
+                <li>
+                    <a href="mailto:jxdjayden@gmail.com" target="_blank" title="Email Me">
+						<i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        Email Me
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    <li id="sidebar-first-li">
+        <a href="/" target="_self">
+            <i class="material-icons sidebar-material-icons">home</i>
+             主页
+        </a>
+    </li>
+
+    <!-- I'm Feeling Lucky -->
+<!--
+    <li class="dropdown">
+        <a href="" target="_self">
+            <i class="material-icons sidebar-material-icons">explore</i>
+             sidebar.imlucky
+        </a>
+    </li>
+-->
+
+
+    <!-- Archives  -->
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">inbox</i>
+             归档
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/archives/2017/02/">二月 2017<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/01/">一月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/10/">十月 2016<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/09/">九月 2016<span class="sidebar_archives-count">5</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/08/">八月 2016<span class="sidebar_archives-count">7</span></a></li><li><a class="sidebar_archives-link" href="/archives/2016/07/">七月 2016<span class="sidebar_archives-count">5</span></a>
+        </ul>
+    </li>
+
+    <!-- Categories  -->
+    
+    <li class="dropdown">
+        <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+            <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+             分类
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+            <a class="sidebar_archives-link" href="/categories/ES6/">ES6<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/Express/">Express<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/JS高程学习/">JS高程学习<span class="sidebar_archives-count">8</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/">JavaScript<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/browser/">browser<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/git/">git<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/lifestyle/">lifestyle<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/node/">node<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/software/">software<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/总结/">总结<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/categories/转载/">转载<span class="sidebar_archives-count">1</span></a>
+        </ul>
+    </li>
+    
+
+    <!-- Divider -->
+    <li class="divider"></li>
+
+
+    <!-- Pages  -->
+	
+		<li>
+			<a href="/about" title="关于">
+				关于
+			</a>
+		</li>
+	
+		<li>
+			<a href="/demo" title="作品">
+				作品
+			</a>
+		</li>
+	
+		<li>
+			<a href="/links" title="友链">
+				友链
+			</a>
+		</li>
+	
+		<li>
+			<a href="/tags" title="标签">
+				标签
+			</a>
+		</li>
+	
+		<li>
+			<a href="http://resume.jxdjayden.cn/" title="简历">
+				简历
+			</a>
+		</li>
+	
+
+    <!-- Article Numebr  -->
+    <li>
+        <a href="/archives">
+             文章总数
+             <span class="sidebar-badge">26</span>
+        </a>
+    </li>
+</ul>
+
+
+		<!-- Sidebar Divider -->
+		<div class="sidebar-divider"></div>
+
+		<!-- Sidebar Footer -->
+		<!-- 
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :) 
+-->
+
+<!-- Theme Material -->
+<a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
+	<div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		主题 - Material
+		<span class="sidebar-badge badge-circle">i</span>
+	</div>
+</a>
+
+<!-- Help & Support -->
+<!--
+<a href="mailto:hiviosey@gmail.com" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+		sidebar.help
+		<span class="mdl-button__ripple-container">
+			<span class="mdl-ripple"></span>
+		</span>
+	</div>
+</a>
+-->
+
+<!-- Feedback -->
+<!--
+<a href="https://github.com/viosey/hexo-theme-material/issues" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.feedback
+                    <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>
+-->
+
+<!-- Abount Theme -->
+<!--
+<a href="https://blog.viosey.com/index.php/Material.html" target="_blank" class="sidebar-footer-text-a">
+    <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
+         sidebar.about_theme
+        <span class="mdl-button__ripple-container"><span class="mdl-ripple"></span></span></div>
+</a>-->
+
+	</div>
+    
+    <!-- Sidebar Sponsor -->
+    
+
+
+</aside>
+
+				
+				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+				
+				
+				<!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+
+	
+		<!-- Paradox Footer Left Section -->
+		<div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+    <a href="https://twitter.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+        <span class="visuallyhidden">Twitter</span>
+    </button></a>
+    
+
+    <!-- Facebook -->
+    
+    
+
+    <!-- Google + -->
+    
+    
+
+    <!-- Weibo -->
+    
+    
+
+    <!-- Instagram -->
+    
+    
+
+    <!-- Tumblr -->
+    
+    
+
+    <!-- Github -->
+    
+    <a href="https://github.com/JxJayden" target="_blank"><button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-github.png);">
+        <span class="visuallyhidden">Github</span>
+    </button></a>
+    
+
+    <!-- LinkedIn -->
+    
+    
+
+    <!-- Zhihu -->
+    
+    
+</div>
+
+
+		<!--Copyright-->
+		<div id="copyright">👉🏻 代码与胡说 👈🏻</div>
+
+		<!-- Paradox Footer Right Section -->
+
+		<!--
+		I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+		It will not impact the appearance and can give developers a lot of support :)
+
+		很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+		它不会影响美观并可以给开发者很大的支持。 :)
+		-->
+
+		<div class="mdl-mini-footer--right-section">
+			<div>
+				<div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+				<div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+			</div>
+		</div>
+	
+
+</footer>
+
+                
+				<!-- Import File -->
+<script src="/js/highlight.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    
+    $('#nprogress .bar').css({
+        'background': '#e53935'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #e53935, 0 0 15px #e53935'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#e53935',
+        'border-left-color': '#e53935'
+    });
+    
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+    <!-- Leancloud -->
+	<script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+	<script>
+		AV.initialize("GjMb2kND0sz09YBqaDKvwdFh-gzGzoHsz", "evLruCJFjgTNrndqYlnVTN2O");
+	</script>
+    <script>
+	function showTime(Counter) {
+		var query = new AV.Query(Counter);
+		$(".leancloud-views_num").each(function() {
+			var url = $(this).attr("id").trim();
+			query.equalTo("url", url);
+			query.find({
+				success: function(results) {
+					if (results.length == 0) {
+						var content = '0 ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+						return;
+					}
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						var content = object.get('time') + ' ' + $(document.getElementById(url)).text();
+						$(document.getElementById(url)).text(content);
+					}
+				},
+				error: function(object, error) {
+					console.log("Error: " + error.code + " " + error.message);
+				}
+			});
+
+		});
+	}
+
+	function addCount(Counter) {
+		var Counter = AV.Object.extend("Counter");
+		url = $(".leancloud-views_num").attr('id').trim();
+		title = $(".leancloud-views_num").attr('data-flag-title').trim();
+		var query = new AV.Query(Counter);
+		query.equalTo("url", url);
+		query.find({
+			success: function(results) {
+				if (results.length > 0) {
+					var counter = results[0];
+					counter.fetchWhenSave(true);
+					counter.increment("time");
+					counter.save(null, {
+						success: function(counter) {
+							var content =  counter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(counter, error) {
+							console.log('Failed to save Visitor num, with error message: ' + error.message);
+						}
+					});
+				} else {
+					var newcounter = new Counter();
+					newcounter.set("title", title);
+					newcounter.set("url", url);
+					newcounter.set("time", 1);
+					newcounter.save(null, {
+						success: function(newcounter) {
+							console.log("newcounter.get('time')="+newcounter.get('time'));
+							var content = newcounter.get('time') + ' ' + $(document.getElementById(url)).text();
+							$(document.getElementById(url)).text(content);
+						},
+						error: function(newcounter, error) {
+							console.log('Failed to create');
+						}
+					});
+				}
+			},
+			error: function(error) {
+				console.log('Error:' + error.code + " " + error.message);
+			}
+		});
+	}
+	$(function() {
+		var Counter = AV.Object.extend("Counter");
+		if ($('.leancloud-views_num').length == 1) {
+			addCount(Counter);
+		} else if ($('.post-title-link').length > 1) {
+			showTime(Counter);
+		}
+	}); 
+</script>
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+    <!-- 使用 DISQUS js 代码 -->
+	<script id="dsq-count-scr" src="//blog-jxdjayden-cn.disqus.com/count.js" async></script>
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $(".post-toc-wrap").parent(".mdl-menu__container").css("position", "fixed");
+    });
+</script>
+
+<!-- MathJax Load-->
+
+            </main>
+        </div>
+		
+    </body>
+		
+	
+</html>
