@@ -10,7 +10,7 @@
     <!-- Title -->
     
     <title>
-        about | 代码与胡说
+        node 爬虫后续：爬虫阅读器 for 鬼吹灯 | 代码与胡说
     </title>
     
     <!-- Favicons -->
@@ -46,7 +46,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://blog.jxdjayden.cn">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="about | 代码与胡说">
+    <meta property="og:title" content="node 爬虫后续：爬虫阅读器 for 鬼吹灯 | 代码与胡说">
     <meta property="og:description" content="我与我周旋久，宁作我。">
     
      <!--[if lte IE 9]>
@@ -197,6 +197,33 @@
 				
                 <!-- Post TOC -->
 
+    
+	<!-- Back Button -->
+<!--
+	<div class="material-back" id="backhome-div" tabindex="0">
+		<a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="#" onclick="window.history.back();return false;" target="_self" role="button" data-upgraded=",MaterialButton,MaterialRipple">
+			<i class="material-icons" role="presentation">arrow_back</i>
+			<span class="mdl-button__ripple-container">
+				<span class="mdl-ripple"></span>
+			</span>
+		</a>
+	</div>			
+-->
+	<!-- Left aligned menu below button -->
+	<button id="post-toc-trigger-btn"
+			class="mdl-button mdl-js-button mdl-button--icon">
+	  <i class="material-icons">format_list_numbered</i>
+	</button>
+
+	<ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect"
+		for="post-toc-trigger-btn">
+			
+			<ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前言"><span class="post-toc-number">1.</span> <span class="post-toc-text">前言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简介"><span class="post-toc-number">2.</span> <span class="post-toc-text">简介</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目地址"><span class="post-toc-number">3.</span> <span class="post-toc-text">项目地址</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#demo"><span class="post-toc-number">4.</span> <span class="post-toc-text">demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#开发"><span class="post-toc-number">5.</span> <span class="post-toc-text">开发</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#部署"><span class="post-toc-number">6.</span> <span class="post-toc-text">部署</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目结构"><span class="post-toc-number">7.</span> <span class="post-toc-text">项目结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#备注"><span class="post-toc-number">8.</span> <span class="post-toc-text">备注</span></a></li></ol>
+		
+<!--			<li class="mdl-menu__item">Some Action</li>-->
+	</ul>
+
+
 
 <!-- Layouts -->
 
@@ -210,11 +237,22 @@
                 
 	<!-- Paradox Post Header -->
 	
-		<!-- Custom Thumbnail -->
-		<div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(//odgdn5u95.bkt.clouddn.com/WechatIMG198.jpeg)">
+		
+			<!-- Random Thumbnail -->
+			<div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+				<script>
+    
+    var randomNum;
+    randomNum = Math.floor(Math.random() * 19 + 1);
+    
+    $(".post_thumbnail-random").css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+    
+</script>
+
+		
 	
         <p class="article-headline-p">
-            about
+            node 爬虫后续：爬虫阅读器 for 鬼吹灯
         </p>
     </div>
 
@@ -232,7 +270,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>JxJayden</strong>
-        <span>10月 11, 2016</span>
+        <span>2月 16, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -253,7 +291,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB70lEQVR42u3aS5KDMAwFwNz/0jPbbCBPEimC3axSFTBuFirr8/pb4nphYGBgYGBgYPwM4xVf7/efP3v44tM18z1gYGDsyfgQ2g4Yyb+9Nc/vx8DA2JmRBNnk2WS7eRDHwMDAqC7Re301ZGNgYGBcsMRpeP2QfBYTYwwMDIxeApkU0fJ7bsjFMTAwHsiYNAau+n1zfwMDA+OHGeURhxav1zz44swIBgbGoxjJK/OUNW8YfDj2JS0HDAyMbRgJIC+lTY59+ZoYGBgY+VbykJoMbVRXxsDA2I2RHNGqAbrXHsibBxgYGHsy8sNcMoQxKbFFHwUDA2MzRp46zhuQeTmvWW7DwMDYgJFvpTqcWk1ly8MWGBgYGzCqjca8VDdJg0dVQwwMjOUYvaBZTXExMDAweozqOEUSWCejYBe0MDEwMBZiVINgHmp7TYVmYwADA2NpRtJKTIJsNfjmLQcMDAyM5FA4aQn0gvJo2AIDA2NRRjUEV0NtvsVRCxMDA2NRxnyoKy/r9wJ6odyGgYGxNCNPZQtJZpwA99oDGBgYezKqRfxe0b/aPMDAwMCYHN2S18+fOvwQGBgYGK0Bi+RY2bsTAwMDozpyMUk+k8/x9XIbBgbGAxnVxkCesvYCejRAhoGBsQ3juRcGBgYGBgYGxq3XP549XpMTaBRPAAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAACyUlEQVR42u3awU7DMBAE0P7/T8MVCRFmvAGC/XKqQmn8XIllZ/16O/J6YWNjY2NjY2NjYz+S/Yqv69/6eP/zO69fJz+9Yc3Y2NjYW7O/+dMfsD8v+vr+NTjfoGLN2NjY2Aewk7KUl5m2/LSfUJdSbGxsbOy42LQFr30nNjY2NvZd7HZT1hqb/CnY2NjY2Hf96z8vPPkW/FKWho2Njf14dj40fc7rX51vY2NjYz+YPQn3r8tJGxvlB4MWV46NjY29KTsvDC2+PbKZNyT5OrGxsbFPYOcf1JaZaCnxAaA8WvryPjY2Nvam7EmIs8ZrF902JEWWho2Njb0RexLZrB21Se7cOwzGxsbGPoc9eUweQt3VDt0w38bGxsb+5+ykAUhaiBaztvWjlWBjY2Mfw84P5STx0HXpWhshtHewsbGxT2DnEc+kebje0AkpsmBjY2Mfxl6M4MuGYR5OJeMEbGxs7JPZefMwifXbYtkGYdjY2NgnsJMWYq2ErPHaLyP6YrCxsbE3Za8F91EcX44N2qI4CpWwsbGxt2PPj8usFbl82LBWDrGxsbFPYydR/uTxa6H/bS0KNjY29qbsdqFrG5Q8pR0w57EXNjY29t7s9kjNdfG4NwbKxwDR5mJjY2Nvym5bhbZ1aQvVT5QubGxs7L3ZyWOSRefvaQfGf5ClYWNjY/9DdlLA8oYkX/S8yBVfITY2NvYx7HyhbUMyH/G2R3+wsbGxT2a3JS1vafJPmF/Y2NjYJ7Dbqz4oEwf6bUHKoytsbGzsvdmTgeskclobSLTBEzY2NvY57KRo3XsQZ34AKA+2sLGxsc9htwdx1hY0L0tr24eNjY2NnYdE+WZFyy3X82WhxcbGxsaOR7b1gpZiqWSAgY2NjX0aey3Qaceua6WrbjywsbGxD2PnH50fr8lLYL5xk2gJGxsbe1f2ORc2NjY2NjY2Njb2Y653wWrsb8GPIAkAAAAASUVORK5CYII=">
             </ul>
     
 
@@ -266,7 +304,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        
+        <a class="post_tag-link" href="/tags/cheerio/">cheerio</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/crawler/">crawler</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/node/">node</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/爬虫/">爬虫</a>
     </ul>
     
 
@@ -281,7 +319,7 @@
     <!-- Leancloud Views -->
     <a class="post_share-link" href="#">
         <li class="mdl-menu__item">
-            <span id="/about/index.html" class="leancloud-views_num" data-flag-title="about">
+            <span id="/2017/02/16/node/node-simplereader/" class="leancloud-views_num" data-flag-title="node 爬虫后续：爬虫阅读器 for 鬼吹灯">
      &nbsp;浏览量
 </span>
         </li>
@@ -306,7 +344,7 @@
 
     <!-- Share Twitter -->
     
-    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=about&url=http://blog.jxdjayden.cn//about/index.html&via=JxJayden" target="_blank">
+    <a class="post_share-link" href="https://twitter.com/intent/tweet?text=node 爬虫后续：爬虫阅读器 for 鬼吹灯&url=http://blog.jxdjayden.cn//2017/02/16/node/node-simplereader/index.html&via=JxJayden" target="_blank">
         <li class="mdl-menu__item">
             分享到 Twitter
         </li>
@@ -336,7 +374,18 @@
                 <!-- Post Content -->
                 <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
 	
-		<p>一个学习前端开发的人<br>一个不止想学前端的人<br>一个学习手冲咖啡的人<br>一个想喝无数咖啡的人<br>一个喜欢很多东西的人</p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有次无意中看到狼叔（i5ting）的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">大主宰小说阅读器</a> ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>小说是用 <a href="https://github.com/bda-research/node-crawler" target="_blank" rel="external">node-crawler</a> 和 <a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a> 从 <a href="http://www.guichuideng.org/" target="_blank" rel="external">http://www.guichuideng.org/</a> 上面爬下来的。</p>
+<p>阅读的网站是用 koa 写的。<br>此项目只为本人学习 node 爬虫以及 koa 所用，网站不一定什么时候会停。该项目正好为毕设做了一些准备。接下来就应该准备做好自己的毕业设计了。</p>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/JxJayden/node-guichuideng-reader" target="_blank" rel="external">JxJayden/node-guichuideng-reader</a></p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p>点此查看<a href="http://reader.jxdjayden.cn/book.html" target="_blank" rel="external">鬼吹灯小说阅读</a></p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>fork 该项目 或者使用 <code>git clone</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:JxJayden/node-guichuideng-reader.git</div><div class="line"></div><div class="line"><span class="built_in">cd</span> node-guichuideng-reader</div><div class="line"></div><div class="line">我使用了 yarn 来做包管理，如果你不想用 yarn 可以跳过下一步直接 npm install</div><div class="line"></div><div class="line">npm install -g yarn</div><div class="line"></div><div class="line">yarn install 或者 npm install</div><div class="line"></div><div class="line">使用爬虫</div><div class="line">npm run getbook</div><div class="line">npm run getall</div></pre></td></tr></table></figure>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在这一步之前你需要先了解一下如何使用 pm2 来 deploy<br>可参考我的博文：<a href="http://blog.jxdjayden.cn/2017/02/03/JavaScript/%E4%BD%BF%E7%94%A8github%E5%92%8Cpm2%E9%83%A8%E7%BD%B2node%E6%9C%8D%E5%8A%A1/">使用 pm2 部署 node 服务</a><br>注意要修改一下 ecosystem.config.js 的配置，这部份不再多说。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 deploy ecosystem.config.js production setup</div></pre></td></tr></table></figure>
+<p>或者你可以直接在服务器上用 <code>git clone</code> 命令来克隆项目。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── routes</div><div class="line">│   └── index.js    路由 js</div><div class="line">├── views           前端模板</div><div class="line">│   └── book.html</div><div class="line">│   └── post.html</div><div class="line">├── dist</div><div class="line">│   └── book</div><div class="line">│   └── public</div><div class="line">│   	└── javascript</div><div class="line">│   	└── css</div><div class="line">│   	└── img</div><div class="line">│</div><div class="line">├── app.js 主入口</div><div class="line">├── utils.js</div><div class="line">├── book-crawler.js 爬虫代码</div><div class="line">├── get-all-post.js 获取所有章节的 js</div><div class="line">├── get-bookinfo.js 获取书籍信息的 js</div><div class="line">├── ecosystem.config.js pm2 deploy 配置</div><div class="line">├── processes.json</div><div class="line">├── package.json</div><div class="line">└── README.md</div></pre></td></tr></table></figure>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>未做移动端优化。</p>
 
 	
 	
@@ -347,6 +396,38 @@
 				
 
                 <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+	<div id="disqus-comment">
+		<div id="disqus_thread"></div>
+<script>
+	$("html").ready(function(){
+		setTimeout(function(){
+			var disqus_config = function () {
+				this.page.url = "http://blog.jxdjayden.cn/2017/02/16/node/node-simplereader/index.html";  // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+			};
+
+			(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+				s.src = '//blog-jxdjayden-cn.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		},1500);
+	});
+</script>
+	</div>
+	<style>
+		#disqus-comment{
+			background-color:#eee;
+			padding:2pc;
+		}
+	</style>
+
                 
             </div>
 
@@ -360,6 +441,14 @@
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/02/14/node/node-guichuideng-spider/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
         </div>
@@ -566,6 +655,13 @@ It will not impact the appearance and can give developers a lot of support :)
 
 				
 				
+				
+					<!-- Footer Top Button -->
+					<div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
 				
 				
 				<!--Footer-->
