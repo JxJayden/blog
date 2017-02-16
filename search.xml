@@ -7,6 +7,7 @@
       <title><![CDATA[node 爬虫后续：爬虫阅读器 for 鬼吹灯]]></title>
       <url>http://blog.jxdjayden.cn/2017/02/16/node/node-simplereader/</url>
       <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有次无意中看到狼叔（i5ting）的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">大主宰小说阅读器</a> ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。</p>
+<a id="more"></a>
 <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>小说是用 <a href="https://github.com/bda-research/node-crawler" target="_blank" rel="external">node-crawler</a> 和 <a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a> 从 <a href="http://www.guichuideng.org/" target="_blank" rel="external">http://www.guichuideng.org/</a> 上面爬下来的。</p>
 <p>阅读的网站是用 koa 写的。<br>此项目只为本人学习 node 爬虫以及 koa 所用，网站不一定什么时候会停。该项目正好为毕设做了一些准备。接下来就应该准备做好自己的毕业设计了。</p>
 <h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/JxJayden/node-guichuideng-reader" target="_blank" rel="external">JxJayden/node-guichuideng-reader</a></p>
