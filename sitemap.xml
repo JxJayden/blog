@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.jxdjayden.cn/links/index.html</loc>
+    
+    <lastmod>2017-03-29T17:35:37.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.jxdjayden.cn/tags/index.html</loc>
     
-    <lastmod>2017-03-29T17:34:00.000Z</lastmod>
+    <lastmod>2017-03-29T17:35:31.000Z</lastmod>
     
   </url>
   
@@ -82,13 +89,6 @@
     <loc>http://blog.jxdjayden.cn/about/index.html</loc>
     
     <lastmod>2017-01-07T17:03:21.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.jxdjayden.cn/links/index.html</loc>
-    
-    <lastmod>2017-01-07T16:46:44.000Z</lastmod>
     
   </url>
   
