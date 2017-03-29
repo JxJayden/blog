@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.jxdjayden.cn/2017/03/30/vue/vue-learn-node/</loc>
+    
+    <lastmod>2017-03-29T17:40:44.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.jxdjayden.cn/2017/02/08/ES6/reflect-and-proxy-note/</loc>
+    
+    <lastmod>2017-03-29T17:37:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.jxdjayden.cn/links/index.html</loc>
     
     <lastmod>2017-03-29T17:35:37.000Z</lastmod>
@@ -33,13 +47,6 @@
     <loc>http://blog.jxdjayden.cn/2017/02/14/node/node-guichuideng-spider/</loc>
     
     <lastmod>2017-02-16T09:00:01.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.jxdjayden.cn/2017/02/08/ES6/reflect-and-proxy-note/</loc>
-    
-    <lastmod>2017-02-08T08:23:01.000Z</lastmod>
     
   </url>
   

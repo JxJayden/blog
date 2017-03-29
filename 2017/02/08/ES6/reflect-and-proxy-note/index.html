@@ -20,7 +20,7 @@
 <meta property="og:description" content="本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书Understanding ECMAScript 6，中译版。
 代理与反射是什么？
 通过调用 new Proxy() ，你可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。代理允许你拦截在目标对象上">
-<meta property="og:updated_time" content="2017-02-08T08:23:01.000Z">
+<meta property="og:updated_time" content="2017-03-29T17:37:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="代理与反射笔记">
 <meta name="twitter:description" content="本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书Understanding ECMAScript 6，中译版。
@@ -107,6 +107,7 @@
 <h2 id="代理与反射是什么？"><a href="#代理与反射是什么？" class="headerlink" title="代理与反射是什么？"></a>代理与反射是什么？</h2><blockquote>
 <p>通过调用 new Proxy() ，你可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许你拦截在目标对象上的底层操作，而这原本是 JS 引擎的内部能力。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。</p>
 </blockquote>
+<a id="more"></a>
 <h2 id="创建一个简单的代理"><a href="#创建一个简单的代理" class="headerlink" title="创建一个简单的代理"></a>创建一个简单的代理</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> target = &#123;&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> proxy = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;&#125;);</div><div class="line"></div><div class="line">proxy.name = <span class="string">"proxy"</span>;</div><div class="line"><span class="built_in">console</span>.log(proxy.name);        <span class="comment">// "proxy"</span></div><div class="line"><span class="built_in">console</span>.log(target.name);       <span class="comment">// "proxy"</span></div><div class="line"></div><div class="line">target.name = <span class="string">"target"</span>;</div><div class="line"><span class="built_in">console</span>.log(proxy.name);        <span class="comment">// "target"</span></div><div class="line"><span class="built_in">console</span>.log(target.name);       <span class="comment">// "target"</span></div></pre></td></tr></table></figure>
 <h2 id="使用-set-陷阱函数验证属性值"><a href="#使用-set-陷阱函数验证属性值" class="headerlink" title="使用 set 陷阱函数验证属性值"></a>使用 set 陷阱函数验证属性值</h2><p>假设你想要创建一个对象，并要求其属性值只能是数值，这就意味着该对象的每个新增属性都要被验证，并且在属性值不为数值类型时应当抛出错误。为此你需要定义 set 陷阱函数来重写设置属性值时的默认行为，该陷阱函数能接受四个参数：</p>
 <ol>
