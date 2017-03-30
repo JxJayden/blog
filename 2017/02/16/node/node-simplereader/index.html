@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>node 爬虫后续：爬虫阅读器 for 鬼吹灯 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言有次无意中看到狼叔（i5ting）的 大主宰小说阅读器 ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node 爬虫后续：爬虫阅读器 for 鬼吹灯">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2017/02/16/node/node-simplereader/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="前言有次无意中看到狼叔（i5ting）的 大主宰小说阅读器 ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。">
+<meta property="og:updated_time" content="2017-02-16T09:07:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node 爬虫后续：爬虫阅读器 for 鬼吹灯">
+<meta name="twitter:description" content="前言有次无意中看到狼叔（i5ting）的 大主宰小说阅读器 ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-node/node-simplereader"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2017/02/16/node/node-simplereader/">
+    	node 爬虫后续：爬虫阅读器 for 鬼吹灯
+    </a>
+  </h2>
+	<time>
+	  2月 16, 2017
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有次无意中看到狼叔（i5ting）的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">大主宰小说阅读器</a> ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。</p>
+<a id="more"></a>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>小说是用 <a href="https://github.com/bda-research/node-crawler" target="_blank" rel="external">node-crawler</a> 和 <a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="external">cheerio</a> 从 <a href="http://www.guichuideng.org/" target="_blank" rel="external">http://www.guichuideng.org/</a> 上面爬下来的。</p>
+<p>阅读的网站是用 koa 写的。<br>此项目只为本人学习 node 爬虫以及 koa 所用，网站不一定什么时候会停。该项目正好为毕设做了一些准备。接下来就应该准备做好自己的毕业设计了。</p>
+<h2 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h2><p><a href="https://github.com/JxJayden/node-guichuideng-reader" target="_blank" rel="external">JxJayden/node-guichuideng-reader</a></p>
+<h2 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h2><p>点此查看<a href="http://reader.jxdjayden.cn/book.html" target="_blank" rel="external">鬼吹灯小说阅读</a></p>
+<h2 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h2><p>fork 该项目 或者使用 <code>git clone</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">git <span class="built_in">clone</span> git@github.com:JxJayden/node-guichuideng-reader.git</div><div class="line"></div><div class="line"><span class="built_in">cd</span> node-guichuideng-reader</div><div class="line"></div><div class="line">我使用了 yarn 来做包管理，如果你不想用 yarn 可以跳过下一步直接 npm install</div><div class="line"></div><div class="line">npm install -g yarn</div><div class="line"></div><div class="line">yarn install 或者 npm install</div><div class="line"></div><div class="line">使用爬虫</div><div class="line">npm run getbook</div><div class="line">npm run getall</div></pre></td></tr></table></figure>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>在这一步之前你需要先了解一下如何使用 pm2 来 deploy<br>可参考我的博文：<a href="http://blog.jxdjayden.cn/2017/02/03/JavaScript/%E4%BD%BF%E7%94%A8github%E5%92%8Cpm2%E9%83%A8%E7%BD%B2node%E6%9C%8D%E5%8A%A1/">使用 pm2 部署 node 服务</a><br>注意要修改一下 ecosystem.config.js 的配置，这部份不再多说。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pm2 deploy ecosystem.config.js production setup</div></pre></td></tr></table></figure>
+<p>或者你可以直接在服务器上用 <code>git clone</code> 命令来克隆项目。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── routes</div><div class="line">│   └── index.js    路由 js</div><div class="line">├── views           前端模板</div><div class="line">│   └── book.html</div><div class="line">│   └── post.html</div><div class="line">├── dist</div><div class="line">│   └── book</div><div class="line">│   └── public</div><div class="line">│   	└── javascript</div><div class="line">│   	└── css</div><div class="line">│   	└── img</div><div class="line">│</div><div class="line">├── app.js 主入口</div><div class="line">├── utils.js</div><div class="line">├── book-crawler.js 爬虫代码</div><div class="line">├── get-all-post.js 获取所有章节的 js</div><div class="line">├── get-bookinfo.js 获取书籍信息的 js</div><div class="line">├── ecosystem.config.js pm2 deploy 配置</div><div class="line">├── processes.json</div><div class="line">├── package.json</div><div class="line">└── README.md</div></pre></td></tr></table></figure>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><p>未做移动端优化。</p>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/cheerio/">cheerio</a><a class="tag-link" href="/tags/crawler/">crawler</a><a class="tag-link" href="/tags/node/">node</a><a class="tag-link" href="/tags/爬虫/">爬虫</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2017/02/16/node/node-simplereader/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>

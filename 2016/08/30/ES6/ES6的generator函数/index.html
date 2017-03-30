@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>ES6 的 generator 函数 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近公司让我整理一些文档， 其中有些代码涉及到 ES6 的 generator（生成器）函数，还有 co 函数库，thunkify 函数库等，当时查了一些资料来理解。现在把这些东西整理一下。
+ES6 生成器（Generators）简介语法：
+function* name([param[, param[, ... param]]]) { statements }
+示例：
+1234567functio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6 的 generator 函数">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2016/08/30/ES6/ES6的generator函数/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="最近公司让我整理一些文档， 其中有些代码涉及到 ES6 的 generator（生成器）函数，还有 co 函数库，thunkify 函数库等，当时查了一些资料来理解。现在把这些东西整理一下。
+ES6 生成器（Generators）简介语法：
+function* name([param[, param[, ... param]]]) { statements }
+示例：
+1234567functio">
+<meta property="og:updated_time" content="2016-08-30T15:59:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6 的 generator 函数">
+<meta name="twitter:description" content="最近公司让我整理一些文档， 其中有些代码涉及到 ES6 的 generator（生成器）函数，还有 co 函数库，thunkify 函数库等，当时查了一些资料来理解。现在把这些东西整理一下。
+ES6 生成器（Generators）简介语法：
+function* name([param[, param[, ... param]]]) { statements }
+示例：
+1234567functio">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-ES6/ES6的generator函数"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2016/08/30/ES6/ES6的generator函数/">
+    	ES6 的 generator 函数
+    </a>
+  </h2>
+	<time>
+	  8月 30, 2016
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>最近公司让我整理一些文档， 其中有些代码涉及到 ES6 的 generator（生成器）函数，还有 co 函数库，thunkify 函数库等，当时查了一些资料来理解。现在把这些东西整理一下。</p>
+<h2 id="ES6-生成器（Generators）简介"><a href="#ES6-生成器（Generators）简介" class="headerlink" title="ES6 生成器（Generators）简介"></a>ES6 生成器（Generators）简介</h2><p>语法：</p>
+<p><code>function* name([param[, param[, ... param]]]) { statements }</code></p>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test</span>(<span class="params">title</span>)</span>&#123;</div><div class="line">  <span class="keyword">yield</span> <span class="string">"你好"</span>;</div><div class="line">  <span class="keyword">if</span>(title)&#123;</div><div class="line">    <span class="keyword">yield</span> title;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">yield</span> <span class="string">"bye"</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><code>function*</code> 声明定义一个<strong>generator（生成器）函数</strong>，返回一个 <code>Generator</code> 对象。什么是 <code>generator</code> 函数呢？</p>
+<blockquote>
+<p><strong>生成器</strong>是一种可以从中退出并在之后重新进入的函数。生成器的环境（绑定的变量）会在每次执行后被保存，下次进入时可继续使用。 —— MDN</p>
+</blockquote>
+<p>来看一下上面定义的 test 函数被调用时发生了什么？</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> t = test(<span class="string">'jayden'</span>); <span class="comment">//undefined 什么都没发生</span></div><div class="line">t.next(); </div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="string">"你好"</span>, done: <span class="literal">false</span>&#125;</div><div class="line">t.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="string">"jayden"</span>, done: <span class="literal">false</span>&#125;</div><div class="line">t.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="string">"bye"</span>, done: <span class="literal">false</span>&#125;</div><div class="line">t.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="literal">undefined</span>, done: <span class="literal">true</span>&#125;</div></pre></td></tr></table></figure>
+<p>对于普通的函数，当你调用它们的时候，会立即开始执行，直到遇到 return 或者抛出异常才会退出执行。但是为什么这里却不一样呢？当你调用生成器函数时，并不马上执行它的主体，而是返回一个这个生成器函数的<strong>迭代器（iterator）对象</strong>。，而每次你调用生成器对象的 next() 方法时，函数会解冻自身并一直运行到下一个 yield 表达式。</p>
+<p>next 方法返回一个拥有 value 和 done 两个字段的对象（ value 是每一个 yield 的右值，done 用来表示是否已经执行完）。当你下次调用 next，函数会从 yield 的下一个语句继续执行，等到整个函数执行完，next 方法返回的 done 字段会变成 true。如果 done 字段为 false，说明可以继续往下执行。</p>
+<h2 id="yield-表达式"><a href="#yield-表达式" class="headerlink" title="yield 表达式"></a>yield 表达式</h2><p>yield 表达式定义了迭代器返回的值，或者被 yield* 指定的另一个生成器函数。来看看实例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test1</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">  <span class="keyword">yield</span> i+<span class="number">1</span>;</div><div class="line">  <span class="keyword">yield</span> i+<span class="number">2</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test2</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">  <span class="keyword">yield</span> i;</div><div class="line">  <span class="keyword">yield</span>* test1(i);</div><div class="line">  <span class="keyword">yield</span> i+<span class="number">10</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> y = test2(<span class="number">2</span>);</div><div class="line"></div><div class="line">y.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="number">2</span>, done: <span class="literal">false</span>&#125;</div><div class="line">y.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="number">3</span>, done: <span class="literal">false</span>&#125;</div><div class="line">y.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="number">4</span>, done: <span class="literal">false</span>&#125;</div><div class="line">y.next();</div><div class="line">&gt; <span class="built_in">Object</span> &#123;value: <span class="number">12</span>, done: <span class="literal">false</span>&#125;</div></pre></td></tr></table></figure>
+<h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><p>使用 ES6 的生成器函数来实现斐波那契数列（前两个数字都是 1 ，除此之外任何数字都是前两个数之和的数列）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">fab</span>(<span class="params">value</span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> count = <span class="number">0</span>;</div><div class="line">  <span class="keyword">var</span> last = <span class="number">0</span>;</div><div class="line">  <span class="keyword">var</span> current = <span class="number">1</span>;</div><div class="line">  </div><div class="line">  <span class="keyword">while</span>(value &gt; count++)&#123;</div><div class="line">    <span class="keyword">yield</span> current;</div><div class="line">    <span class="keyword">var</span> t = current;</div><div class="line">    current += last;</div><div class="line">    last = current;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> y = fab(<span class="number">12</span>);</div><div class="line"><span class="keyword">var</span> res;</div><div class="line"><span class="keyword">var</span> result = [];</div><div class="line"></div><div class="line"><span class="keyword">while</span>(!(res = y.next()).done)&#123;</div><div class="line">  result.push(res.value);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(result);  <span class="comment">//[1, 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]</span></div></pre></td></tr></table></figure>
+<p>参考：</p>
+<ol>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Iterators_and_Generators" target="_blank" rel="external">迭代器和生成器</a></li>
+<li><a href="https://imququ.com/post/generator-function-in-es6.html" target="_blank" rel="external">ES6 中的生成器函数介绍</a></li>
+<li><a href="http://www.infoq.com/cn/articles/es6-in-depth-generators" target="_blank" rel="external">深入浅出ES6（三）：生成器 Generators</a></li>
+</ol>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/ES6/">ES6</a><a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2016/08/30/ES6/ES6的generator函数/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>使用 koa + crawler + cheerio 爬取《鬼吹灯》小说 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="初衷之前看到狼叔写的 node-simplereader ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 koa + crawler + cheerio 爬取《鬼吹灯》小说">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2017/02/14/node/node-guichuideng-spider/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="初衷之前看到狼叔写的 node-simplereader ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。">
+<meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/node-simplereader-1.jpg">
+<meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/node-simplereader-2.jpg">
+<meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/node-simplereader-3.jpg">
+<meta property="og:updated_time" content="2017-02-16T09:00:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 koa + crawler + cheerio 爬取《鬼吹灯》小说">
+<meta name="twitter:description" content="初衷之前看到狼叔写的 node-simplereader ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。">
+<meta name="twitter:image" content="http://odgdn5u95.bkt.clouddn.com/node-simplereader-1.jpg">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-node/node-guichuideng-spider"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2017/02/14/node/node-guichuideng-spider/">
+    	使用 koa + crawler + cheerio 爬取《鬼吹灯》小说
+    </a>
+  </h2>
+	<time>
+	  2月 14, 2017
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>之前看到狼叔写的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">node-simplereader</a> ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。</p>
+<a id="more"></a>
+<h2 id="使用-crawler-cheerio-完成爬虫"><a href="#使用-crawler-cheerio-完成爬虫" class="headerlink" title="使用 crawler + cheerio 完成爬虫"></a>使用 crawler + cheerio 完成爬虫</h2><h3 id="hello-crawler"><a href="#hello-crawler" class="headerlink" title="hello crawler"></a>hello crawler</h3><p>使用 crawler 爬 <code>http://www.guichuideng.org/</code> 的目录，并获取大标题然后 console.log 出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> Crawler(&#123;</div><div class="line">    maxConnections: <span class="number">100</span>,</div><div class="line">    callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (error) &#123;</div><div class="line">            <span class="built_in">console</span>.error(error);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">let</span> $ = res.$;</div><div class="line">            <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">            </div><div class="line">            .each((index, value) =&gt; &#123;</div><div class="line">                <span class="built_in">console</span>.log($(value).text());</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">c.queue(<span class="string">'http://www.guichuideng.org/'</span>);</div></pre></td></tr></table></figure>
+<p>输出如下：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-1.jpg" alt="hello crawler"></p>
+<h3 id="爬取章节信息"><a href="#爬取章节信息" class="headerlink" title="爬取章节信息"></a>爬取章节信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>);</div><div class="line"></div><div class="line"><span class="keyword">let</span> books = &#123;&#125;,</div><div class="line">    crawler = <span class="keyword">new</span> Crawler();</div><div class="line"></div><div class="line"><span class="comment">// 分析章节</span></div><div class="line"><span class="keyword">let</span> handleChapters = <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">console</span>.error(error);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> $ = res.$;</div><div class="line">        <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">        books.title = $(<span class="string">'.page-title span'</span>).text();</div><div class="line">        books.author = $(<span class="string">'article h3'</span>).text().replace(<span class="string">'鬼吹灯作者：'</span>, <span class="string">''</span>);</div><div class="line"></div><div class="line">        books.list = [];</div><div class="line"></div><div class="line">        titles.each((index, value) =&gt; &#123;</div><div class="line">            <span class="keyword">let</span> tmpObj = &#123;</div><div class="line">                chapters_name: $(value).text(),</div><div class="line">                chapters_num: index + <span class="number">1</span>,</div><div class="line">                post: []</div><div class="line">            &#125;</div><div class="line">            $(value).next().find(<span class="string">'a'</span>).each((i, v) =&gt; &#123;</div><div class="line">                <span class="keyword">let</span> url = $(v).attr(<span class="string">'href'</span>);</div><div class="line">                <span class="keyword">let</span> title = $(v).text();</div><div class="line">                tmpObj.chapters.push(&#123;</div><div class="line">                    url: url,</div><div class="line">                    title: title,</div><div class="line">                    post_num: <span class="string">`<span class="subst">$&#123;index+1&#125;</span><span class="subst">$&#123;i+1&#125;</span>`</span></div><div class="line">                &#125;)</div><div class="line">            &#125;)</div><div class="line">            books.chapters.push(tmpObj);</div><div class="line">        &#125;);</div><div class="line">        <span class="built_in">console</span>.log(books);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">crawler.queue(&#123;</div><div class="line">    uri: <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">    maxConnections: <span class="number">100</span>,</div><div class="line">    callback: handleChapters</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>打印出来的 <code>books</code> 是这样的：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-2.jpg" alt="books"></p>
+<p>而 <code>books.list</code> 里面的 <code>chapters</code> 打印出来是这样的：</p>
+<p><img src="http://odgdn5u95.bkt.clouddn.com/node-simplereader-3.jpg" alt="simgle chapters"></p>
+<h3 id="分析章节信息"><a href="#分析章节信息" class="headerlink" title="分析章节信息"></a>分析章节信息</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> post1 = &#123;</div><div class="line">        url: <span class="string">'http://www.guichuideng.org/hou-ji-nuo-shen.html'</span>,</div><div class="line">        title: <span class="string">'后记—傩神'</span>,</div><div class="line">        num: <span class="string">'111'</span></div><div class="line">    &#125;;</div><div class="line">    </div><div class="line"><span class="keyword">let</span> handlePost = <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (error) &#123;</div><div class="line">        <span class="built_in">console</span>.error(error);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">let</span> $ = res.$;</div><div class="line"></div><div class="line">        $(<span class="string">'article center'</span>).remove();</div><div class="line">        $(<span class="string">'article script'</span>).remove();</div><div class="line">        $(<span class="string">'.entry-content div'</span>).remove();</div><div class="line">        <span class="built_in">console</span>.log($(<span class="string">'.entry-content'</span>).html());</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> postCrawler = <span class="function"><span class="keyword">function</span>(<span class="params">chapter</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(chapter);</div><div class="line"></div><div class="line">    crawler.queue(&#123;</div><div class="line">        uri: chapter.url,</div><div class="line">        maxConnections: <span class="number">100</span>,</div><div class="line">        callback: handlePost</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">postCrawler(post1);</div></pre></td></tr></table></figure>
+<p>打印出来的是文章的内容，（在 handleOnePage 里对文章多余的内容做了一些处理）。</p>
+<h2 id="缓存数据"><a href="#缓存数据" class="headerlink" title="缓存数据"></a>缓存数据</h2><ol>
+<li>文章内容写到文件里，主要部分都是文字，爬取下来是 html，直接静态化。</li>
+<li>书的信息和章节生成 book.json</li>
+</ol>
+<h3 id="创建目录-使用-mkdirp-来新建目录。"><a href="#创建目录-使用-mkdirp-来新建目录。" class="headerlink" title="创建目录 使用 mkdirp 来新建目录。"></a>创建目录 使用 <a href="https://github.com/substack/node-mkdirp" target="_blank" rel="external">mkdirp</a> 来新建目录。</h3><p>目录结构： dist/chapter_name/num.html (chapter_name, num 都是根据 book.json 来生成）。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">'dist/'</span> + folder, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(err);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">'done!'</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">mkdir(<span class="string">'js'</span>);</div><div class="line"></div><div class="line"><span class="comment">// done!</span></div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">✔︎ node-reader (master) ✗ ls dist</div><div class="line">js</div></pre></td></tr></table></figure>
+<h3 id="把文章写为-html-文件"><a href="#把文章写为-html-文件" class="headerlink" title="把文章写为 html 文件"></a>把文章写为 html 文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFile(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> err(<span class="string">`write <span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html is error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html is saved!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">writerPost(<span class="string">'1'</span>, <span class="string">'111'</span>, <span class="string">'test content'</span>);</div><div class="line"></div><div class="line"><span class="comment">// dist/1/111.html is saved!</span></div></pre></td></tr></table></figure>
+<h3 id="把文章目录写为-json-文件"><a href="#把文章目录写为-json-文件" class="headerlink" title="把文章目录写为 json 文件"></a>把文章目录写为 json 文件</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> writeJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="built_in">console</span>.error(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="把方法抽出来，放到-utils-js-中"><a href="#把方法抽出来，放到-utils-js-中" class="headerlink" title="把方法抽出来，放到 utils.js 中"></a>把方法抽出来，放到 utils.js 中</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">    mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</div><div class="line"></div><div class="line">exports.mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">downloadPath, folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">`<span class="subst">$&#123;downloadPath&#125;</span>/<span class="subst">$&#123;folder&#125;</span>`</span>, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span>  <span class="built_in">console</span>.log(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFileSync(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writeConfigJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>基本上就是这样了。<br>最终修改为<br><code>index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> ProgressBar = <span class="built_in">require</span>(<span class="string">'progress'</span>),</div><div class="line">    Crawler = <span class="built_in">require</span>(<span class="string">'crawler'</span>),</div><div class="line">    cheerio = <span class="built_in">require</span>(<span class="string">'cheerio'</span>),</div><div class="line">    utils = <span class="built_in">require</span>(<span class="string">'./utils'</span>),</div><div class="line">    fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">let</span> books = &#123;&#125;,</div><div class="line">    defaultUrl = <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">    bar;</div><div class="line"></div><div class="line"><span class="keyword">let</span> crawler = <span class="keyword">new</span> Crawler();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAllChapters</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    books.chapters.forEach((value, index) =&gt; &#123;</div><div class="line">        value.post.forEach((v, i) =&gt; &#123;</div><div class="line">            getOnePost(v, index + <span class="number">1</span>);</div><div class="line">        &#125;)</div><div class="line">    &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getOnePost</span>(<span class="params">postInfo, chapterNum</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(postInfo);</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (fs.existsSync(<span class="string">`dist/<span class="subst">$&#123;chapterNum&#125;</span>/<span class="subst">$&#123;postInfo.postNum&#125;</span>.html`</span>)) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;postInfo.postNum&#125;</span>.html is exit`</span>);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        crawler.queue(&#123;</div><div class="line">            uri: postInfo.url,</div><div class="line">            maxConnections: <span class="number">100</span>,</div><div class="line">            callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span> (error) &#123;</div><div class="line">                    <span class="built_in">console</span>.error(error);</div><div class="line">                &#125; <span class="keyword">else</span> &#123;</div><div class="line">                    <span class="keyword">let</span> $ = res.$;</div><div class="line"></div><div class="line">                    $(<span class="string">'article center'</span>).remove();</div><div class="line">                    $(<span class="string">'article script'</span>).remove();</div><div class="line">                    $(<span class="string">'.entry-content div'</span>).remove();</div><div class="line"></div><div class="line">                    utils.writerPost(chapterNum, postInfo.postNum, $(<span class="string">'.entry-content'</span>).html());</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">start</span>(<span class="params">chapterNum, postNum, downloadPath = 'dist'</span>) </span>&#123;</div><div class="line">    crawler.queue(&#123;</div><div class="line">        uri: <span class="string">'http://www.guichuideng.org/'</span>,</div><div class="line">        maxConnections: <span class="number">100</span>,</div><div class="line">        callback: <span class="function"><span class="keyword">function</span>(<span class="params">error, res, done</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (error) &#123;</div><div class="line">                <span class="built_in">console</span>.error(error);</div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">                <span class="keyword">let</span> $ = res.$;</div><div class="line">                <span class="keyword">let</span> titles = $(<span class="string">'article h2'</span>);</div><div class="line">                <span class="keyword">let</span> totalLength = <span class="number">0</span>;</div><div class="line">                books.title = $(<span class="string">'.page-title span'</span>).text();</div><div class="line">                books.author = $(<span class="string">'article h3'</span>).text().replace(<span class="string">'鬼吹灯作者：'</span>, <span class="string">''</span>);</div><div class="line"></div><div class="line">                books.chapters = [];</div><div class="line"></div><div class="line">                titles.each((index, value) =&gt; &#123;</div><div class="line">                    <span class="keyword">let</span> tmpObj = &#123;</div><div class="line">                        chapters_name: $(value).text(),</div><div class="line">                        chapters_num: index + <span class="number">1</span>,</div><div class="line">                        post: []</div><div class="line">                    &#125;</div><div class="line">                    $(value).next().find(<span class="string">'a'</span>).each((i, v) =&gt; &#123;</div><div class="line">                        <span class="keyword">let</span> url = $(v).attr(<span class="string">'href'</span>);</div><div class="line">                        <span class="keyword">let</span> title = $(v).text();</div><div class="line">                        tmpObj.post.push(&#123;</div><div class="line">                            url: url,</div><div class="line">                            title: title,</div><div class="line">                            postNum: <span class="string">`<span class="subst">$&#123;index+1&#125;</span><span class="subst">$&#123;i+1&#125;</span>`</span></div><div class="line">                        &#125;)</div><div class="line">                        totalLength += tmpObj.post.length;</div><div class="line">                    &#125;)</div><div class="line">                    books.chapters.push(tmpObj);</div><div class="line">                    utils.mkdir(<span class="string">'dist'</span>, index + <span class="number">1</span>);</div><div class="line">                &#125;);</div><div class="line">                utils.writeConfigJson(books);</div><div class="line">                getAllChapters();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><code>utils.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>),</div><div class="line">    mkdirp = <span class="built_in">require</span>(<span class="string">'mkdirp'</span>);</div><div class="line"></div><div class="line">exports.mkdir = <span class="function"><span class="keyword">function</span>(<span class="params">downloadPath, folder</span>) </span>&#123;</div><div class="line">    mkdirp(<span class="string">`<span class="subst">$&#123;downloadPath&#125;</span>/<span class="subst">$&#123;folder&#125;</span>`</span>, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span>  <span class="built_in">console</span>.log(<span class="string">`mkdir dist/<span class="subst">$&#123;folder&#125;</span> done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writerPost = <span class="function"><span class="keyword">function</span>(<span class="params">chaptersNum, postNum, content</span>) </span>&#123;</div><div class="line">    fs.writeFileSync(<span class="string">`dist/<span class="subst">$&#123;chaptersNum&#125;</span>/<span class="subst">$&#123;postNum&#125;</span>.html`</span>, content)</div><div class="line">&#125;;</div><div class="line"></div><div class="line">exports.writeConfigJson = <span class="function"><span class="keyword">function</span>(<span class="params">book</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> content = <span class="built_in">JSON</span>.stringify(book, <span class="literal">null</span>, <span class="number">4</span>);</div><div class="line"></div><div class="line">    fs.writeFile(<span class="string">`dist/book.json`</span>, content, (err) =&gt; &#123;</div><div class="line">        <span class="keyword">if</span> (err) <span class="keyword">throw</span> <span class="built_in">TypeError</span>(<span class="string">`write book.json error: <span class="subst">$&#123;err&#125;</span>`</span>);</div><div class="line">        <span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`write book.json done!`</span>);</div><div class="line">    &#125;)</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="最后更新"><a href="#最后更新" class="headerlink" title="最后更新"></a>最后更新</h2><p>最终版请点击<a href="https://github.com/JxJayden/node-guichuideng-reader/blob/master/book-crawler.js" target="_blank" rel="external">链接</a>查看。</p>
+<p>参考：</p>
+<ol>
+<li><a href="https://github.com/i5ting/hd-crawler" target="_blank" rel="external">i5ting/hd-crawler</a></li>
+<li><a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">i5ting/simplereader</a></li>
+<li><a href="https://cnodejs.org/topic/5203a71844e76d216a727d2e" target="_blank" rel="external">通读 cheerio API</a></li>
+<li><a href="https://nqdeng.github.io/7-days-nodejs/#3" target="_blank" rel="external">七天学会 NodeJS | 文件操作</a></li>
+</ol>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/cheerio/">cheerio</a><a class="tag-link" href="/tags/crawler/">crawler</a><a class="tag-link" href="/tags/node/">node</a><a class="tag-link" href="/tags/爬虫/">爬虫</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2017/02/14/node/node-guichuideng-spider/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>

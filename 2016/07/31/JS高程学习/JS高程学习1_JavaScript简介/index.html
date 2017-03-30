@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>JS 高程学习 1：JavaScript 简介 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. JavaScript 简史JavaScript 诞生于 1995 年，当时它的主要目的是处理以前由服务器端语言（如 Perl）负责的一些输入验证操作。1997 年，以 JavaScript1.1 为蓝本的建议被提交给了 ECMA，经过数月的努力，完成了 ECMA-262 的新脚本语言的标准。自此以后，浏览器开发商就开始致力于将 ECMAScript 作为各自 JavaScript 实现的基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 高程学习 1：JavaScript 简介">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="1. JavaScript 简史JavaScript 诞生于 1995 年，当时它的主要目的是处理以前由服务器端语言（如 Perl）负责的一些输入验证操作。1997 年，以 JavaScript1.1 为蓝本的建议被提交给了 ECMA，经过数月的努力，完成了 ECMA-262 的新脚本语言的标准。自此以后，浏览器开发商就开始致力于将 ECMAScript 作为各自 JavaScript 实现的基础">
+<meta property="og:updated_time" content="2016-08-03T15:49:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 高程学习 1：JavaScript 简介">
+<meta name="twitter:description" content="1. JavaScript 简史JavaScript 诞生于 1995 年，当时它的主要目的是处理以前由服务器端语言（如 Perl）负责的一些输入验证操作。1997 年，以 JavaScript1.1 为蓝本的建议被提交给了 ECMA，经过数月的努力，完成了 ECMA-262 的新脚本语言的标准。自此以后，浏览器开发商就开始致力于将 ECMAScript 作为各自 JavaScript 实现的基础">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-JS高程学习/JS高程学习1_JavaScript简介"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/">
+    	JS 高程学习 1：JavaScript 简介
+    </a>
+  </h2>
+	<time>
+	  7月 31, 2016
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<h1 id="1-JavaScript-简史"><a href="#1-JavaScript-简史" class="headerlink" title="1. JavaScript 简史"></a>1. JavaScript 简史</h1><p>JavaScript 诞生于 1995 年，当时它的主要目的是处理以前由服务器端语言（如 Perl）负责的一些输入验证操作。1997 年，以 JavaScript1.1 为蓝本的建议被提交给了 ECMA，经过数月的努力，完成了 ECMA-262 的新脚本语言的标准。自此以后，浏览器开发商就开始致力于将 ECMAScript 作为各自 JavaScript 实现的基础。<br>如今，JavaScript 已经成为一门功能全面的编程语言，能够处理复杂的计算和交互，拥有了闭包，匿名函数等特性。</p>
+<h1 id="2-JavaScript-的实现"><a href="#2-JavaScript-的实现" class="headerlink" title="2. JavaScript 的实现"></a>2. JavaScript 的实现</h1><p>完整的 JavaScript 由三个部分组成：核心（ECMAScript），文档对象模型（DOM），浏览器对象模型（BOM）。</p>
+<a id="more"></a>
+<h2 id="1-ECMAScript"><a href="#1-ECMAScript" class="headerlink" title="1. ECMAScript"></a>1. ECMAScript</h2><p>由 ECMA-262 定义的 ECMAScript 与 Web 浏览器没有依赖关系，我们常见的 Web 浏览器只是 ECMAScript 的宿主环境之一。ECMA-262 标准规定了这门语言的组成部分：1. 语法；2.类型；3.语句；4.关键字；5.保留字；6.操作符，7.对象。<br>目前 ECMAScript 最新标准是：ECMA-262 Edition 6  。详细的版本更替记录以及浏览器对 ECMAScript 的支持情况可以<a href="https://zh.wikipedia.org/wiki/ECMAScript" target="_blank" rel="external">点击</a>查看。（这里不写出来是因为书里面的信息已经过期了，本人阅读的是第 3 版。wiki 已经很好地记录了 ECMAScript 历史信息。）</p>
+<h2 id="2-文档对象模型（DOM）"><a href="#2-文档对象模型（DOM）" class="headerlink" title="2. 文档对象模型（DOM）"></a>2. 文档对象模型（DOM）</h2><p>文档对象模型（DOM，Document Object Model）是针对 XML 但经过扩展用于 HTML 的应用程序编程接口（API）。<br>示例：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Sample Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello world!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>这个页面的分层节点为：<br>html<br>|–head<br>|  +title<br>|   +Sample Page<br>|–body<br>|  +p<br>|   +Hello world!<br>DOM 2级引入了新的模块，同时给除了总多新类型和新接口的定义，DOM3 级进一步扩展了 DOM，引入了以统一方式加载和保存文档的方法，同时对 DOM 核心进行了扩展，开始支持 XML1.0 规范。DOM 接口可以<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document_Object_Model" target="_blank" rel="external">点击</a>查看。</p>
+<h2 id="3-浏览器对象模型（BOM）"><a href="#3-浏览器对象模型（BOM）" class="headerlink" title="3. 浏览器对象模型（BOM）"></a>3. 浏览器对象模型（BOM）</h2><p>BOM 从根本上来说只处理浏览器窗口和框架。但是习惯上也把所有针对浏览器的 JavaScript 扩展算作 BOM 的一部分，包括弹出新浏览器窗口的功能，移动缩放和关闭浏览器的功能，对 cookie 的支持等。</p>
+<h1 id="3-JavaScript-版本"><a href="#3-JavaScript-版本" class="headerlink" title="3. JavaScript 版本"></a>3. JavaScript 版本</h1><p>可<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/New_in_JavaScript" target="_blank" rel="external">点击</a>查看。</p>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2016/07/31/JS高程学习/JS高程学习1_JavaScript简介/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>

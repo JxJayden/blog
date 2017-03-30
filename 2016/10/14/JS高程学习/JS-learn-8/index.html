@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>JS 高程学习 8：Object 类型 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。
+如何创建 Object 实例看代码：
+123456789101112131415// 使用 new 操作符后跟 Object 构造函数var person = new Object();person.name = &quot;Jayde">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 高程学习 8：Object 类型">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2016/10/14/JS高程学习/JS-learn-8/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。
+如何创建 Object 实例看代码：
+123456789101112131415// 使用 new 操作符后跟 Object 构造函数var person = new Object();person.name = &quot;Jayde">
+<meta property="og:updated_time" content="2017-01-20T14:09:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 高程学习 8：Object 类型">
+<meta name="twitter:description" content="终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。
+如何创建 Object 实例看代码：
+123456789101112131415// 使用 new 操作符后跟 Object 构造函数var person = new Object();person.name = &quot;Jayde">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-JS高程学习/JS-learn-8"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2016/10/14/JS高程学习/JS-learn-8/">
+    	JS 高程学习 8：Object 类型
+    </a>
+  </h2>
+	<time>
+	  10月 14, 2016
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。</p>
+<h2 id="如何创建-Object-实例"><a href="#如何创建-Object-实例" class="headerlink" title="如何创建 Object 实例"></a>如何创建 Object 实例</h2><p>看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用 new 操作符后跟 Object 构造函数</span></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">"Jayden"</span>;</div><div class="line">person.age = <span class="number">21</span>;</div><div class="line"></div><div class="line"><span class="comment">// 使用对象字面量方法 推荐使用</span></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  name : <span class="string">"Jayden"</span>,</div><div class="line">  age: <span class="number">21</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 这里要注意一下语法，对象的最后一个属性后面不需要添加逗号，</span></div><div class="line"><span class="comment">// 在 IE7 以及更早版本的 Opera 中会引发错误。</span></div><div class="line"></div><div class="line"><span class="comment">// 在使用对象字面量方法的时候，如果留空，则定义只包含默认属性和方法的对象</span></div><div class="line"><span class="keyword">var</span> obj = &#123;&#125;; <span class="comment">// 与 new Object() 相同</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>为什么使用对象字面量语法更好呢？一是因为这种语法要求的代码量少，而且能够给人封装数据的感觉。</p>
+<h2 id="访问对象的方法"><a href="#访问对象的方法" class="headerlink" title="访问对象的方法"></a>访问对象的方法</h2><p>一般访问对象属性时使用的是点表示法，不过在 JavaScript 中还可以通过方括号表示法来访问对象的属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">person.name; <span class="comment">// "Jayden"</span></div><div class="line">person[<span class="string">"name"</span>]; <span class="comment">// "Jayden"</span></div></pre></td></tr></table></figure>
+<p>看起来这两种方法都没什么区别，但是方括号表示法有一个好处是可以通过变量来访问属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> nameType = <span class="string">"name"</span>;</div><div class="line">person[nameType]; <span class="comment">// "Jayden"</span></div></pre></td></tr></table></figure>
+<p>哦，如果属性名中包含会导致语法错误的字符，或者属性名使用的是关键字或保留字，也可以使用方括号表示法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person[<span class="string">"first name"</span>] = <span class="string">"Jayden"</span>;</div></pre></td></tr></table></figure>
+<p>通常情况下，除非必须使用变量来访问属性，一般建议使用点表示法。</p>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2016/10/14/JS高程学习/JS-learn-8/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>

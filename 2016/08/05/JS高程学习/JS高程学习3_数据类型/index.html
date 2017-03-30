@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  <title>JS 高程学习 3：数据类型 | 代码与胡说</title>
+  <meta name="description" content="我与我周旋久，宁作我。" />
+  <meta name="keywords" content="hexo,blog,JxJayden,f2e, front-end" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="ECMAScript 中有五种简单数据类型（也称为基本数据类型）：Undefined，Null，Boolean，Number 和 string ，还有一种复杂数据类型：object 。 来简单了解一下每种数据类型。
+typeof 操作符typeof 操作符用来检测给定变量的数据类型。typeof 对一个值可能返回下列的某个字符串。    
+- &amp;quot;undefined&amp;quot; : 这个值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS 高程学习 3：数据类型">
+<meta property="og:url" content="http://blog.jxdjayden.cn/2016/08/05/JS高程学习/JS高程学习3_数据类型/index.html">
+<meta property="og:site_name" content="代码与胡说">
+<meta property="og:description" content="ECMAScript 中有五种简单数据类型（也称为基本数据类型）：Undefined，Null，Boolean，Number 和 string ，还有一种复杂数据类型：object 。 来简单了解一下每种数据类型。
+typeof 操作符typeof 操作符用来检测给定变量的数据类型。typeof 对一个值可能返回下列的某个字符串。    
+- &amp;quot;undefined&amp;quot; : 这个值">
+<meta property="og:updated_time" content="2016-10-11T13:19:27.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS 高程学习 3：数据类型">
+<meta name="twitter:description" content="ECMAScript 中有五种简单数据类型（也称为基本数据类型）：Undefined，Null，Boolean，Number 和 string ，还有一种复杂数据类型：object 。 来简单了解一下每种数据类型。
+typeof 操作符typeof 操作符用来检测给定变量的数据类型。typeof 对一个值可能返回下列的某个字符串。    
+- &amp;quot;undefined&amp;quot; : 这个值">
+  
+  
+    <link rel="icon" href="//odgdn5u95.bkt.clouddn.com/facvion.jpeg">
+  
+
+	<script src="https://use.typekit.net/eyf3hir.js"></script>
+  <script>try{Typekit.load({ async: false });}catch(e){}</script>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+  
+
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+
+  <script>setLoadingBarProgress(20)</script>
+  
+  <div id="site-wrapper">
+    
+    <header id="header">
+	<div id="header-wrapper" class="clearfix">
+		<a id="logo" href="/">
+			<img src="/images/logo.png" />
+			<span id="site-desc">
+			  我与我周旋久，宁作我。
+      </span>
+		</a>
+		<button id="site-nav-switch">
+	    <span class="icon icon-menu"></span>
+	  </button>
+	</div>
+	<aside id="site-menu">
+  	<nav>
+  		
+        <a href="/" class="nav-home nav">
+          Home
+        </a>
+      
+        <a href="/about" class="nav-about nav">
+          About
+        </a>
+      
+        <a href="/archives" class="nav-archives nav">
+          Archives
+        </a>
+      
+        <a href="/links" class="nav-Links nav">
+          Links
+        </a>
+      
+    </nav>
+	</aside>
+</header>
+    <script>setLoadingBarProgress(40);</script>
+    
+    <main id="main" role="main">
+      <article id="post-JS高程学习/JS高程学习3_数据类型"
+  class="post article white-box article-type-post"
+  itemscope itemprop="blogPost">
+	<h2 class="title">
+  	<a href="/2016/08/05/JS高程学习/JS高程学习3_数据类型/">
+    	JS 高程学习 3：数据类型
+    </a>
+  </h2>
+	<time>
+	  8月 5, 2016
+	</time>
+	<section class="content">
+  	<div class="article-entry" itemprop="articleBody">
+    	<p>ECMAScript 中有五种简单数据类型（也称为基本数据类型）：Undefined，Null，Boolean，Number 和 string ，还有一种复杂数据类型：object 。 来简单了解一下每种数据类型。</p>
+<h2 id="typeof-操作符"><a href="#typeof-操作符" class="headerlink" title="typeof 操作符"></a>typeof 操作符</h2><p>typeof 操作符用来检测给定变量的数据类型。typeof 对一个值可能返回下列的某个字符串。    </p>
+<pre><code>- &quot;undefined&quot; : 这个值未定义
+- &quot;boolean&quot; : 这个值是布尔值
+- &quot;string&quot; : 这个值是字符串
+- &quot;number&quot; : 这个值是数值
+- &quot;object&quot; : 这个值是对象或者 null
+- &quot;function&quot; : 这个值是函数
+</code></pre><p><strong>typrof null 会返回 “object”</strong></p>
+<h2 id="undefined-类型"><a href="#undefined-类型" class="headerlink" title="undefined 类型"></a>undefined 类型</h2><p>undefined 类型只有一个值，那就是 undefined 。在使用 var 声明变量但未对其初始化时，这个变量的值就是 undefined 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;</div><div class="line">alert(message == <span class="literal">undefined</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>不过，包含 undefined 值的变量和尚未定义的变量是不一样的。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;</div><div class="line"></div><div class="line"><span class="comment">//下面这个变量并没有声明</span></div><div class="line"><span class="comment">//var age</span></div><div class="line"></div><div class="line">alert(message); <span class="comment">//undefined</span></div><div class="line">alert(age); <span class="comment">//错误</span></div></pre></td></tr></table></figure>
+<p>对未初始化的变量执行 typeof 操作符会返回 undefined，而对未声明的变量执行 typeof 操作符同样也返回 undefined 值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> message;</div><div class="line"></div><div class="line"><span class="comment">//下面这个变量并没有声明</span></div><div class="line"><span class="comment">//var age</span></div><div class="line"></div><div class="line">alert(<span class="keyword">typeof</span> message); <span class="comment">//"undefined"</span></div><div class="line">alert(<span class="keyword">typeof</span> age); <span class="comment">//"undefined"</span></div></pre></td></tr></table></figure>
+<h2 id="Null-类型"><a href="#Null-类型" class="headerlink" title="Null 类型"></a>Null 类型</h2><p>null 类型是第二个只有一个值的数据类型，这个特殊值是 null 。从逻辑角度来看，null 表示一个空对象指针，这也是使用 typeof 操作符检测 null 值会返回 “object” 的原因。<br>如果定义的对象准备用来保存对象，那么最好将该变量初始化为 null 。<br>然而 ECMA-262 规定对 undefined 和 null 的相等性测试要返回 true 。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert(<span class="literal">null</span> == <span class="literal">undefined</span>); <span class="comment">//true</span></div></pre></td></tr></table></figure>
+<h2 id="boolean-类型"><a href="#boolean-类型" class="headerlink" title="boolean 类型"></a>boolean 类型</h2><p>boolean 类型只有两个字面值：true 和 false。所有类型的值都可以调用转型函数 boolean() 转换成对应的 boolean 值的变量。</p>
+<h2 id="Number-类型"><a href="#Number-类型" class="headerlink" title="Number 类型"></a>Number 类型</h2><h3 id="浮点数值"><a href="#浮点数值" class="headerlink" title="浮点数值"></a>浮点数值</h3><p>浮点数值：该数值必须包含一个小数点，并且小数点后面至少有一位数字。</p>
+<p>ECMAScript 在合适的时候会把浮点数转换成整数来存储。对于极大或者极小的数值可以用科学计数法来表示。浮点数的最高精度是 17 位，但是在进行算术计算时其精确度远远不如整数。如 0.1 + 0.2 的结果不是 0.3，而是0.30000000000000004，这个舍入误差会导致无法测试特定的浮点数值。</p>
+<h3 id="NaN"><a href="#NaN" class="headerlink" title="NaN"></a>NaN</h3><p>NaN 即非数值，这个数值用来表示一个本来要返回数值的操作数未返回数值的情况。在 ECMAScript 中，任何数值除以非数值会返回 NaN ，因此不影响其他代码的执行。<br>NaN 有两个特点：任何涉及 NaN 的操作都会返回 NaN ，NaN 与任何数值都不相等，包括 NaN 本身。可以使用 isNaN() 函数来判断参数是否“不是数值”。</p>
+<h3 id="数值转换"><a href="#数值转换" class="headerlink" title="数值转换"></a>数值转换</h3><p>可以使用 Number()、parseInt()、parseFloat()这三个函数把非数值转换成数值。Number()可用于任何数据类型，而另外两个专门用于把字符串转换成数值。<br>Number() 的转换规则如下：</p>
+<ul>
+<li>如果是 boolean 值，true 和 false 将分别被转换成 1 和 0。</li>
+<li>如果是数字，只是简单的传入和返回。</li>
+<li>如果是 null 值，返回 0。</li>
+<li>如果是 undefined ，返回 NaN。</li>
+<li>如果是字符串，遵循下列的规则。<ul>
+<li>字符串中只包含数字（包括带正负号的情况），则将其转换成十进制，注意 “011” 会转换成 11。</li>
+<li>如果字符串中包含有效的浮点格式，如 “1.1”,则将其转换为对应的浮点数值，注意也会忽略前导零。</li>
+<li>如果字符串中包含有效的十六进制格式，则将其转换成相同大小的十进制整数。</li>
+<li>如果字符串是空的，则转换成 0。</li>
+<li>如果字符串包含除上述格式之外的字符，则将其转换成 NaN。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num1 = <span class="built_in">Number</span>(<span class="string">"hello"</span>); <span class="comment">//NaN</span></div><div class="line"><span class="keyword">var</span> num2 = <span class="built_in">Number</span>(<span class="string">""</span>); <span class="comment">//0</span></div><div class="line"><span class="keyword">var</span> num3 = <span class="built_in">Number</span>(<span class="string">"0000011"</span>); <span class="comment">//11</span></div><div class="line"><span class="keyword">var</span> num4 = <span class="built_in">Number</span>(<span class="literal">true</span>); <span class="comment">//1</span></div></pre></td></tr></table></figure>
+<p>在处理整数时更常用 praseInt() 函数，parseInt() 函数在转换字符串时，更多的是看其是否符合数值模式。他会忽略字符串前面的空格。直至找到第一个非空格字符，如果第一个字符不是数字字符或者符号，praseInt() 会返回 NaN。下面是一些例子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> num1 = praseInt(<span class="string">"12345abs"</span>); <span class="comment">//12345</span></div><div class="line"><span class="keyword">var</span> num1 = praseInt(<span class="string">""</span>); <span class="comment">//NaN</span></div><div class="line"><span class="keyword">var</span> num1 = praseInt(<span class="string">"0xA"</span>); <span class="comment">//10 十六进制</span></div></pre></td></tr></table></figure>
+<p>为了消除不必要的问题，可以为 praseInt() 函数提供第二个参数：转换时使用的基数（即多少进制）。</p>
+<p>praseFloat() 和 praseInt() 类似，也是从第一个字符开始解析每个字符，但是字符串中的第一个小数点是有效的，另一个要点是 praseFloat() 始终会忽略前导零，它只用于解析十进制数。</p>
+<h2 id="String-类型"><a href="#String-类型" class="headerlink" title="String 类型"></a>String 类型</h2><p>string 类型用于表示由零个或者多个 16 位 Unicode 字符组成的字符序列。</p>
+<ol>
+<li><p>字符字面量</p>
+<p> string 数据类型包含一些特殊的字符字面量，也叫转义序列，用于表示非打印字符，或者具有其他用途的字符。可通过查阅了解，常用的有 “\n”: 换行；”\r”: 回车；”\’”: 单引号；”\””: 双引号等。</p>
+</li>
+<li><p>字符串的特点</p>
+<p> ECMAScript 中的字符串是不可变的， 也就是说字符串一旦创建，它们的值就不能改变，要改变某个变量保存的字符串，首先要销毁原来的字符串，然后再用另一个包含新值的字符串填充该变量。</p>
+</li>
+<li><p>转换为字符串</p>
+<ol>
+<li>使用 toString() 方法。但是 null 和 undefined 没有 toString() 方法。</li>
+<li>使用转型函数 String()。如果 null 会返回 “null”，如果 undefined 返回 “undefined”</li>
+</ol>
+</li>
+</ol>
+<h2 id="object-类型"><a href="#object-类型" class="headerlink" title="object 类型"></a>object 类型</h2><p>ECMAScript 中的对象其实就是一组数据与功能的集合。对象可以通过执行 new 操作符后要跟要创建的对象类型的名称来创建，而创建 object 类型的实例并为其添加属性和方法，就可以自定义对象。如：<code>var o=new Object()</code>。</p>
+<p>在ECMASript 中，Object 类型是所有它的实例的基础，Object 类型所具有的任何属性和方法也同样存在于更具体的对象中。</p>
+<p>Object 的每个实例都具有下列属性和方法：</p>
+<ul>
+<li>construtor：保存着用于创建当前对象的函数。</li>
+<li>hasOwnProperty：用于检查给定的属性在当前对象实例中（而不是对象的原型中）是否存在。作为参数的属性名必须以字符串形式指定。</li>
+<li>isPrototypeof：用于检查传入的对象是否是传入对象的原型。</li>
+<li>properyIsEnumerable：用于检查给定的属性是否可以使用 for-in 语句来枚举。</li>
+<li>toLocaleString：返回对象的字符串表示，该字符串与执行环境的地区对应。</li>
+<li>toString：返回对象的字符串表示。</li>
+<li>valueOf：返回对象的字符串、数值或布尔值表示。通常与 toString() 方法返回的值相同。</li>
+</ul>
+
+  	</div>
+
+	  <div class="article-tags tags">
+		  
+        <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+      
+	  </div>
+	</section>
+</article>
+
+
+<section id="comments">
+	<div id="disqus_thread"></div>
+</section>
+
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </main>
+    
+    <footer id="footer" class="clearfix">
+  
+  
+
+	<div class="social-wrapper">
+  	
+      
+        <a href="mailto:jxdjayden@gmail.com" class="social email"
+          target="_blank" rel="external">
+          <span class="icon icon-email"></span>
+        </a>
+      
+        <a href="https://github.com/JxJayden" class="social github"
+          target="_blank" rel="external">
+          <span class="icon icon-github"></span>
+        </a>
+      
+    
+  </div>
+  
+  <div>Theme <span class="codename">Typescript</span> designed by <a href="http://rakugaki.me/" target="_blank">Art Chen</a>.</div>
+  <div>&copy; <a href="/">代码与胡说</a></div>
+  
+</footer>
+
+
+    <script>setLoadingBarProgress(80);</script>
+    
+  </div>
+
+  
+<script>
+  var disqus_shortname = 'blog-jxdjayden-cn';
+  
+  var disqus_url = 'http://blog.jxdjayden.cn/2016/08/05/JS高程学习/JS高程学习3_数据类型/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>window.jQuery || document.write('<script src="/js/jquery.min.js"><\/script>')</script>
+
+<script src="/js/jquery.fitvids.js"></script>
+<script>
+	var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+	var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+	var ALGOLIA_API_KEY = "";
+	var ALGOLIA_APP_ID = "";
+	var ALGOLIA_INDEX_NAME = "";
+  var AZURE_SERVICE_NAME = "";
+  var AZURE_INDEX_NAME = "";
+  var AZURE_QUERY_KEY = "";
+  var BAIDU_API_ID = "";
+  var SEARCH_SERVICE = "";
+</script>
+<script src="/js/search.js"></script>
+<script src="/js/app.js"></script>
+
+
+  <script>setLoadingBarProgress(100);</script>
+  
+</body>
+</html>
