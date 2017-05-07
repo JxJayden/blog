@@ -104,6 +104,93 @@
 
   
   <h2 class="title">
+    <a href="/2017/05/05/go/go-learn-note/">
+      go 基础笔记
+    </a>
+  </h2>
+  
+  <time>
+    5月 5, 2017
+  </time>
+  <section class="content">
+	  <h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>每个 Go 程序都是由包构成的。程序从 <code>main</code> 包开始运行。</p>
+<blockquote>
+<p>按照约定，包名与导入路径的最后一个元素一致。例如，<code>&quot;math/rand&quot;</code> 包中的源码均以 <code>package rand</code> 语句开始。</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div></pre></td></tr></table></figure>
+<h2 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h2><p>两种导入包的方式</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 用圆括号组合导入</div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">) </div><div class="line"><span class="number">2.</span> 分别导入</div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"><span class="keyword">import</span> <span class="string">"math"</span></div></pre></td></tr></table></figure>
+<h2 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h2><p>在 Go 中，如果一个名字以大写字母开头，那么它就是已导出的。例如：<code>Pi</code> 导出自 <code>Math</code> 包。</p>
+<p><strong>在导入一个包时，你只能引用其中已导出的名字。任何 “未导出” 的名字在该包外均无法访问。</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">	<span class="string">"fmt"</span></div><div class="line">	<span class="string">"math"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(math.Pi)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ol>
+<li>函数可以没有参数或者多个参数，注意类型在变量名 <strong>之后</strong>，</li>
+<li>如果连续两个或者多个参数的已命名形参类型相同时，除最后一个类型以外，其它都可以省略。</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x <span class="keyword">int</span>, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(add(<span class="number">42</span>, <span class="number">13</span>))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 省略写法</span></div><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(x, y <span class="keyword">int</span>)</span> <span class="title">int</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> x + y</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(add(<span class="number">42</span>, <span class="number">13</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li>多值返回：函数可以返回任意数量的返回值。</li>
+</ol>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(x, y <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, <span class="keyword">string</span>)</span></span> &#123;</div><div class="line">	<span class="keyword">return</span> y, x</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	a, b := swap(<span class="string">"hello"</span>, <span class="string">"world"</span>)</div><div class="line">	fmt.Println(a, b)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ol>
+<li><p>命名返回值</p>
+<p>Go 的返回值可被命名，它们会被视作定义在函数顶部的变量。没有参数的 <code>return</code> 语句返回已命名的返回值。也就是 <code>直接</code> 返回。</p>
+<blockquote>
+<p>注意：应该尽量避免在长函数中使用直接返回语句，这样做会影响其可读性。</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">split</span><span class="params">(sum <span class="keyword">int</span>)</span> <span class="params">(x, y <span class="keyword">int</span>)</span></span> &#123;</div><div class="line">	x = sum * <span class="number">4</span> / <span class="number">8</span></div><div class="line">	y = sum - x</div><div class="line">	<span class="keyword">return</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	fmt.Println(split(<span class="number">17</span>))</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><code>var</code> 语句用于声明一个变量列表，跟函数的参数列表一样，类型在最后。var 语句可以出现在函数或者包级别。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> a <span class="keyword">bool</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> i <span class="keyword">int</span></div><div class="line">	fmt.Println(i, a)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="变量的初始化"><a href="#变量的初始化" class="headerlink" title="变量的初始化"></a>变量的初始化</h3><p>变量的初始化可以包含初始值，每个变量对应一个。 <code>var i, j int =1, 2</code> 。</p>
+<p>如果初始化值已存在，则可以省略类型；变量会从初始值中获得类型。 <code>var i = 1</code>。</p>
+<h3 id="短变量声明"><a href="#短变量声明" class="headerlink" title="短变量声明"></a>短变量声明</h3><p>在函数中，简洁赋值语句 <code>:=</code> 可在类型明确的地方代替 <code>var</code> 声明。</p>
+<blockquote>
+<p>注意：不能在函数体外使用</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">var</span> i, j <span class="keyword">int</span> = <span class="number">1</span>, <span class="number">2</span></div><div class="line">	k := <span class="number">3</span></div><div class="line">	c, python, java := <span class="literal">true</span>, <span class="literal">false</span>, <span class="string">"no!"</span></div><div class="line"></div><div class="line">	fmt.Println(i, j, k, c, python, java)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="基本类型"><a href="#基本类型" class="headerlink" title="基本类型"></a>基本类型</h2><p>go 的基本类型有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">bool</div><div class="line"></div><div class="line">string</div><div class="line"></div><div class="line">int  int8  int16  int32  int64</div><div class="line">uint uint8 uint16 uint32 uint64 uintptr</div><div class="line"></div><div class="line">byte // uint8 的别名</div><div class="line"></div><div class="line">rune // int32 的别名</div><div class="line">     // 表示一个 Unicode 码点</div><div class="line"></div><div class="line">float32 float64</div><div class="line"></div><div class="line">complex64 complex128</div></pre></td></tr></table></figure>
+<p><code>int</code> 、 <code>uint</code> 和 <code>uintptr</code> 在 32 位系统上通常为 32 位宽，在 64 位系统上则为 64 位宽。 当你需要一个整数值时应使用 <code>int</code> 类型，除非你有特殊的理由使用固定大小或无符号的整数类型。</p>
+<h2 id="零值"><a href="#零值" class="headerlink" title="零值"></a>零值</h2><p>没有明确初始值的变量声明会被赋予它们的 <strong>零值</strong> 。</p>
+<ol>
+<li>数值类型为 0</li>
+<li>布尔类型为 <code>false</code></li>
+<li>字符串类型为 <code>&quot;&quot;</code> ，即空字符串</li>
+</ol>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><p>表达式 <code>T(v)</code> 将值 <code>v</code> 转换为类型 <code>T</code> 。</p>
+<p>例如：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i <span class="keyword">int</span> = <span class="number">42</span></div><div class="line"><span class="keyword">var</span> f <span class="keyword">float64</span> = <span class="keyword">float64</span>(i)</div><div class="line"><span class="keyword">var</span> u <span class="keyword">uint</span> = <span class="keyword">uint</span>(f)</div><div class="line"></div><div class="line"><span class="comment">// 或者</span></div><div class="line">i := <span class="number">42</span></div><div class="line">f := <span class="keyword">float64</span>(i)</div><div class="line">u := <span class="keyword">uint</span>(f)</div></pre></td></tr></table></figure>
+<h2 id="类型推导"><a href="#类型推导" class="headerlink" title="类型推导"></a>类型推导</h2><p>在声明一个变量而不指定其类型时（即使用不带类型的 <code>:=</code> 语法 或 <code>var =</code> 表达式语法）， 变量的类型由<strong>右值</strong>推导得出。</p>
+<p><strong>当右值声明了类型时，新变量的类型与其相同：</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> i <span class="keyword">int</span></div><div class="line">j := i <span class="comment">// j 也是一个 int</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>不过当右边包含未指明类型的数值常量时，新变量的类型就可能是 <code>int</code> 、 <code>float64</code> 或 <code>complex128</code> 了，这取决于常量的精度：</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">i := <span class="number">42</span>           <span class="comment">// int</span></div><div class="line">f := <span class="number">3.142</span>        <span class="comment">// float64</span></div><div class="line">g := <span class="number">0.867</span> + <span class="number">0.5i</span> <span class="comment">// complex128</span></div></pre></td></tr></table></figure>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量使用 <code>const</code> 关键字，并且不可以使用 <code>:=</code> 语法来声明。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> <span class="string">"fmt"</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> Pi = <span class="number">3.14</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</div><div class="line">	<span class="keyword">const</span> World = <span class="string">"世界"</span></div><div class="line">	fmt.Println(<span class="string">"Hello"</span>, World)</div><div class="line">	fmt.Println(<span class="string">"Happy"</span>, Pi, <span class="string">"Day"</span>)</div><div class="line"></div><div class="line">	<span class="keyword">const</span> Truth = <span class="literal">true</span></div><div class="line">	fmt.Println(<span class="string">"Go rules?"</span>, Truth)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="数值常量"><a href="#数值常量" class="headerlink" title="数值常量"></a>数值常量</h3><p>数值常量是高精度的 <strong>值</strong> 。</p>
+<p>一个未指定类型的常量由上下文来决定其类型。</p>
+<p><code>int</code> 可以存放最大 64 位的整数，根据平台不同有时会更少。</p>
+
+
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/go/">go</a><a class="tag-link" href="/tags/学习笔记/">学习笔记</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2017/03/30/vue/vue-learn-node/">
       vue.js 源码学习记录
     </a>
@@ -143,7 +230,7 @@
     2月 16, 2017
   </time>
   <section class="content">
-	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有次无意中看到狼叔（i5ting）的 <a href="https://github.com/i5ting/simplereader">大主宰小说阅读器</a> ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。</p>
+	  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有次无意中看到狼叔（i5ting）的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">大主宰小说阅读器</a> ，正好那个时候在重新看自己高中时代最喜欢的小说——《鬼吹灯》，本着学习的目的，就有了这个东西。</p>
 
     
 	  <div class="readmore">
@@ -173,7 +260,7 @@
     2月 14, 2017
   </time>
   <section class="content">
-	  <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>之前看到狼叔写的 <a href="https://github.com/i5ting/simplereader">node-simplereader</a> ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。</p>
+	  <h2 id="初衷"><a href="#初衷" class="headerlink" title="初衷"></a>初衷</h2><p>之前看到狼叔写的 <a href="https://github.com/i5ting/simplereader" target="_blank" rel="external">node-simplereader</a> ，就想仿照着写一个 《鬼吹灯》的同款小说阅读器，但是一直没动手。现在空出时间了，就来试着写写。这篇文章是先写爬虫部分。</p>
 
     
 	  <div class="readmore">
@@ -203,7 +290,7 @@
     2月 8, 2017
   </time>
   <section class="content">
-	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/">中译版</a>。</p>
+	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming" target="_blank" rel="external">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/" target="_blank" rel="external">中译版</a>。</p>
 <h2 id="代理与反射是什么？"><a href="#代理与反射是什么？" class="headerlink" title="代理与反射是什么？"></a>代理与反射是什么？</h2><blockquote>
 <p>通过调用 new Proxy() ，你可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许你拦截在目标对象上的底层操作，而这原本是 JS 引擎的内部能力。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。</p>
 </blockquote>
@@ -236,7 +323,7 @@
     2月 8, 2017
   </time>
   <section class="content">
-	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/">中译版</a>。</p>
+	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming" target="_blank" rel="external">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/" target="_blank" rel="external">中译版</a>。</p>
 <h2 id="异步编程的背景回溯"><a href="#异步编程的背景回溯" class="headerlink" title="异步编程的背景回溯"></a>异步编程的背景回溯</h2><h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"my-btn"</span>);</div><div class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked"</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p><strong>缺点：所有事件需要一次注册完毕，面对复杂需求不灵活</strong></p>
 

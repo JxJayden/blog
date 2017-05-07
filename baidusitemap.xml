@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://blog.jxdjayden.cn/2017/05/05/go/go-learn-note/</loc>
+    <lastmod>2017-05-07T13:03:40.000Z</lastmod>
+    <data>
+        <display>
+        <title>go 基础笔记</title>
+        <pubTime>2017-05-05T02:18:56.000Z</pubTime>
+        
+        <tag>go</tag>
+         
+        <tag>学习笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="go" url="http://blog.jxdjayden.cn/categories/go/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.jxdjayden.cn/2017/02/08/ES6/Promises-and-Asynchronous-Programming-note/</loc>
     <lastmod>2017-03-29T17:42:12.000Z</lastmod>
     <data>
@@ -11,9 +33,9 @@
         <title>Promise 与异步编程笔记</title>
         <pubTime>2017-02-08T00:57:43.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
         <tag>Promise</tag>
          
@@ -35,9 +57,9 @@
         <title>代理与反射笔记</title>
         <pubTime>2017-02-08T04:29:54.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
         <tag>proxy</tag>
          
@@ -398,9 +420,9 @@
         <title>ES6 的 generator 函数</title>
         <pubTime>2016-08-30T15:12:57.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
          
            
@@ -460,11 +482,11 @@
         <title>Express 学习记录：开始一个简单的开始项目</title>
         <pubTime>2016-07-31T09:10:02.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>node</tag>
          
         <tag>Express</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
@@ -484,11 +506,11 @@
         <title>Express 学习记录：运行原理</title>
         <pubTime>2016-08-01T09:10:02.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>node</tag>
          
         <tag>Express</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
@@ -588,11 +610,11 @@
         <title>Express 学习记录：Express 的方法</title>
         <pubTime>2016-08-03T09:08:02.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>node</tag>
          
         <tag>Express</tag>
+         
+        <tag>JavaScript</tag>
          
          
            

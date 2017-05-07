@@ -112,7 +112,7 @@
     2月 8, 2017
   </time>
   <section class="content">
-	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/">中译版</a>。</p>
+	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming" target="_blank" rel="external">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/" target="_blank" rel="external">中译版</a>。</p>
 <h2 id="代理与反射是什么？"><a href="#代理与反射是什么？" class="headerlink" title="代理与反射是什么？"></a>代理与反射是什么？</h2><blockquote>
 <p>通过调用 new Proxy() ，你可以创建一个代理用来替代另一个对象（被称为目标），这个代理对目标对象进行了虚拟，因此该代理与该目标对象表面上可以被当作同一个对象来对待。<br>代理允许你拦截在目标对象上的底层操作，而这原本是 JS 引擎的内部能力。拦截行为使用了一个能够响应特定操作的函数（被称为陷阱）。</p>
 </blockquote>
@@ -145,7 +145,7 @@
     2月 8, 2017
   </time>
   <section class="content">
-	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/">中译版</a>。</p>
+	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming" target="_blank" rel="external">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/" target="_blank" rel="external">中译版</a>。</p>
 <h2 id="异步编程的背景回溯"><a href="#异步编程的背景回溯" class="headerlink" title="异步编程的背景回溯"></a>异步编程的背景回溯</h2><h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"my-btn"</span>);</div><div class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked"</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p><strong>缺点：所有事件需要一次注册完毕，面对复杂需求不灵活</strong></p>
 
