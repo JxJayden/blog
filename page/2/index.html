@@ -99,6 +99,38 @@
 
   
   <h2 class="title">
+    <a href="/2016/10/14/JS高程学习/JS-learn-8/">
+      JS 高程学习 8：Object 类型
+    </a>
+  </h2>
+  
+  <time>
+    10月 14, 2016
+  </time>
+  <section class="content">
+	  <p>终于慢慢地刷到第五章引用类型。这真的是一本很好的书，值得慢慢看。引用类型的值（对象）是引用类型的一个实例，对象是对某个特定引用类型的实例。今天来看一下 Object 类型。</p>
+<h2 id="如何创建-Object-实例"><a href="#如何创建-Object-实例" class="headerlink" title="如何创建 Object 实例"></a>如何创建 Object 实例</h2><p>看代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 使用 new 操作符后跟 Object 构造函数</span></div><div class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> <span class="built_in">Object</span>();</div><div class="line">person.name = <span class="string">"Jayden"</span>;</div><div class="line">person.age = <span class="number">21</span>;</div><div class="line"></div><div class="line"><span class="comment">// 使用对象字面量方法 推荐使用</span></div><div class="line"><span class="keyword">var</span> person = &#123;</div><div class="line">  <span class="attr">name</span> : <span class="string">"Jayden"</span>,</div><div class="line">  <span class="attr">age</span>: <span class="number">21</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 这里要注意一下语法，对象的最后一个属性后面不需要添加逗号，</span></div><div class="line"><span class="comment">// 在 IE7 以及更早版本的 Opera 中会引发错误。</span></div><div class="line"></div><div class="line"><span class="comment">// 在使用对象字面量方法的时候，如果留空，则定义只包含默认属性和方法的对象</span></div><div class="line"><span class="keyword">var</span> obj = &#123;&#125;; <span class="comment">// 与 new Object() 相同</span></div></pre></td></tr></table></figure>
+
+    
+	  <div class="readmore">
+      <a href="/2016/10/14/JS高程学习/JS-learn-8/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2016/10/09/JavaScript/数组的优雅降维/">
       数组的优雅降维
     </a>
@@ -377,38 +409,6 @@
     
 	  <div class="readmore">
       <a href="/2016/08/21/JS高程学习/JS高程学习5_语句/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="tags">
-      <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
-	  </div>
-    
-
-  </section>
-</article>
-  
-    <article class="post ">
-
-  
-  <h2 class="title">
-    <a href="/2016/08/13/JS高程学习/JS高程学习4_操作符/">
-      JS 高程学习 4：操作符
-    </a>
-  </h2>
-  
-  <time>
-    8月 13, 2016
-  </time>
-  <section class="content">
-	  <h2 id="1-一元操作符"><a href="#1-一元操作符" class="headerlink" title="1. 一元操作符"></a>1. 一元操作符</h2><p>只能操作一个值的操作符叫做一元操作符。</p>
-<h3 id="1-递增和递减操作符"><a href="#1-递增和递减操作符" class="headerlink" title="1. 递增和递减操作符"></a>1. 递增和递减操作符</h3><p>递增和递减操作符有两个版本：前置型和后置型。执行前置递增和递减操作时，变量的值都是在语句被求值之前改变的。而后置递减和递减的操作是在包含它们的语句被求值后才执行的。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//前置</span></div><div class="line"><span class="keyword">var</span> age = <span class="number">29</span>；</div><div class="line"><span class="keyword">var</span> tage = --age + <span class="number">2</span>；</div><div class="line"></div><div class="line">alert(age); <span class="comment">//28</span></div><div class="line">alert(tage); <span class="comment">//30</span></div><div class="line"></div><div class="line"><span class="comment">//前置的另一个例子</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> num2 = <span class="number">20</span>;</div><div class="line"><span class="keyword">var</span> num3 = --num1 + num2; <span class="comment">// num3 = 21</span></div><div class="line"><span class="keyword">var</span> num4 = num1 + num2; <span class="comment">// num4 = 21</span></div><div class="line"></div><div class="line"><span class="comment">//后置</span></div><div class="line"><span class="keyword">var</span> num1 = <span class="number">2</span>;</div><div class="line"><span class="keyword">var</span> num2 = <span class="number">20</span>;</div><div class="line"><span class="keyword">var</span> num3 = num1-- + num2; <span class="comment">// num3 = 22</span></div><div class="line"><span class="keyword">var</span> num4 = num1 + num2; <span class="comment">// num4 = 21</span></div></pre></td></tr></table></figure>
-
-    
-	  <div class="readmore">
-      <a href="/2016/08/13/JS高程学习/JS高程学习4_操作符/">Read More</a>
     </div>
     
     

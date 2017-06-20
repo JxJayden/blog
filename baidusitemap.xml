@@ -5,11 +5,33 @@
     
   <url>
     <loc>http://blog.jxdjayden.cn/2017/05/05/go/go-learn-note/</loc>
-    <lastmod>2017-05-09T13:19:44.000Z</lastmod>
+    <lastmod>2017-06-20T02:32:58.000Z</lastmod>
     <data>
         <display>
         <title>go 基础笔记</title>
         <pubTime>2017-05-05T02:18:56.000Z</pubTime>
+        
+        <tag>go</tag>
+         
+        <tag>学习笔记</tag>
+         
+         
+           
+             
+              <breadCrumb title="go" url="http://blog.jxdjayden.cn/categories/go/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.jxdjayden.cn/2017/05/09/go/go-learn-note-2/</loc>
+    <lastmod>2017-05-09T13:23:45.000Z</lastmod>
+    <data>
+        <display>
+        <title>go 基础笔记（续）</title>
+        <pubTime>2017-05-09T13:21:04.000Z</pubTime>
         
         <tag>go</tag>
          
@@ -204,9 +226,9 @@
         <title>【转载】转载我宇的一篇文章</title>
         <pubTime>2017-01-19T01:41:34.000Z</pubTime>
         
-        <tag>学习整理</tag>
-         
         <tag>转载</tag>
+         
+        <tag>学习整理</tag>
          
          
            
@@ -226,9 +248,9 @@
         <title>迟到的 2016 年的总结</title>
         <pubTime>2017-01-13T13:25:00.000Z</pubTime>
         
-        <tag>总结</tag>
-         
         <tag>学习整理</tag>
+         
+        <tag>总结</tag>
          
          
            
@@ -353,9 +375,9 @@
         <title>基础知识真的很重要！！！记三个月的实习</title>
         <pubTime>2016-09-30T14:00:00.000Z</pubTime>
         
-        <tag>总结</tag>
-         
         <tag>学习整理</tag>
+         
+        <tag>总结</tag>
          
          
            
