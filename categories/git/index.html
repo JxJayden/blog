@@ -16,6 +16,7 @@
 <meta property="og:url" content="http://blog.jxdjayden.cn/categories/git/index.html">
 <meta property="og:site_name" content="JxJayden">
 <meta property="og:description" content="江晓东的个人博客，记录关于计算机、前端、咖啡以及其他的东西。">
+<meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JxJayden">
 <meta name="twitter:description" content="江晓东的个人博客，记录关于计算机、前端、咖啡以及其他的东西。">
@@ -115,8 +116,8 @@
 	  <h1 id="1-标签管理"><a href="#1-标签管理" class="headerlink" title="1. 标签管理"></a>1. 标签管理</h1><p>发布一个版本时，我们通常先在版本库中打一个标签（tag），这样，就唯一确定了打标签时刻的版本。将来无论什么时候，取某个标签的版本，就是把那个打标签的时刻的历史版本取出来。所以，标签也是版本库的一个快照。</p>
 <h2 id="1-创建标签"><a href="#1-创建标签" class="headerlink" title="1. 创建标签"></a>1. 创建标签</h2><ul>
 <li><p>切换到需要打标签的分支上，然后输入命令 <code>git tag &lt;name&gt;</code> 可以打一个新标签。</p>
-  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git checkout master</div><div class="line">Switched to branch <span class="string">'master'</span></div><div class="line">Your branch is ahead of <span class="string">'origin/master'</span> by 2 commits.</div><div class="line">(use <span class="string">"git push"</span> to publish your <span class="built_in">local</span> commits)</div></pre></td></tr></table></figure>
-  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git tag v1.0</div></pre></td></tr></table></figure>
+  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout master</span><br><span class="line">Switched to branch <span class="string">'master'</span></span><br><span class="line">Your branch is ahead of <span class="string">'origin/master'</span> by 2 commits.</span><br><span class="line">(use <span class="string">"git push"</span> to publish your <span class="built_in">local</span> commits)</span><br></pre></td></tr></table></figure>
+  <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git tag v1.0</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -185,9 +186,9 @@
   <section class="content">
 	  <p>前段时间根据廖雪峰的 git 教程自学了一遍 git 的使用，同时写了三篇文章记录自己的学习心得，最近新开了 blog，于是把这三篇文章转到这里。</p>
 <h1 id="1-windows-下-git-的安装"><a href="#1-windows-下-git-的安装" class="headerlink" title="1. windows 下 git 的安装"></a>1. windows 下 git 的安装</h1><ul>
-<li>可以通过 <a href="https://git-scm.com/download/win" target="_blank" rel="external">https://git-scm.com/download/win</a>安装 git，然后打开 Git Bash 即可进行 git 操作。</li>
+<li>可以通过 <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">https://git-scm.com/download/win</a>安装 git，然后打开 Git Bash 即可进行 git 操作。</li>
 <li><p>安装完成后需要输入以下命令来完成安装：</p>
-<pre><code><figure class="highlight zsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"Your Name"</span></div><div class="line">$ git config --global user.email <span class="string">"email@example.com"</span></div></pre></td></tr></table></figure>
+<pre><code><figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line">$ git config --global user.email <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure>
 </code></pre><blockquote>
 <p>注意：注意 <code>git config</code> 命令的–lobal 参数，用了这个参数，表示你这台机器上所有的 Git 仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和 Email 地址。</p>
 </blockquote>
