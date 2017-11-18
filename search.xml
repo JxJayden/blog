@@ -939,6 +939,78 @@
     </entry>
     
     <entry>
+      <title><![CDATA[认知与设计 理解 UI 设计准则]]></title>
+      <url>http://blog.jxdjayden.cn/2017/01/19/%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E7%9F%A5%E4%B8%8E%E8%AE%BE%E8%AE%A1/</url>
+      <content type="html"><![CDATA[<h2 id="感知自己的期望"><a href="#感知自己的期望" class="headerlink" title="感知自己的期望"></a>感知自己的期望</h2><blockquote>
+<p>TODO</p>
+</blockquote>
+<h2 id="为观察结构优化视觉"><a href="#为观察结构优化视觉" class="headerlink" title="为观察结构优化视觉"></a>为观察结构优化视觉</h2><blockquote>
+<p>TODO</p>
+</blockquote>
+<h2 id="寻找和使用视觉结构"><a href="#寻找和使用视觉结构" class="headerlink" title="寻找和使用视觉结构"></a>寻找和使用视觉结构</h2><blockquote>
+<p>TODO</p>
+</blockquote>
+<h2 id="阅读不是自然的"><a href="#阅读不是自然的" class="headerlink" title="阅读不是自然的"></a>阅读不是自然的</h2><blockquote>
+<p>TODO</p>
+</blockquote>
+<h2 id="色觉是有限的"><a href="#色觉是有限的" class="headerlink" title="色觉是有限的"></a>色觉是有限的</h2><h3 id="人类的色彩感知有强弱"><a href="#人类的色彩感知有强弱" class="headerlink" title="人类的色彩感知有强弱"></a>人类的色彩感知有强弱</h3><ol>
+<li>视觉是为了检查反差（边缘）优化的，而不是绝对亮度。 =&gt; 视觉系统对颜色和亮度的差别要敏感一些（对比鲜明的边缘）</li>
+<li>辨别颜色的能力依赖于颜色是如何呈现的。=&gt; 深浅度 &amp; 色块的大小 &amp; 分隔的距离 =&gt; 影响人类区分颜色的能力</li>
+<li>有些人是色盲 =&gt; 使用的颜色能否被常见类型的色盲用户区分开</li>
+<li>用户的屏幕和观看条件会影响对颜色的感知 =&gt; 彩色屏幕的差异 &amp; 灰度显示器 &amp; 显示器角度 &amp; 环境光线</li>
+</ol>
+<h3 id="色觉的工作原理"><a href="#色觉的工作原理" class="headerlink" title="色觉的工作原理"></a>色觉的工作原理</h3><p>视杆细胞（可以察觉光线强度，但感觉不到颜色） &amp; 视椎细胞（可以察觉颜色） =&gt; 视杆细胞大多数时间出于过曝状态，视觉完全基于视椎细胞提供的信息。</p>
+<p>三种视椎细胞敏感的光谱互相重叠</p>
+<ol>
+<li>低频：对整个可见光频谱敏感，对于处于频谱中间的黄色和低频的红色最敏感</li>
+<li>中频：对高频的蓝色和中频偏低的黄色有反应</li>
+<li>高频：对可见光的高频部分（紫色 &amp; 蓝色）最敏感，此类视椎细胞的整体敏感度较低，数量更少，所以人类对蓝色和紫色不如对其他颜色敏感。</li>
+</ol>
+<p>如何看到各种颜色：“红-绿”减影信号通道，“黄-蓝”减影信号通道，“黑-白”亮度信号通道 =&gt; 颜色对抗通道</p>
+<h3 id="使用颜色的准则"><a href="#使用颜色的准则" class="headerlink" title="使用颜色的准则"></a>使用颜色的准则</h3><ol>
+<li>用饱和度、亮度和色相来区分颜色 =&gt; 避免使用轻微的差别，确保色彩之间有较高的反差。</li>
+<li>使用独特的颜色</li>
+<li>避免使用色盲的人无法区分的颜色对</li>
+<li>在颜色之外使用其他提示</li>
+<li>将强烈的对抗色分开</li>
+</ol>
+<h2 id="糟糕的边界视力"><a href="#糟糕的边界视力" class="headerlink" title="糟糕的边界视力"></a>糟糕的边界视力</h2><h3 id="中央凹的分辨率与视野边界的分辨率比较"><a href="#中央凹的分辨率与视野边界的分辨率比较" class="headerlink" title="中央凹的分辨率与视野边界的分辨率比较"></a>中央凹的分辨率与视野边界的分辨率比较</h3><p>边界是觉得信息在被传递到大脑之前是经过压缩的，而中央凹的视觉信息则没有。</p>
+<p>眼睛以每秒三次的速度快速移动，选择性地将焦点投射到 周围的环境物体上，然后大脑基于我们所知和所期待的，填充视野的其他部分。</p>
+<h3 id="边界视觉的作用"><a href="#边界视觉的作用" class="headerlink" title="边界视觉的作用"></a>边界视觉的作用</h3><ol>
+<li>提供低分辨率的线索</li>
+<li>它可以很好的观察运动</li>
+</ol>
+<h3 id="让信息可见的常用方法"><a href="#让信息可见的常用方法" class="headerlink" title="让信息可见的常用方法"></a>让信息可见的常用方法</h3><ol>
+<li>放在用户所看的位置</li>
+<li>标记出错误</li>
+<li>使用错误符号</li>
+<li>保留红色以呈现错误</li>
+<li>弹出式对话框中的信息 bad</li>
+<li>使用声音 bad</li>
+<li>闪烁或者短暂的晃动 bad</li>
+</ol>
+<h2 id="记忆力"><a href="#记忆力" class="headerlink" title="记忆力"></a>记忆力</h2><p>传统观点 =&gt; 短期记忆和长期记忆分开<br>现代观点 =&gt; 短期和长期记忆用的是同一个记忆系统实现的。</p>
+<h3 id="长期记忆"><a href="#长期记忆" class="headerlink" title="长期记忆"></a>长期记忆</h3><p>记忆的形成是由参与某个神经活动模式的神经元长期甚至永久的变化组成。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 设计 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 学习整理 </tag>
+            
+            <tag> 设计 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【转载】转载我宇的一篇文章]]></title>
       <url>http://blog.jxdjayden.cn/2017/01/19/%E8%BD%AC%E8%BD%BD/%E3%80%90%E8%BD%AC%E8%BD%BD%E3%80%91%E8%BD%AC%E8%BD%BD%E6%88%91%E5%AE%87%E7%9A%84%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
       <content type="html"><![CDATA[<blockquote><p>转载罐罐的一篇文章。关于 JS 设计模式的。这本书我也借了，但是最近天天加班，没有时间看。先转载这篇文章，留个坑。</p>
