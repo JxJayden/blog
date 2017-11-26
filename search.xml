@@ -87,6 +87,12 @@
 <p>我们的团队发现采用严格的性能预算对于保持较短 JavaScript 传输和解析/编译的时间来说是成功的方法。可以看看 <a href="https://infrequently.org/2017/10/can-you-afford-it-real-world-web-performance-budgets/" target="_blank" rel="noopener">《Can You Afford It?: Real-world Web Performance Budgets》</a>来了解移动端的性能预算。</p>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_U8PJVNrA_tYADQ6_S4HUYw.png" alt="image"></p>
 <p>如果你正在构建针对移动设备的网站，请尽可能在有代表性的设备上开发，保持较低的 JavaScript 解释/编译时间，并采用性能预算来确保你的团队可以关注他们的 JavaScript 开销。</p>
+<blockquote>
+<p>了解更多：</p>
+<ol>
+<li><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="noopener">《Front End Performance Checklist 2017 》</a></li>
+</ol>
+</blockquote>
 ]]></content>
       
         <categories>
