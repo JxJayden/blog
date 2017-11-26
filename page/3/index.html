@@ -100,6 +100,40 @@
 
   
   <h2 class="title">
+    <a href="/2016/08/30/ES6/ES6的generator函数/">
+      ES6 的 generator 函数
+    </a>
+  </h2>
+  
+  <time>
+    8月 30, 2016
+  </time>
+  <section class="content">
+	  <p>最近公司让我整理一些文档， 其中有些代码涉及到 ES6 的 generator（生成器）函数，还有 co 函数库，thunkify 函数库等，当时查了一些资料来理解。现在把这些东西整理一下。</p>
+<h2 id="ES6-生成器（Generators）简介"><a href="#ES6-生成器（Generators）简介" class="headerlink" title="ES6 生成器（Generators）简介"></a>ES6 生成器（Generators）简介</h2><p>语法：</p>
+<p><code>function* name([param[, param[, ... param]]]) { statements }</code></p>
+<p>示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span>* <span class="title">test</span>(<span class="params">title</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"你好"</span>;</span><br><span class="line">  <span class="keyword">if</span>(title)&#123;</span><br><span class="line">    <span class="keyword">yield</span> title;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">yield</span> <span class="string">"bye"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    
+	  <div class="readmore">
+      <a href="/2016/08/30/ES6/ES6的generator函数/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/ES6/">ES6</a><a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2016/08/21/JS高程学习/JS高程学习5_语句/">
       JS 高程学习 5 ：语句
     </a>
@@ -384,41 +418,6 @@
     
 	  <div class="readmore">
       <a href="/2016/07/31/git/git学习之标签管理及自定义/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="tags">
-      <a class="tag-link" href="/tags/git/">git</a>
-	  </div>
-    
-
-  </section>
-</article>
-  
-    <article class="post ">
-
-  
-  <h2 class="title">
-    <a href="/2016/07/29/git/git学习之远程仓库使用/">
-      git 学习：远程仓库使用
-    </a>
-  </h2>
-  
-  <time>
-    7月 29, 2016
-  </time>
-  <section class="content">
-	  <h1 id="1-远程仓库建立（以-github-为例）"><a href="#1-远程仓库建立（以-github-为例）" class="headerlink" title="1. 远程仓库建立（以 github 为例）"></a>1. 远程仓库建立（以 github 为例）</h1><ol>
-<li>创建 SSH Key</li>
-</ol>
-<ul>
-<li>打开 git Bash（linux打开shell），使用 <code>$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;</code>创建 SSH Key 你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可，由于这个Key也不是用于军事目的，所以也无需设置密码。如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key 的秘钥对，id_rsa 是私钥，不能泄露出去，id_rsa.pub 是公钥，可以放心地告诉任何人。</li>
-</ul>
-
-    
-	  <div class="readmore">
-      <a href="/2016/07/29/git/git学习之远程仓库使用/">Read More</a>
     </div>
     
     

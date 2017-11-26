@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>http://blog.jxdjayden.cn/2017/11/26/JavaScript/the-cost-of-javascript/</loc>
+    <lastmod>2017-11-26T13:18:20.000Z</lastmod>
+    <data>
+        <display>
+        <title>【翻译】JavaScript 的开销与优化</title>
+        <pubTime>2017-11-26T07:48:20.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>翻译</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="http://blog.jxdjayden.cn/categories/JavaScript/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.jxdjayden.cn/2017/11/18/%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E7%9F%A5%E4%B8%8E%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2017-11-23T09:05:44.853Z</lastmod>
+    <lastmod>2017-11-24T09:39:04.539Z</lastmod>
     <data>
         <display>
         <title>认知与设计 理解 UI 设计准则</title>
