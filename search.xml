@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title></title>
+      <title><![CDATA[【翻译】JavaScript 的成本和优化]]></title>
       <url>http://blog.jxdjayden.cn/2017/11/26/JavaScript/the-cost-of-javascript/</url>
       <content type="html"><![CDATA[<p><strong>原文：<a href="https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e" target="_blank" rel="noopener">The Cost Of JavaScript</a></strong></p>
 <p>当我们构建更加依赖于 JavaScript 的网站时（即 JavaScript 代码更多的网站），有时候我们会以无法轻易看到的方式为我们发送到浏览器的代码付出代价。在这篇文章中，我将介绍为什么一些规则可以帮助你的网站在移动设备上加载更快和交互更好。</p>
