@@ -4,21 +4,21 @@
 
     
   <url>
-    <loc>http://blog.jxdjayden.cn/2017/11/26/JavaScript/the-cost-of-javascript/</loc>
-    <lastmod>2017-11-27T14:01:09.172Z</lastmod>
+    <loc>http://blog.jxdjayden.cn/2018/05/02/vue/drawboard/</loc>
+    <lastmod>2018-05-02T10:16:20.000Z</lastmod>
     <data>
         <display>
-        <title>【翻译】JavaScript 的成本和优化</title>
-        <pubTime>2017-11-26T07:48:20.000Z</pubTime>
+        <title>DrawBoard</title>
+        <pubTime>2018-05-02T10:11:34.000Z</pubTime>
         
         <tag>JavaScript</tag>
          
-        <tag>翻译</tag>
+        <tag>vue</tag>
          
          
            
              
-              <breadCrumb title="JavaScript" url="http://blog.jxdjayden.cn/categories/JavaScript/"/>
+              <breadCrumb title="vue" url="http://blog.jxdjayden.cn/categories/vue/"/>
           
         </display>
     </data>
@@ -27,7 +27,7 @@
     
   <url>
     <loc>http://blog.jxdjayden.cn/2017/11/18/%E8%AE%BE%E8%AE%A1/%E8%AE%A4%E7%9F%A5%E4%B8%8E%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2017-11-27T10:03:47.000Z</lastmod>
+    <lastmod>2018-01-09T06:03:24.448Z</lastmod>
     <data>
         <display>
         <title>认知与设计 理解 UI 设计准则</title>
@@ -41,6 +41,28 @@
            
              
               <breadCrumb title="设计" url="http://blog.jxdjayden.cn/categories/%E8%AE%BE%E8%AE%A1/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.jxdjayden.cn/2017/11/26/JavaScript/the-cost-of-javascript/</loc>
+    <lastmod>2017-11-27T14:05:38.000Z</lastmod>
+    <data>
+        <display>
+        <title>【翻译】JavaScript 的成本和优化</title>
+        <pubTime>2017-11-26T07:48:20.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>翻译</tag>
+         
+         
+           
+             
+              <breadCrumb title="JavaScript" url="http://blog.jxdjayden.cn/categories/JavaScript/"/>
           
         </display>
     </data>

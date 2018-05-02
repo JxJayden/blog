@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/1_9BMRW5i_bS4By_JSESXX8A.png">
 <meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/1_zY03Y5nVEY21FXA63Qe8PA.png">
 <meta property="og:image" content="http://odgdn5u95.bkt.clouddn.com/1_U8PJVNrA_tYADQ6_S4HUYw.png">
-<meta property="og:updated_time" content="2017-11-27T14:01:09.172Z">
+<meta property="og:updated_time" content="2017-11-27T14:05:38.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【翻译】JavaScript 的成本和优化">
 <meta name="twitter:description" content="原文：The Cost Of JavaScript 当我们构建更加依赖于 JavaScript 的网站时（即 JavaScript 代码更多的网站），有时候我们会以无法轻易看到的方式为我们发送到浏览器的代码付出代价。在这篇文章中，我将介绍为什么一些规则可以帮助你的网站在移动设备上加载更快和交互更好。 less code = less parse/compile + less transfer +">
@@ -130,10 +130,10 @@
 <p>即使是在发达国家，这也可能是一个问题。因为用户的有效的网络连接类型可能并不是 3G、4G 或 Wi-Fi。你连接的咖啡馆 Wi-Fi，可能实际上是一个 2G 的蜂窝热点。</p>
 <p>你可以通过以下的方式来减少网络传输的开销：</p>
 <ul>
-<li>通过代码分割（code-splitting ）<strong>只传输用户需要的代码</strong>。</li>
-<li><strong>最小化 JS 代码（minify ）</strong>，可以使用 Uglify, babel-minify。</li>
-<li><strong>压缩文件</strong>，可以使用谷歌推出的<br><a href="https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/" target="_blank" rel="noopener">Brotli</a>（<a href="https://caniuse.com/#feat=brotli" target="_blank" rel="noopener">浏览器支持 70%</a>）或者<br><a href="https://en.wikipedia.org/wiki/Gzip" target="_blank" rel="noopener">gzip</a> 压缩。Brotli 的压缩比超过了 Gzip。 它让 <a href="https://certsimple.com/" target="_blank" rel="noopener">CertSimple</a> 节省了 17% 的压缩 JS 字节的大小、<br>让<a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> 节省了 4% 的加载时间。（<em>注：个人对 btotli 不是很了解，这里的数据都来自原文，后续会找时间了解 btotli 并对比 btotli 和 gzip</em>）。</li>
-<li><strong>删除无用的代码</strong>。可以通过 chrome 的<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes" target="_blank" rel="noopener">开发者调试工具</a>中的代码覆盖率（code coverage ）来确定无用的代码。<br>为了剥离无用代码，可以使用 webpack 的 <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">Tree-shaking</a>，<a href="https://developers.google.com/closure/compiler/" target="_blank" rel="noopener">Closure Compiler</a> 的高级优化和<br>库裁剪插件，如：lodash-babel-plugin 或 Webpack 的 ContextReplacementPlugin。使用 babel-preset-env＆browserlist 来避免转译在现代浏览器中已经存在的方法（features ）。高级开发者可能<br>会发现<strong>仔细的<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener">分析</a> Webpack 编译出来的代码包</strong>有助于识别和去除不需要的依赖。</li>
+<li>通过代码分割（code-splitting）<strong>只传输用户需要的代码</strong>。</li>
+<li><strong>最小化 JS 代码（minify）</strong>，可以使用 Uglify, babel-minify。</li>
+<li><strong>压缩文件</strong>，可以使用谷歌推出的 <a href="https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/" target="_blank" rel="noopener">Brotli</a>（<a href="https://caniuse.com/#feat=brotli" target="_blank" rel="noopener">浏览器支持 70%</a>）或者 <a href="https://en.wikipedia.org/wiki/Gzip" target="_blank" rel="noopener">gzip</a> 压缩。Brotli 的压缩比超过了 Gzip。 它让 <a href="https://certsimple.com/" target="_blank" rel="noopener">CertSimple</a> 节省了 17% 的压缩 JS 字节的大小、让<a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> 节省了 4% 的加载时间。（<em>注：个人对 btotli 不是很了解，这里的数据都来自原文，后续会找时间了解 btotli 并对比 btotli 和 gzip</em>）。</li>
+<li><strong>删除无用的代码</strong>。可以通过 chrome 的<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes" target="_blank" rel="noopener">开发者调试工具</a>中的代码覆盖率（code coverage）来确定无用的代码。为了剥离无用代码，可以使用 webpack 的 <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">Tree-shaking</a>，<a href="https://developers.google.com/closure/compiler/" target="_blank" rel="noopener">Closure Compiler</a> 的高级优化和库裁剪插件，如：lodash-babel-plugin 或 Webpack 的 ContextReplacementPlugin。使用 babel-preset-env＆browserlist 来避免转译在现代浏览器中已经存在的方法（features）。高级开发者可能会发现<strong>仔细的<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener">分析</a> Webpack 编译出来的代码包</strong>有助于识别和去除不需要的依赖。</li>
 <li><strong>使用缓存来减少网络传输</strong>。确定脚本的最佳生命周期并且提供 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag" target="_blank" rel="noopener">E-tag</a> 以避免传输未改变的字节。Server Worker 缓存可以让你的 App 网络具有弹性，让你可以接入 v8 的<a href="https://v8project.blogspot.com/2015/07/code-caching.html" target="_blank" rel="noopener">代码缓存</a>等功能。同时应该了解有关 <a href="https://webpack.js.org/guides/caching/" target="_blank" rel="noopener">filename hashing</a> 的长期缓存机制。</li>
 </ul>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_8Spf9To8dzTG3Xy9s57oVA.png" alt="Best practices for reducing how much JavaScript you’re shipping down to users."></p>
@@ -142,7 +142,7 @@
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_GdrVt_BTTzzBOIoyZZsQZQ.png" alt="Chrome DevTools Performance panel &gt; Bottom-Up. With V8’s Runtime Call Stats enabled, we can see time spent in phases like Parse and Compile"></p>
 <p>但是，为什么会这样？</p>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_Dirw7RdQj9Dktc-Ny6-xbA.png" alt="image3"></p>
-<p><strong>花费很长时间解析 / 编译代码会让用户和你网站交互的时间严重延迟。你传输的 JavaScript 代码越多，在网站可操作之前，耗费的解析和编译的时间就越长。</strong></p>
+<p><strong>花费很长时间解析/编译代码会让用户和你网站交互的时间严重延迟。你传输的 JavaScript 代码越多，在网站可操作之前，耗费的解析和编译的时间就越长。</strong></p>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_6Y665hpxfWNMu2EXu3VGlw.png" alt="image"></p>
 <blockquote>
 <p>Byte-for-byte, <strong>JavaScript is more expensive for the browser to process than the equivalently sized image or Web Font</strong> — Tom Dale (注：原文引用部分不翻译)</p>
@@ -204,7 +204,7 @@
 <blockquote>
 <p>了解更多：</p>
 <ol>
-<li><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="noopener">《Front End Performance Checklist 2017 》</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="noopener">《Front End Performance Checklist 2017》</a></li>
 </ol>
 </blockquote>
 

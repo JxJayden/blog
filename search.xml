@@ -4,6 +4,148 @@
   
     
     <entry>
+      <title><![CDATA[DrawBoard]]></title>
+      <url>http://blog.jxdjayden.cn/2018/05/02/vue/drawboard/</url>
+      <content type="html"><![CDATA[<p>vue.js draw-board component base on raphael</p>
+<p><a href="https://jsfiddle.net/JxJayden/4jcp9gvp/6/?utm_source=website&amp;utm_medium=embed&amp;utm_campaign=4jcp9gvp" target="_blank" rel="noopener">Live Example</a></p>
+<p><a href="https://github.com/JxJayden/drawBoard" target="_blank" rel="noopener">Github</a></p>
+<a id="more"></a>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><h3 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/msdrawboard@1.0.0/dist/msDrawBoard.umd.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># latest stable</span></span><br><span class="line"><span class="comment"># use yarn</span></span><br><span class="line">yarn add msdrawboard</span><br><span class="line"><span class="comment"># or use npm</span></span><br><span class="line">npm install msdrawboard</span><br></pre></td></tr></table></figure>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> msDrawBoard <span class="keyword">from</span> <span class="string">'msdrawboard'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  components: &#123;</span><br><span class="line">    msDrawBoard</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- in &lt;template&gt;&lt;/template&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">msDrawBoard</span>&gt;</span><span class="tag">&lt;/<span class="name">msDrawBoard</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Documentation"><a href="#Documentation" class="headerlink" title="Documentation"></a>Documentation</h2><h3 id="API"><a href="#API" class="headerlink" title="API"></a>API</h3><table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Type</th>
+<th>Accepted Values</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>background</td>
+<td>The background color of the draw-board</td>
+<td>string</td>
+<td>-</td>
+<td>‘#fff’</td>
+</tr>
+<tr>
+<td>restoreDisablePath</td>
+<td>The inoperative path that needs to be restored at initialization</td>
+<td>Array&lt;{ color: string; path: string }&gt;</td>
+<td>-</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>restorePath</td>
+<td>Operational path that needs to be restored at initialization</td>
+<td>Array&lt;{ color: string; path: string }&gt;</td>
+<td>-</td>
+<td>[]</td>
+</tr>
+<tr>
+<td>defaultColor</td>
+<td>Default brush color</td>
+<td>string</td>
+<td>-</td>
+<td>#21242C</td>
+</tr>
+<tr>
+<td>readonly</td>
+<td>Read only</td>
+<td>boolean</td>
+<td>-</td>
+<td>false</td>
+</tr>
+<tr>
+<td>ifRunClear</td>
+<td>Determine whether to clear all paths</td>
+<td>boolean</td>
+<td>-</td>
+<td>false</td>
+</tr>
+<tr>
+<td>isBtnLoading</td>
+<td>Save button loading status, supports the .sync modifier</td>
+<td>boolean</td>
+<td>-</td>
+<td>false</td>
+</tr>
+<tr>
+<td>isBtnDisabled</td>
+<td>Disable the save button</td>
+<td>boolean</td>
+<td>-</td>
+<td>false</td>
+</tr>
+<tr>
+<td>penColors</td>
+<td>Brush optional color</td>
+<td>Array<string></string></td>
+<td>-</td>
+<td>[‘#01A995’, ‘#E84D39’, ‘#74CF70’, ‘#FFBE26’, ‘#CA337C’, ‘#7853AB’, ‘#11ACCD’, ‘#20A0FF’, ‘#21242C’]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h3><table>
+<thead>
+<tr>
+<th>Event Name</th>
+<th>Description</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>init</td>
+<td>Triggers when draw-board init</td>
+<td>draw-board instance</td>
+</tr>
+<tr>
+<td>change</td>
+<td>Triggers when path change</td>
+<td>-</td>
+</tr>
+<tr>
+<td>undo</td>
+<td>Triggers when undo event happen</td>
+<td>-</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>Triggers when clear event happen</td>
+<td>-</td>
+</tr>
+<tr>
+<td>save</td>
+<td>Triggers when click save button</td>
+<td>base64 image，paths</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      
+        <categories>
+            
+            <category> vue </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> vue </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[【翻译】JavaScript 的成本和优化]]></title>
       <url>http://blog.jxdjayden.cn/2017/11/26/JavaScript/the-cost-of-javascript/</url>
       <content type="html"><![CDATA[<p><strong>原文：<a href="https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e" target="_blank" rel="noopener">The Cost Of JavaScript</a></strong></p>
@@ -16,10 +158,10 @@
 <p>即使是在发达国家，这也可能是一个问题。因为用户的有效的网络连接类型可能并不是 3G、4G 或 Wi-Fi。你连接的咖啡馆 Wi-Fi，可能实际上是一个 2G 的蜂窝热点。</p>
 <p>你可以通过以下的方式来减少网络传输的开销：</p>
 <ul>
-<li>通过代码分割（code-splitting ）<strong>只传输用户需要的代码</strong>。</li>
-<li><strong>最小化 JS 代码（minify ）</strong>，可以使用 Uglify, babel-minify。</li>
-<li><strong>压缩文件</strong>，可以使用谷歌推出的<br><a href="https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/" target="_blank" rel="noopener">Brotli</a>（<a href="https://caniuse.com/#feat=brotli" target="_blank" rel="noopener">浏览器支持 70%</a>）或者<br><a href="https://en.wikipedia.org/wiki/Gzip" target="_blank" rel="noopener">gzip</a> 压缩。Brotli 的压缩比超过了 Gzip。 它让 <a href="https://certsimple.com/" target="_blank" rel="noopener">CertSimple</a> 节省了 17% 的压缩 JS 字节的大小、<br>让<a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> 节省了 4% 的加载时间。（<em>注：个人对 btotli 不是很了解，这里的数据都来自原文，后续会找时间了解 btotli 并对比 btotli 和 gzip</em>）。</li>
-<li><strong>删除无用的代码</strong>。可以通过 chrome 的<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes" target="_blank" rel="noopener">开发者调试工具</a>中的代码覆盖率（code coverage ）来确定无用的代码。<br>为了剥离无用代码，可以使用 webpack 的 <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">Tree-shaking</a>，<a href="https://developers.google.com/closure/compiler/" target="_blank" rel="noopener">Closure Compiler</a> 的高级优化和<br>库裁剪插件，如：lodash-babel-plugin 或 Webpack 的 ContextReplacementPlugin。使用 babel-preset-env＆browserlist 来避免转译在现代浏览器中已经存在的方法（features ）。高级开发者可能<br>会发现<strong>仔细的<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener">分析</a> Webpack 编译出来的代码包</strong>有助于识别和去除不需要的依赖。</li>
+<li>通过代码分割（code-splitting）<strong>只传输用户需要的代码</strong>。</li>
+<li><strong>最小化 JS 代码（minify）</strong>，可以使用 Uglify, babel-minify。</li>
+<li><strong>压缩文件</strong>，可以使用谷歌推出的 <a href="https://www.smashingmagazine.com/2016/10/next-generation-server-compression-with-brotli/" target="_blank" rel="noopener">Brotli</a>（<a href="https://caniuse.com/#feat=brotli" target="_blank" rel="noopener">浏览器支持 70%</a>）或者 <a href="https://en.wikipedia.org/wiki/Gzip" target="_blank" rel="noopener">gzip</a> 压缩。Brotli 的压缩比超过了 Gzip。 它让 <a href="https://certsimple.com/" target="_blank" rel="noopener">CertSimple</a> 节省了 17% 的压缩 JS 字节的大小、让<a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a> 节省了 4% 的加载时间。（<em>注：个人对 btotli 不是很了解，这里的数据都来自原文，后续会找时间了解 btotli 并对比 btotli 和 gzip</em>）。</li>
+<li><strong>删除无用的代码</strong>。可以通过 chrome 的<a href="https://developers.google.com/web/updates/2017/04/devtools-release-notes" target="_blank" rel="noopener">开发者调试工具</a>中的代码覆盖率（code coverage）来确定无用的代码。为了剥离无用代码，可以使用 webpack 的 <a href="https://webpack.js.org/guides/tree-shaking/" target="_blank" rel="noopener">Tree-shaking</a>，<a href="https://developers.google.com/closure/compiler/" target="_blank" rel="noopener">Closure Compiler</a> 的高级优化和库裁剪插件，如：lodash-babel-plugin 或 Webpack 的 ContextReplacementPlugin。使用 babel-preset-env＆browserlist 来避免转译在现代浏览器中已经存在的方法（features）。高级开发者可能会发现<strong>仔细的<a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener">分析</a> Webpack 编译出来的代码包</strong>有助于识别和去除不需要的依赖。</li>
 <li><strong>使用缓存来减少网络传输</strong>。确定脚本的最佳生命周期并且提供 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/ETag" target="_blank" rel="noopener">E-tag</a> 以避免传输未改变的字节。Server Worker 缓存可以让你的 App 网络具有弹性，让你可以接入 v8 的<a href="https://v8project.blogspot.com/2015/07/code-caching.html" target="_blank" rel="noopener">代码缓存</a>等功能。同时应该了解有关 <a href="https://webpack.js.org/guides/caching/" target="_blank" rel="noopener">filename hashing</a> 的长期缓存机制。</li>
 </ul>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_8Spf9To8dzTG3Xy9s57oVA.png" alt="Best practices for reducing how much JavaScript you’re shipping down to users."></p>
@@ -28,7 +170,7 @@
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_GdrVt_BTTzzBOIoyZZsQZQ.png" alt="Chrome DevTools Performance panel &gt; Bottom-Up. With V8’s Runtime Call Stats enabled, we can see time spent in phases like Parse and Compile"></p>
 <p>但是，为什么会这样？</p>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_Dirw7RdQj9Dktc-Ny6-xbA.png" alt="image3"></p>
-<p><strong>花费很长时间解析 / 编译代码会让用户和你网站交互的时间严重延迟。你传输的 JavaScript 代码越多，在网站可操作之前，耗费的解析和编译的时间就越长。</strong></p>
+<p><strong>花费很长时间解析/编译代码会让用户和你网站交互的时间严重延迟。你传输的 JavaScript 代码越多，在网站可操作之前，耗费的解析和编译的时间就越长。</strong></p>
 <p><img src="http://odgdn5u95.bkt.clouddn.com/1_6Y665hpxfWNMu2EXu3VGlw.png" alt="image"></p>
 <blockquote>
 <p>Byte-for-byte, <strong>JavaScript is more expensive for the browser to process than the equivalently sized image or Web Font</strong> — Tom Dale (注：原文引用部分不翻译)</p>
@@ -90,7 +232,7 @@
 <blockquote>
 <p>了解更多：</p>
 <ol>
-<li><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="noopener">《Front End Performance Checklist 2017 》</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/12/front-end-performance-checklist-2017-pdf-pages/" target="_blank" rel="noopener">《Front End Performance Checklist 2017》</a></li>
 </ol>
 </blockquote>
 ]]></content>
@@ -217,7 +359,22 @@
 <p>一个活动是怎样成为无意识的？训练，通过不断的训练形成的。</p>
 <p>当人们想要把更多的事情做完时，为了节省时间和脑力，也为了减少错误的可能性，他们倾向于用那些无意识或者至少半意识的方法。</p>
 <p><strong>一个交互系统怎样设计才能将任务设计的更快，更容易和更少出错呢？就是把任务的操作设计得能够很快使其成为无意识的。</strong></p>
-<h3 id="解决问题和计算是困难的"><a href="#解决问题和计算是困难的" class="headerlink" title="解决问题和计算是困难的"></a>解决问题和计算是困难的</h3>]]></content>
+<h3 id="解决问题和计算是困难的"><a href="#解决问题和计算是困难的" class="headerlink" title="解决问题和计算是困难的"></a>解决问题和计算是困难的</h3><p>解决问题与计算，需要专注的注意力和不间断的的有意识地监控，并且相对较慢和顺序地进行，这就拉紧了短期记忆的限制，因为执行指定步骤所需要的信息块为了争夺稀少的注意力资源而相互竞争。</p>
+<p>计算主要发生在大脑的受控的模式下，它消耗注意力和短期记忆的稀缺资源。对于部分问题和计算（简单，不需要太多信息，信息可以及时获得），是可以在大脑中完成处理的。</p>
+<p>当问题超出短期记忆，或者要求必须从长期记忆里面提取一些信息，脑的负荷就增加了。如果需要的认知策略、解决方法或者步骤我们不知道或无法获得，解决问题和计算就会很难。</p>
+<p><strong>人们可能会因为缺少技术领域有效诊断的训练以及学习兴趣，而无法解决技术问题。</strong></p>
+<h3 id="在用户界面设计上的影响"><a href="#在用户界面设计上的影响" class="headerlink" title="在用户界面设计上的影响"></a>在用户界面设计上的影响</h3><p><strong>人们不一定高兴接受别人或者别的事情提出问题来为难自己，他们有自己的目标，他们用电脑来帮助自己完成目标，他们想把自己的注意力集中到那个目标上</strong><br>交互系统应该尊重这一点，并不应以用户不想要的技术问题和目标去干涉用户。例如：“用户 ID” 和 “用户名” 是一回事吗？<br>交互系统应该尽可能减少用户不得不投入注意力去操作他们，否则会把稀缺的认知资源从他们要用电脑解决的任务中抽取出来。</p>
+<p>一些设计的原则：</p>
+<ol>
+<li>显著地标识系统状态和用户当前进度</li>
+<li>引导用户完成他们的目标：通过提供清晰的信息“气味”，引导用户向目标前进，或者明确地通过使用向导。</li>
+<li>不要让用户诊断系统问题：如网络连接故障。</li>
+<li>尽可能减少设置的数量和复杂度：不要期待用户会对许多互相影响的设置或者参数做出最优的组合，人们在这方面已经很差劲了。</li>
+<li>让用户使用感觉而不是计算：网格和对齐标尺</li>
+<li>让系统令人感到熟悉：遵循业界标准和习惯、让新的软件像用户习惯了的旧软件那样工作、用比喻作为设计基础。</li>
+<li>让电脑去计算</li>
+</ol>
+]]></content>
       
         <categories>
             
