@@ -4,6 +4,23 @@
 
     
   <url>
+    <loc>http://blog.jxdjayden.cn/2018/05/15/js-precision/</loc>
+    <lastmod>2018-05-15T13:46:44.255Z</lastmod>
+    <data>
+        <display>
+        <title>关于 JavaScript 中精度丢失的问题</title>
+        <pubTime>2018-05-15T02:44:38.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.jxdjayden.cn/2018/05/02/vue/drawboard/</loc>
     <lastmod>2018-05-02T10:16:20.000Z</lastmod>
     <data>
@@ -121,9 +138,9 @@
         <title>Promise 与异步编程笔记</title>
         <pubTime>2017-02-08T00:57:43.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
         <tag>Promise</tag>
          
@@ -145,9 +162,9 @@
         <title>代理与反射笔记</title>
         <pubTime>2017-02-08T04:29:54.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
         <tag>proxy</tag>
          
@@ -508,9 +525,9 @@
         <title>ES6 的 generator 函数</title>
         <pubTime>2016-08-30T15:12:57.000Z</pubTime>
         
-        <tag>ES6</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>ES6</tag>
          
          
            

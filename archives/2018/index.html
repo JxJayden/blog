@@ -105,6 +105,38 @@
 
   
   <h2 class="title">
+    <a href="/2018/05/15/js-precision/">
+      关于 JavaScript 中精度丢失的问题
+    </a>
+  </h2>
+  
+  <time>
+    5月 15, 2018
+  </time>
+  <section class="content">
+	  <p>上周在工作中遇到一个问题，在前端使用 JS 计算位移的时候，经常会出现类似 <code>1.7999999999999999</code> 这样的数字。然后在看一道算法题的时候，超过最大安全整数  <code>9007199254740991</code> （在 JS 中可以通过 <code>Number.MAX_SAFE_INTEGER</code> 获得）的数会出现精度丢失的情况。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Chrome Version 68.0.3429.0 canary</span></span><br><span class="line"><span class="comment">// Safari Version 11.1</span></span><br><span class="line"><span class="comment">// Firefox version 57.0</span></span><br><span class="line"><span class="comment">// node.js v9.2.0</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">9999910000199999</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a % <span class="number">1337</span>); <span class="comment">// 期待输出 957，实际输出 958 ❌</span></span><br></pre></td></tr></table></figure>
+<p>很多人知道这是 JS 精度丢失的问题，但可能不太了解原因以及解决方案，希望可以在这里探讨一二。</p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/05/15/js-precision/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2018/05/02/vue/drawboard/">
       DrawBoard
     </a>

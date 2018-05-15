@@ -100,6 +100,38 @@
 
   
   <h2 class="title">
+    <a href="/2018/05/15/js-precision/">
+      关于 JavaScript 中精度丢失的问题
+    </a>
+  </h2>
+  
+  <time>
+    5月 15, 2018
+  </time>
+  <section class="content">
+	  <p>上周在工作中遇到一个问题，在前端使用 JS 计算位移的时候，经常会出现类似 <code>1.7999999999999999</code> 这样的数字。然后在看一道算法题的时候，超过最大安全整数  <code>9007199254740991</code> （在 JS 中可以通过 <code>Number.MAX_SAFE_INTEGER</code> 获得）的数会出现精度丢失的情况。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Chrome Version 68.0.3429.0 canary</span></span><br><span class="line"><span class="comment">// Safari Version 11.1</span></span><br><span class="line"><span class="comment">// Firefox version 57.0</span></span><br><span class="line"><span class="comment">// node.js v9.2.0</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">9999910000199999</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a % <span class="number">1337</span>); <span class="comment">// 期待输出 957，实际输出 958 ❌</span></span><br></pre></td></tr></table></figure>
+<p>很多人知道这是 JS 精度丢失的问题，但可能不太了解原因以及解决方案，希望可以在这里探讨一二。</p>
+
+    
+	  <div class="readmore">
+      <a href="/2018/05/15/js-precision/">Read More</a>
+    </div>
+    
+    
+    
+	  <div class="tags">
+      <a class="tag-link" href="/tags/JavaScript/">JavaScript</a>
+	  </div>
+    
+
+  </section>
+</article>
+  
+    <article class="post ">
+
+  
+  <h2 class="title">
     <a href="/2018/05/02/vue/drawboard/">
       DrawBoard
     </a>
@@ -375,38 +407,6 @@
     
 	  <div class="tags">
       <a class="tag-link" href="/tags/ES6/">ES6</a><a class="tag-link" href="/tags/JavaScript/">JavaScript</a><a class="tag-link" href="/tags/proxy/">proxy</a><a class="tag-link" href="/tags/reflect/">reflect</a>
-	  </div>
-    
-
-  </section>
-</article>
-  
-    <article class="post ">
-
-  
-  <h2 class="title">
-    <a href="/2017/02/08/ES6/Promises-and-Asynchronous-Programming-note/">
-      Promise 与异步编程笔记
-    </a>
-  </h2>
-  
-  <time>
-    2月 8, 2017
-  </time>
-  <section class="content">
-	  <p>本文为个人阅读《Understanding ECMAScript 6》所做的记录，以代码片段为主，大家可以直接去看书<a href="https://leanpub.com/understandinges6/read#leanpub-auto-promises-and-asynchronous-programming" target="_blank" rel="noopener">Understanding ECMAScript 6</a>，<a href="https://sagittarius-rev.gitbooks.io/understanding-ecmascript-6-zh-ver/content/" target="_blank" rel="noopener">中译版</a>。</p>
-<h2 id="异步编程的背景回溯"><a href="#异步编程的背景回溯" class="headerlink" title="异步编程的背景回溯"></a>异步编程的背景回溯</h2><h3 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> button = <span class="built_in">document</span>.getElementById(<span class="string">"my-btn"</span>);</span><br><span class="line">button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"Clicked"</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>缺点：所有事件需要一次注册完毕，面对复杂需求不灵活</strong></p>
-
-    
-	  <div class="readmore">
-      <a href="/2017/02/08/ES6/Promises-and-Asynchronous-Programming-note/">Read More</a>
-    </div>
-    
-    
-    
-	  <div class="tags">
-      <a class="tag-link" href="/tags/ES6/">ES6</a><a class="tag-link" href="/tags/JavaScript/">JavaScript</a><a class="tag-link" href="/tags/Promise/">Promise</a>
 	  </div>
     
 
